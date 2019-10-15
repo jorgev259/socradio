@@ -1,0 +1,35 @@
+{
+  "name": "TooHotRadio.net",
+"gcm_sender_id": "103953800507",
+  "short_name": "TooHotRadio",
+  "start_url": "https://toohotradio.net/",
+  "icons": [{
+        "src": "https://toohotradio.net/images/icons/128.jpg",
+        "sizes": "128x128",
+        "type": "image/jpg"
+      }, {
+        "src": "https://toohotradio.net/images/icons/192.png",
+        "sizes": "192x192",
+        "type": "image/png"
+      }, {
+        "src": "https://toohotradio.net/images/icons/256.jpg",
+        "sizes": "256x256",
+        "type": "image/jpg"
+      }, {
+        "src": "https://toohotradio.net/images/icons/384.jpg",
+        "sizes": "384x384",
+        "type": "image/jpg"
+      }, {
+        "src": "https://toohotradio.net/images/icons/512.jpg",
+        "sizes": "512x512",
+        "type": "image/jpg"
+      },{
+        "src": "https://toohotradio.net/images/icons/768.png",
+        "sizes": "768x768",
+        "type": "image/png"
+      }],
+  "background_color": "#ee4236",
+  "display": "fullscreen",
+"orientation": "portrait",
+  "theme_color": "#ee4236"
+}

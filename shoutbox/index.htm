@@ -1,0 +1,857 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <title>
+            Too Hot Radio Shoutbox
+        </title>
+        <!-- CSS  -->
+<script src="https://www.gstatic.com/firebasejs/4.10.1/firebase.js"></script>
+<script>
+  var config = {
+    apiKey: "AIzaSyDcxQjDutLhWOjOw3P8rh9aDd4ltFPtejg",
+    authDomain: "toohot-a8a91.firebaseapp.com",
+    databaseURL: "https://toohot-a8a91.firebaseio.com",
+    projectId: "toohot-a8a91",
+    storageBucket: "toohot-a8a91.appspot.com",
+    messagingSenderId: "417892042525"
+  };
+  firebase.initializeApp(config);
+</script>
+<script src="https://cdn.firebase.com/libs/firebaseui/2.5.1/firebaseui.js"></script>
+<script>
+var ui = new firebaseui.auth.AuthUI(firebase.auth());
+var uiConfig = {
+  callbacks: {
+    signInSuccessWithAuthResult: function(authResult, redirectUrl) {
+firebase.auth().setPersistence(firebase.auth.Auth.Persistence.LOCAL);
+      // User successfully signed in.
+      // Return type determines whether we continue the redirect automatically
+      // or whether we leave that to developer to handle.
+      return false;
+    },
+    uiShown: function() {
+      // The widget is rendered.
+      // Hide the loader.
+      document.getElementById('loader').style.display = 'none';
+    }
+  },
+  // Will use popup for IDP Providers sign-in flow instead of the default, redirect.
+  signInFlow: 'popup',
+ signInSuccessUrl: 'https://toohotradio.net/shoutbox/',
+  signInOptions: [
+    // Leave the lines as is for the providers you want to offer your users.
+    firebase.auth.GoogleAuthProvider.PROVIDER_ID,
+    firebase.auth.FacebookAuthProvider.PROVIDER_ID,
+    firebase.auth.TwitterAuthProvider.PROVIDER_ID,
+    firebase.auth.EmailAuthProvider.PROVIDER_ID
+  ],
+  // Terms of service url.
+  tosUrl: 'https://toohotradio.net/privacy/'
+};
+if (!String.prototype.startsWith) {
+  String.prototype.startsWith = function(searchString, position) {
+    position = position || 0;
+    return this.indexOf(searchString, position) === position;
+  };
+}
+if (!String.prototype.repeat) {
+  String.prototype.repeat = function(count) {
+    'use strict';
+    if (this == null) {
+      throw new TypeError('can\'t convert ' + this + ' to object');
+    }
+    var str = '' + this;
+    count = +count;
+    if (count != count) {
+      count = 0;
+    }
+    if (count < 0) {
+      throw new RangeError('repeat count must be non-negative');
+    }
+    if (count == Infinity) {
+      throw new RangeError('repeat count must be less than infinity');
+    }
+    count = Math.floor(count);
+    if (str.length == 0 || count == 0) {
+      return '';
+    }
+    // Ensuring count is a 31-bit integer allows us to heavily optimize the
+    // main part. But anyway, most current (August 2014) browsers can't handle
+    // strings 1 << 28 chars or longer, so:
+    if (str.length * count >= 1 << 28) {
+      throw new RangeError('repeat count must not overflow maximum string size');
+    }
+    var rpt = '';
+    for (var i = 0; i < count; i++) {
+      rpt += str;
+    }
+    return rpt;
+  }
+}
+function notifyStatus() {
+  if (!("Notification" in window)) {
+    return "unsupported";
+  }
+return Notification.permission;
+}
+</script>
+        <link rel="stylesheet" href="..\wp-content\themes\materialize-child\css\material.css">
+       <link type="text/css" rel="stylesheet" href="https://cdn.firebase.com/libs/firebaseui/2.6.2/firebaseui.css">
+        <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+        <link href="https://fonts.googleapis.com/css?family=Roboto|Roboto+Condensed|Roboto+Mono|Roboto+Slab" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css?family=Roboto&text=miknik&effect=anaglyph|destruction|emboss|fire-animation|neon|3d" rel="stylesheet">
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.10/css/all.css" integrity="sha384-+d0P83n9kaQMCwj8F4RJB66tzIwOKmrdb46+porD/OvrJ+37WqIM7UoBtwHO6Nlg" crossorigin="anonymous">       
+        <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0">
+        <!-- link rel='stylesheet prefetch' href='https://code.getmdl.io/1.1.3/material.indigo-pink.min.css' -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-rc.2/css/materialize.min.css">
+        <link rel="stylesheet" href="..\wp-content\themes\materialize-child\css\chat.css">
+        <style>
+            html, body{
+                height:100%
+                    width:100%
+                    position:absolute;
+            }
+            nav ul a,
+            nav .brand-logo {
+                color: #444;
+            }
+            p {
+                line-height: 2rem;
+            }
+            .button-collapse {
+                color: #26a69a;
+            }
+            .parallax-container {
+                min-height: 420px;
+                line-height: 0;
+                height: auto;
+                color: rgba(255,255,255,.9);
+            }
+            .parallax-container .section {
+                width: 100%;
+            }
+            @media only screen and (max-width : 992px) {
+                .parallax-container .section {
+                    position: absolute;
+                    top: 40%;
+                }
+                #index-banner .section {
+                    top: 10%;
+                }
+            }
+            @media only screen and (max-width : 600px) {
+                #index-banner .section {
+                    top: 0;
+                }
+                .side-nav {
+                    width:100%
+                }
+            }
+            .icon-block {
+                padding: 0 15px;
+            }
+            .icon-block .material-icons {
+                font-size: inherit;
+            }
+            footer.page-footer {
+                margin: 0;
+            }
+            #map{
+                height: 500px;
+            }
+            #scheduleSection{
+                top:2%
+            }
+            .collection .collection-item.avatar p {
+                padding-bottom: 10px !important;
+                line-height:1.5rem;
+            }
+            .mdl-tabs__panel ul > li.in.avatar {
+                width: 50px;
+                height: 50px;
+                min-width: unset;
+                text-align: unset;
+                vertical-align: unset;
+                line-height: unset;
+                color: unset;
+                border-radius: 25px;
+            }
+            .mdl-tabs__tab{
+                width:50%;
+cursor: pointer;
+                }
+            .swatch {
+                margin-bottom: 10%;
+                height: 3rem;
+                text-align: center;
+                display: grid;
+                align-items: center;
+                cursor: pointer;
+            }
+            .swatch-selected {
+                border: 3px;
+                border-color: blue;
+                border-style: solid;
+                border-radius: 5px;
+            }
+            li .in {
+                width:100%
+            }
+            li .out {
+                width:100%
+            }
+            #message-display {
+                height:95%;
+overflow-x: hidden;
+background-image: url(../images/toohot2.png);
+    background-size: 20%;
+    background-repeat: space;
+    background-position: center;
+            }
+
+.gWEnPFpmaSSEU04igJotYX228bX2{
+background-image: url(../images/camo.png);
+    background-size: contain;
+}
+.M2hg2jkC95OYH0JycSLnzdmvPl62{
+    -webkit-animation-duration: 0.8s;
+    -webkit-animation-name: font-effect-fire-animation-keyframes;
+    -webkit-animation-iteration-count: infinite;
+    -webkit-animation-direction: alternate;
+}
+
+
+            #shoutBox {
+                width:100%;
+                height:100%;
+            }
+            #message-display2 {
+                height:100%;
+                overflow-x: hidden;
+                background-color: rgba(0, 0, 0, 0.05);
+            }
+            #shoutSettings {
+                width:100%;
+                height:100%;
+                display:none;
+            }
+            #chatDiv {
+                height: 75%;
+            }
+            #chat {
+                position: fixed;
+                top: 0px;
+                right: 0px;
+                left: 0px;
+                bottom: 0px;
+                height:100%;
+            }
+            .noscroll {
+                overflow: hidden;
+            }
+            @font-face{font-family:'Open Sans';font-style:normal;font-weight:400;src:local('Open Sans'),local('OpenSans'),url(//fonts.gstatic.com/s/opensans/v13/cJZKeOuBrn4kERxqtaUH3bO3LdcAZYWl9Si6vvxL-qU.woff) format('woff')}@font-face{font-family:'Open Sans';font-style:normal;font-weight:700;src:local('Open Sans Bold'),local('OpenSans-Bold'),url(//fonts.gstatic.com/s/opensans/v13/k3k702ZOKiLJc3WVjuplzKRDOzjiPcYnFooOUGCOsRk.woff) format('woff')}#colorPick *{-webkit-transition:all linear .2s;-moz-transition:all linear .2s;-ms-transition:all linear .2s;-o-transition:all linear .2s;transition:all linear .2s}#colorPick{background:rgba(255,255,255,.85);-webkit-backdrop-filter:blur(15px);position:absolute;border-radius:5px;box-shadow:0 3px 8px rgba(0,0,0,.2);padding:15px;font-family:"Open Sans",sans-serif;width:140px}#colorPick span{font-size:9pt;text-transform:uppercase;font-weight:700;color:#bbb;margin-bottom:5px;display:block;clear:both}.customColorHash{border-radius:5px;height:23px;width:122px;margin:1px 4px;padding:0 4px;border:1px solid #babbba;outline:0}.customColorHash.error{border-color:#ff424c;color:#ff424c}.colorPickButton{border-radius:5px;width:20px;height:20px;margin:0 3px;cursor:pointer;display:inline-block;border:thin solid #eee}.colorPickButton:hover{transform:scale(1.1)}.colorPickDummy{background:#fff;border:1px dashed #bbb}
+.pickerr {
+			border-radius: 5px;
+			width: 36px;
+			height: 36px;
+			cursor: pointer;
+			-webkit-transition: all linear .2s;
+			-moz-transition: all linear .2s;
+			-ms-transition: all linear .2s;
+			-o-transition: all linear .2s;
+			transition: all linear .2s;
+			border: thin solid #eee;
+		}
+		.pickerr:hover {
+			transform: scale(1.1);
+		}
+.device{
+padding-left:5px;
+padding-right:5px;
+}
+audio::-webkit-media-controls-panel {
+background-color:#fff;
+}
+audio::-webkit-media-controls-timeline {
+visibility:hidden;
+pointer-events:none;
+} 
+#miniaudio {
+width:initial;
+}
+.notifyBlock {
+    background-color: black;
+    display: block;
+    opacity: 0.3;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    z-index: 12;
+    left: 0;
+    right: 0;
+transition: all 1s;
+-webkit-transition: all 1s;
+}
+.toohotbot {
+
+}
+        </style>
+    </head>
+    <body>
+<div id="loginUIModal" class="modal">
+    <div class="modal-content">
+        <h6 class="center">
+            Please login
+        </h6>
+        <div class="row">
+             <div id="firebaseui-auth-container"></div>
+<div id="loader">Loading...</div>
+        </div>
+    </div>
+</div>
+            <div id="status">
+        </div>
+        <div class="col s12">
+            <div id="chat">
+                <div class="mdl-tabs mdl-js-tabs mdl-js-ripple-effect" id="chatDiv">
+                    <div class="mdl-tabs__tab-bar">
+                        <button class="mdl-button mdl-js-button mdl-button--icon" id="minimize"><i class="material-icons">
+                            expand_more
+                            </i></button>
+                        <ul class="mdl-menu mdl-menu--bottom-left mdl-js-menu mdl-js-ripple-effect" style="right:unset;left:5px;" for="minimize">
+                            <li class="mdl-menu__item hideChat" onclick="minimiseChat();">
+                                Hide
+                            </li>
+                            <li class="mdl-menu__item hideChat" onclick="quitChat();">
+                                Quit
+                            </li>
+                            <li class="mdl-menu__item hideChat" id="sign-out">
+                                Hide
+                            </li>
+                            <li class="mdl-menu__item hideChat" id="sign-in">
+                                Quit
+                            </li>
+                            <li class="mdl-menu__item hideChat" id="submitImage">
+                                QuittoohotShout.submitToken()
+                            </li>
+<form id="image-form">
+                            <input id="mediaCapture" type="file" accept="image/*,capture=camera">
+</form>
+                            <li class="mdl-menu__item hideChat">
+                                token
+                            </li>
+                        </ul>
+                        <a class="mdl-tabs__tab is-active" onclick="closeShoutSettings();"><span class="mdl-badge">Shoutbox</span></a>
+                        <a class="mdl-tabs__tab" onclick="openShoutSettings();"><span class="mdl-badge">Settings</span></a>
+                        <div class="placeholder" id="unreadBadge">
+                        </div>
+                        <button class="mdl-button mdl-js-button mdl-button--icon" id="menu"><i class="material-icons">
+                            more_vert
+                            </i></button>
+                        <ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect" for="menu">
+                            <li class="mdl-menu__item" onclick="openShoutSettings();" id="user-name">
+                                Settings
+                            </li>
+                            <li class="mdl-menu__item" onclick="alert(isTouch);" id="user-pic">
+                                thft
+                            </li>
+                        </ul>
+                    </div>
+
+<div id="notifydiv" class="row" style="margin-bottom:5px;margin-top:5px;">
+    <div class="col s12"><a class="btn waves-effect waves-light" style="width:100%;" onclick="subscribeSwal()"><i class="material-icons right">notifications
+    </i><span id="nottext" style="-webkit-transition:opacity 2s linear;transition: opacity 2s linear;">Get notified when your favourite DJs are on air</span></a>
+    </div>
+</div>
+
+                    <div class="mdl-tabs__panel is-active" id="shoutBox">
+                        <div class="messages" id="message-display">
+                            <ul id="chatwin">
+                            </ul>
+                        </div>
+
+                        <div class="enter-message row" id="enter-msg">
+                            <form id="shoutForm" class="col s12">
+    <div class="col input-field s8">
+        <input placeholder="Enter your message" id="chatmsgin" type="text" autocomplete="off">
+    </div>
+    <div class="col s2">
+        <button id="submit" type="submit" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon mdl-button--colored" data-upgraded=",MaterialButton" disabled="true"><i class="material-icons">
+            send
+            </i><span class="mdl-button__ripple-container"><span class="mdl-ripple"></span></span></button>
+    </div>
+    <div class="col s1">
+        <button onclick="$('#mediaCapture').trigger('click')" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon mdl-button--colored" data-upgraded=",MaterialButton"><i class="material-icons">
+            photo
+            </i><span class="mdl-button__ripple-container"><span class="mdl-ripple"></span></span></button>
+    </div>
+    <div class="col s12">
+        <audio controls="controls" preload="metadata" id="miniaudio"><source src="https://stream.toohotradio.net/320" type="audio/mpeg"></audio>
+    </div>
+</form>
+</div>
+
+
+                    </div>
+                    <div class="mdl-tabs__panel" id="shoutSettings" style="opacity:0">
+                        <div class="messages" id="message-display2">
+<div class="row">
+<h5 class="center-align">
+                                Nickname
+                            </h5>
+        <div class="input-field col s6 offset-s3">
+          <input id="shoutName" type="text" class="validate">
+          <label for="shoutName">Shoutbox nickname</label>
+        </div>
+<a class="btn waves-effect" onclick="updateName($('#shoutName').val())">Save</a>
+</div>
+  <div class="switch center row">
+                            <h5 class="center-align">
+                                Chat sounds
+                            </h5>
+    <label>
+      Off
+      <input id="soundCheck" type="checkbox" checked="" onclick="chatSounds()">
+      <span class="lever"></span>
+      On
+    </label>
+  </div>
+
+
+<div class="section" id="notificationTable">                            <h5 class="center-align">
+                                Get a notification when...
+                            </h5>
+<table>
+
+    
+        <tbody>
+<tr><td><img src="..\images\alla4.jpg" class="circle" style="height:48px;"><span style="padding-left:5px;">@LLa</span></td><td><label><input type="checkbox" name="checkboxes" id="live44" value="live44"><span>Is on air</span></label></td><td><label><input type="checkbox" name="checkboxes" id="mix44" value="mix44"><span>Uploads to Mixcloud</span></label></td></tr><tr><td><img src="..\images\rhythmjunkie.jpg" class="circle" style="height:48px;"><span style="padding-left:5px;">A Rhythmjunkie</span></td><td><label><input type="checkbox" name="checkboxes" id="live15" value="live15"><span>Is on air</span></label></td><td><label><input type="checkbox" name="checkboxes" id="mix15" value="mix15"><span>Uploads to Mixcloud</span></label></td></tr><tr><td><img src="..\images\icons\128.jpg" class="circle" style="height:48px;"><span style="padding-left:5px;">Ambigudroid</span></td><td><label><input type="checkbox" name="checkboxes" id="live45" value="live45"><span>Is on air</span></label></td><td><label><input type="checkbox" name="checkboxes" id="mix45" value="mix45"><span>Uploads to Mixcloud</span></label></td></tr><tr><td><img src="..\images\axen.png" class="circle" style="height:48px;"><span style="padding-left:5px;">Axén</span></td><td><label><input type="checkbox" name="checkboxes" id="live36" value="live36"><span>Is on air</span></label></td><td><label><input type="checkbox" name="checkboxes" id="mix36" value="mix36"><span>Uploads to Mixcloud</span></label></td></tr><tr><td><img src="..\images\5b18345400e3f.jpg" class="circle" style="height:48px;"><span style="padding-left:5px;">Basement Phil</span></td><td><label><input type="checkbox" name="checkboxes" id="live13" value="live13"><span>Is on air</span></label></td><td><label><input type="checkbox" name="checkboxes" id="mix13" value="mix13"><span>Uploads to Mixcloud</span></label></td></tr><tr><td><img src="..\images\5b561f66d7c64.jpg" class="circle" style="height:48px;"><span style="padding-left:5px;">Chapperz</span></td><td><label><input type="checkbox" name="checkboxes" id="live42" value="live42"><span>Is on air</span></label></td><td><label><input type="checkbox" name="checkboxes" id="mix42" value="mix42"><span>Uploads to Mixcloud</span></label></td></tr><tr><td><img src="..\images\monkey-magic-flyer.jpg" class="circle" style="height:48px;"><span style="padding-left:5px;">Chippie T</span></td><td><label><input type="checkbox" name="checkboxes" id="live12" value="live12"><span>Is on air</span></label></td><td><label><input type="checkbox" name="checkboxes" id="mix12" value="mix12"><span>Uploads to Mixcloud</span></label></td></tr><tr><td><img src="..\images\icons\128.jpg" class="circle" style="height:48px;"><span style="padding-left:5px;">DJ INTERSECT</span></td><td><label><input type="checkbox" name="checkboxes" id="live18" value="live18"><span>Is on air</span></label></td><td><label><input type="checkbox" name="checkboxes" id="mix18" value="mix18"><span>Uploads to Mixcloud</span></label></td></tr><tr><td><img src="..\images\icons\128.jpg" class="circle" style="height:48px;"><span style="padding-left:5px;">DJ Operationz</span></td><td><label><input type="checkbox" name="checkboxes" id="live27" value="live27"><span>Is on air</span></label></td><td><label><input type="checkbox" name="checkboxes" id="mix27" value="mix27"><span>Uploads to Mixcloud</span></label></td></tr><tr><td><img src="..\images\icons\128.jpg" class="circle" style="height:48px;"><span style="padding-left:5px;">DJ TB1</span></td><td><label><input type="checkbox" name="checkboxes" id="live38" value="live38"><span>Is on air</span></label></td><td><label><input type="checkbox" name="checkboxes" id="mix38" value="mix38"><span>Uploads to Mixcloud</span></label></td></tr><tr><td><img src="..\images\5b35703dacdbb.jpg" class="circle" style="height:48px;"><span style="padding-left:5px;">Dj-Sinister</span></td><td><label><input type="checkbox" name="checkboxes" id="live41" value="live41"><span>Is on air</span></label></td><td><label><input type="checkbox" name="checkboxes" id="mix41" value="mix41"><span>Uploads to Mixcloud</span></label></td></tr><tr><td><img src="..\images\lizzy-web.png" class="circle" style="height:48px;"><span style="padding-left:5px;">Lizzie J</span></td><td><label><input type="checkbox" name="checkboxes" id="live22" value="live22"><span>Is on air</span></label></td><td><label><input type="checkbox" name="checkboxes" id="mix22" value="mix22"><span>Uploads to Mixcloud</span></label></td></tr><tr><td><img src="..\images\5b197d14638ee.jpg" class="circle" style="height:48px;"><span style="padding-left:5px;">Mr Dangerous</span></td><td><label><input type="checkbox" name="checkboxes" id="live20" value="live20"><span>Is on air</span></label></td><td><label><input type="checkbox" name="checkboxes" id="mix20" value="mix20"><span>Uploads to Mixcloud</span></label></td></tr><tr><td><img src="..\images\pigsy.jpg" class="circle" style="height:48px;"><span style="padding-left:5px;">Pigsy</span></td><td><label><input type="checkbox" name="checkboxes" id="live6" value="live6"><span>Is on air</span></label></td><td><label><input type="checkbox" name="checkboxes" id="mix6" value="mix6"><span>Uploads to Mixcloud</span></label></td></tr><tr><td><img src="..\images\scotty-m.png" class="circle" style="height:48px;"><span style="padding-left:5px;">ScottyM</span></td><td><label><input type="checkbox" name="checkboxes" id="live8" value="live8"><span>Is on air</span></label></td><td><label><input type="checkbox" name="checkboxes" id="mix8" value="mix8"><span>Uploads to Mixcloud</span></label></td></tr> </tbody>
+      </table>
+</div>
+
+                            <h5 class="center-align">
+                                Chat bubble colour
+                            </h5>
+                            <div class="container">
+                               <a class="chatswatch btn waves-effect chatpink"></a>
+<a class="chatswatch btn waves-effect chatblack"></a>
+<a class="chatswatch btn waves-effect chatwhite"></a>
+<a class="chatswatch btn waves-effect chatpinkdarken"></a>
+<a class="chatswatch btn waves-effect chatpurplelighten"></a>
+<a class="chatswatch btn waves-effect chatpurple"></a>
+<a class="chatswatch btn waves-effect chatpurpledarken"></a>
+<a class="chatswatch btn waves-effect chatdeep-purplelighten"></a>
+<a class="chatswatch btn waves-effect chatdeep-purple"></a>
+<a class="chatswatch btn waves-effect chatdeep-purpledarken"></a>
+<a class="chatswatch btn waves-effect chatindigolighten"></a>
+<a class="chatswatch btn waves-effect chatindigo"></a>
+<a class="chatswatch btn waves-effect chatindigodarken"></a>
+<a class="chatswatch btn waves-effect chatbluelighten"></a>
+<a class="chatswatch btn waves-effect chatblue"></a>
+<a class="chatswatch btn waves-effect chatbluedarken"></a>
+<a class="chatswatch btn waves-effect chatlight-bluelighten"></a>
+<a class="chatswatch btn waves-effect chatlight-blue"></a>
+<a class="chatswatch btn waves-effect chatlight-bluedarken"></a>
+<a class="chatswatch btn waves-effect chatteallighten"></a>
+<a class="chatswatch btn waves-effect chatteal"></a>
+<a class="chatswatch btn waves-effect chattealdarken"></a>
+<a class="chatswatch btn waves-effect chatgreenlighten"></a>
+<a class="chatswatch btn waves-effect chatgreen"></a>
+<a class="chatswatch btn waves-effect chatgreendarken"></a>
+<a class="chatswatch btn waves-effect chatlight-greenlighten"></a>
+<a class="chatswatch btn waves-effect chatlight-green"></a>
+<a class="chatswatch btn waves-effect chatlight-greendarken"></a>
+<a class="chatswatch btn waves-effect chatyellowlighten"></a>
+<a class="chatswatch btn waves-effect chatyellow"></a>
+<a class="chatswatch btn waves-effect chatyellowdarken"></a>
+<a class="chatswatch btn waves-effect chatdeep-orangelighten"></a>
+<a class="chatswatch btn waves-effect chatdeep-orange"></a>
+<a class="chatswatch btn waves-effect chatdeep-orangedarken"></a>
+<a class="chatswatch btn waves-effect chatbrownlighten"></a>
+<a class="chatswatch btn waves-effect chatbrown"></a>
+<a class="chatswatch btn waves-effect chatbrowndarken"></a>
+<a class="chatswatch btn waves-effect chatgreylighten"></a>
+<a class="chatswatch btn waves-effect chatgrey"></a>
+<a class="chatswatch btn waves-effect chatgreydarken"></a>
+<a class="chatswatch btn waves-effect chatblue-greylighten"></a>
+<a class="chatswatch btn waves-effect chatblue-grey"></a>
+<a class="chatswatch btn waves-effect chatblue-greydarken"></a>
+<a class="chatswatch btn waves-effect chatredlighten"></a>
+<a class="chatswatch btn waves-effect chatredlighten"></a>
+<a class="chatswatch btn waves-effect chatred"></a>
+<a class="chatswatch btn waves-effect chatreddarken"></a>
+<a class="chatswatch btn waves-effect chatpinklighten"></a>                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--  Scripts-->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.99.0/js/materialize.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.20.1/moment.min.js" integrity="sha256-ABVkpwb9K9PxubvRrHMkk6wmWcIHUE9eBxNZLXYQ84k=" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.20.1/locale/en-gb.js" integrity="sha256-tFU1H7O4obMtCeaZ6i77+4Pe5AE6cyDx8K0c8GfdM9w=" crossorigin="anonymous"></script>
+        <script src="..\wp-content\themes\materialize-child\js\velocity.min.js"></script>
+        <script src="..\wp-content\themes\materialize-child\js\velocity.ui.js"></script>
+        <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js" integrity="sha256-VazP97ZCwtekAsvgPBSUwPFKdrwD3unUfSGVYrahUqU=" crossorigin="anonymous"></script>
+        <script src="..\wp-content\themes\materialize-child\js\sw.js"></script>
+        <script src="index.js"></script>
+        <script src="..\js\localforage.min.js"></script>
+        <script src="..\firechatting.js?script=1571093161"></script>
+        <script>
+
+
+
+var chatcolour;
+function updateName(name){
+var user = firebase.auth().currentUser;
+user.updateProfile({
+  displayName: name
+}).then(function() {
+Materialize.toast('Shoutbox nickname set to '+name, 10000);
+closeShoutSettings();
+}).catch(function(error) {
+Materialize.toast('Unable to set your nickname', 10000);
+Materialize.toast('Please try later', 10000);
+});
+}
+
+$(document).ready(function() {
+$('.modal').modal();
+    firebase.auth().onAuthStateChanged(function(user) {
+        if (user) {
+firebase.auth().setPersistence(firebase.auth.Auth.Persistence.LOCAL)
+    var currentUserCol = user.uid;
+        firebase.database().ref('chatcolour').orderByKey().equalTo(currentUserCol).once('value', function(snapshot) {
+            snapshot.forEach(function(childSnapshot) {
+                if(typeof childSnapshot.val() === "undefined"){
+                    var col = cols[Math.floor(Math.random()*cols.length)];
+                    firebase.database().ref('chatcolour').child(currentUserCol).set('chat'+col);
+                }
+            });
+        });
+
+        if (user.displayName) {
+$('#shoutName').val(user.displayName);
+Materialize.updateTextFields();
+} else {
+openShoutSettings();
+Materialize.toast('Set your Shoutbox nickname', 10000);
+}
+
+        } else {
+$("#loginUIModal").modal('open',{dismissible : false});
+            ui.start('#firebaseui-auth-container', uiConfig);        }
+    });
+});
+moment.updateLocale('en', {
+    relativeTime : {
+        future: "Just now",
+        past:   "%s",
+        s  : 'Just now',
+        ss : '%d secs ago',
+        m:  "a min ago",
+        mm: "%d mins ago",
+        h:  "an hour ago",
+        hh: "%d hours ago",
+        d:  "a day ago",
+        dd: "%d days ago",
+        M:  "a month ago",
+        MM: "%d months ago",
+        y:  "a year ago",
+        yy: "%d years ago"
+    }
+});
+            jQuery(document).ready(function(){
+
+
+
+            }
+                                  );
+            function setCookie(cname, cvalue, exdays) {
+                var d = new Date();
+                d.setTime(d.getTime() + (exdays*24*60*60*1000));
+                var expires = "expires="+ d.toUTCString();
+                document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
+            }
+function chatTimes(){
+$('.timestamp').each(function( index ) {
+var stamp = $(this).data('ts');
+if(stamp > getTime('now')){
+var stamp = getTime('now');
+}
+$(this).text(moment(stamp).fromNow())});
+}
+$('.chatswatch').click(function(event){
+var chatcolour = event.target.classList.item(3);
+firebase.database().ref('chatcolour').child(firebase.auth().currentUser.uid).set(chatcolour);
+closeShoutSettings();
+});
+var currentDj = 'your favourite DJs are';
+function notifyButton(i){
+var text = document.getElementById('nottext');
+switch (i % 4) {
+    case 0:
+        text.innerText = 'Get notified when '+currentDj+' on air';
+        break;
+    case 1:
+        text.innerText = "Never miss another show";
+        break;
+    case 2:
+        text.innerText = "With Notifications sent straight to your browser";
+        break;
+    case 3:
+        text.innerText = "Click here to try it out!";
+        }
+i++;
+text.style.opacity = '1';
+setTimeout(function(){text.style.opacity = '0'}, 5000);
+setTimeout(function(){notifyButton(i)}, 8000);
+}
+function tickNotifications(){
+localforage.getItem('notifications').then(function(value) {
+for (i = 0; i < value.length; i++) {
+document.getElementById(value[i]).checked = true;
+}
+}).catch(function(err) {
+if(err.toString().indexOf('null') > -1){
+    localforage.setItem('notifications', 0);
+}
+});
+}
+function colChange(user, colour){
+var oldcolour = document.getElementsByClassName(user).length ? document.getElementsByClassName(user)[0].classList.item(2) : 'chatblue';
+$('.'+user).addClass(colour);
+$('.'+user).removeClass(oldcolour);
+}
+
+
+            function getCookie(cname) {
+                var name = cname + "=";
+                var decodedCookie = decodeURIComponent(document.cookie);
+                var ca = decodedCookie.split(';');
+                for(var i = 0; i <ca.length; i++) {
+                    var c = ca[i];
+                    while (c.charAt(0) == ' ') {
+                        c = c.substring(1);
+                    }
+                    if (c.indexOf(name) == 0) {
+                        return c.substring(name.length, c.length);
+                    }
+                }
+                return "";
+            }
+            function checkCookie() {
+                var username = getCookie("2HTUN");
+                if (username != "") {
+                    Materialize.toast("Welcome back " + username, 4000);
+                }
+                else {
+                    setTimeout(function(){
+                        newUser();
+                    }
+                               , 3000);
+                }
+            }
+            var newColour;
+            function swatcher(){
+                $( ".swatch" ).click(function(e) {
+                    newColour = event.target.classList.item(1);
+                    setCookie('2HTCL', newColour, 365);
+                    $('.swatch').removeClass('swatch-selected');
+                    $(this).addClass('swatch-selected');
+                    var post_data = {
+                        'action':'colour'};
+                    conn.publish('colour', newColour);
+                }
+                                    );
+            }
+            function mobNav(){
+                $('.button-collapse').sideNav('destroy');
+                setTimeout(function(){
+                    $('.button-collapse').sideNav()}
+                           , 1200);
+            }
+            function toastIt(){
+                var myJSON=JSON.stringify($('#shout').serialize());
+                console.log( myJSON);
+                ws.send(myJSON);
+                //document.getElementById("shout").reset();
+            }
+            var delay = 0;
+            setInterval(function(){
+                chatTimes();
+            }
+                        , 5000);
+            function stripslashes(str) {
+                return str.replace(/\\'/g,'\'').replace(/\"/g,'"').replace(/\\\\/g,'\\').replace(/\\0/g,'\0');
+            }
+            function chattPost(){
+                var msg = $('#chatmsgin').val();
+                if (msg.length == 0){
+                    return;
+                }
+                var message = stripslashes(msg);
+                conn.publish('chat',message);
+                $('#chatmsgin').val('');
+                return false;
+            }
+            var inChat=0;
+            function chatSubscribe() {
+                $('body').addClass('noscroll');
+                inChat = 1;
+                conn.subscribe('chat', function(topic, data) {
+                    if(data[0] == 'joinedRoom'){
+                        var time = moment.unix(data.timestamp);
+                        var chatmsg = '<li class="center-block"><div class="chip center-align z-height-5"><img src="'+data.avatar+'" class="circle">'+data.user+' has joined the chat<br/><span class="timestamp" data-ts="'+data.timestamp+'">'+time.fromNow()+'</span></div></li>';
+                        $(chatmsg).hide().appendTo('#chatwin').fadeIn(1200);
+                        $('#message-display').animate({
+                            scrollTop: $('#message-display').prop('scrollHeight')}
+                                                      , 2000);
+                        return;
+                    }
+                    if(data[0] == 'leftRoom'){
+                        var time = moment.unix(data.timestamp);
+                        var chatmsg = '<li class="center-block"><div class="chip center-align z-height-5"><img src="'+data.avatar+'" class="circle">'+data.user+' has left the chat<br/><span class="timestamp" data-ts="'+data.timestamp+'">'+time.fromNow()+'</span></div></li>';
+                        $(chatmsg).hide().appendTo('#chatwin').fadeIn(1200);
+                        $('#message-display').animate({
+                            scrollTop: $('#message-display').prop('scrollHeight')}
+                                                      , 2000);
+                        return;
+                    }
+                    if(data[0] == 'yourPost'){
+                        var time = moment.unix(data.timestamp);
+                        var message = stripslashes(data.message);
+                        var time = moment.unix(data.timestamp);
+                        var chatmsg = '<li class="out"><div class="message '+data.class+'"><div><span class="left time timestamp" data-ts="'+data.timestamp+'">'+time.fromNow()+'</span><span class="right name">'+data.user+'</span></div><br><div class="left">'+message+'</div></div></li>';
+                        $(chatmsg).hide().appendTo('#chatwin').fadeIn(1200);
+                        $('#message-display').animate({
+                            scrollTop: $('#message-display').prop('scrollHeight')}
+                                                      , 2000);
+                        return;
+                    }
+                    if(data[0] == 'colour'){
+                        $('.'+data.user).switchClass( data.oldclass, data.newclass, 3000)
+                        return;
+                    }
+                    if(data[0] == 'welcome'){
+                        var time = moment.unix(data.timestamp);
+                        var message = stripslashes(data.message);
+                        var chatmsg = '<li class="center-block"><div class="chip center-align z-height-5">'+message+'</div></li>';
+                        $(chatmsg).hide().appendTo('#chatwin').fadeIn(1200);
+                        $('#message-display').animate({
+                            scrollTop: $('#message-display').prop('scrollHeight')}
+                                                      , 2000);
+                        return;
+                    }
+                    if(data[0] == 'chatmsg'){
+                        var time = moment.unix(data.timestamp);
+                        var message = stripslashes(data.message);
+                        var chatmsg = '<li class="in"><div class="avatar '+data.class+'"><img src="'+data.avatar+'" class="circle responsive-img"></div><div class="message '+data.class+'"><div><span class="left name">'+data.user+'</span><span class="right time timestamp" data-ts="'+data.timestamp+'">'+time.fromNow()+'</span></div><br><div class="left">'+message+'</div></div></li>';
+                        $(chatmsg).hide().appendTo('#chatwin').fadeIn(1200);
+                        $('#message-display').animate({
+                            scrollTop: $('#message-display').prop('scrollHeight')}
+                                                      , 2000);
+                        return;
+                    }
+                    if(data[0] == 'history'){
+                        var time = moment.unix(data.timestamp);
+                        var message = stripslashes(data.message);
+                        var chatmsg = '<li class="in"><div class="avatar '+data.class+'"><img src="https://toohotradio.net/wp-content/themes/materialize-child/img/'+data.avatar+'" class="circle responsive-img"></div><div class="message '+data.class+'"><div><span class="left name">'+data.user+'</span><span class="right time timestamp" data-ts="'+data.timestamp+'">'+time.fromNow()+'</span></div><br><div class="left">'+message+'</div></div></li>';
+                        $(chatmsg).hide().appendTo('#chatwin').fadeIn(100);
+                        $('#message-display').animate({
+                            scrollTop: $('#message-display').prop('scrollHeight')}
+                                                      , 10);
+                        return;
+                    }
+                }
+                              );
+            }
+            var isTouch = ("ontouchstart" in window) || (navigator.msMaxTouchPoints || navigator.maxTouchPoints) > 2;
+            var chatStatus;
+            function minimiseChat(){
+                $('#chat').velocity('transition.perspectiveUpOut', {
+                    duration:2000}
+                                   );
+                $('.fabAudio').velocity('transition.perspectiveUpIn', {
+                    duration:1500}
+                                       );
+                $('body').removeClass('noscroll');
+                chatStatus = 'minimised';
+            }
+            function quitChat(){
+                conn.unsubscribe('chat');
+                $('#chat').velocity('transition.perspectiveUpOut', {
+                    duration:2000}
+                                   );
+                $('.fabAudio').velocity('transition.perspectiveUpIn', {
+                    duration:1500}
+                                       );
+                $('body').removeClass('noscroll');
+                $('#chatwin').html('');
+                chatStatus = 'quit';
+                inChat=0;
+            }
+            var shoutSettings=false;
+            function closeShoutSettings(){
+updateNotifications();
+var user = firebase.auth().currentUser;
+if (user.displayName == null){
+Materialize.toast('You need to set a nickname',10000);
+return;
+}
+firebase.database().ref('chatcolour').orderByKey().equalTo(firebase.auth().currentUser.uid).once('value', function(snapshot) {
+  snapshot.forEach(function(childSnapshot) {
+    chatCol = childSnapshot.val();
+if (chatCol == 'undefined'){
+Materialize.toast('You need to pick a chat colour',10000);
+return;
+}
+  });
+});
+                if (shoutSettings == false){
+                    return;
+                }
+                $('#shoutSettings').velocity('transition.perspectiveUpOut', {
+                    duration:800}
+                                            );
+                $('#shoutBox').velocity('transition.perspectiveUpIn', {
+                    duration:800, delay:800}
+                                       );
+                shoutSettings=false;
+            }
+            function openShoutSettings(){
+                if (shoutSettings == true){
+                    return;
+                }
+                $('#shoutBox').velocity('transition.perspectiveUpOut', {
+                    duration:800}
+                                       );
+                $('#shoutSettings').velocity('transition.perspectiveUpIn', {
+                    duration:800, delay:800}
+                                            );
+                tickNotifications();
+                shoutSettings=true;
+            }
+function toWin(msg){
+window.opener.postMessage(JSON.stringify(msg), 'https://toohotradio.net');
+}
+function receiveMessage(event)
+{
+ if (event.origin !== "https://toohotradio.net")
+ return;
+
+console.log(event);
+console.log(event.data);
+console.log(event.origin);
+var msg = JSON.parse(event.data);
+console.log(msg);
+  event.source.postMessage("hi there yourself!  the secret response " +
+                           "is: rheeeeet!",
+                           event.origin);
+}
+window.addEventListener("message", receiveMessage, false);
+        </script>
+    </body>
+</html>
