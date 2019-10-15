@@ -1,5 +1,5 @@
 
-/* global $, gradient */
+/* global $, gradient, AudioContext, requestAnimationFrame */
 var gainNode, highPass, lowPass, ctx, WIDTH, HEIGHT
 
 window.AudioContext = window.AudioContext || window.webkitAudioContext || window.mozAudioContext
@@ -13,7 +13,7 @@ $(document).ready(function () {
       var visualSetting = 'frequencybars'
       console.log(visualSetting)
 
-      if (visualSetting == 'sinewave') {
+      if (visualSetting === 'sinewave') {
         analyser.fftSize = 2048
         var bufferLength = analyser.fftSize
         console.log(bufferLength)
@@ -55,7 +55,7 @@ $(document).ready(function () {
         }
 
         draw()
-      } else if (visualSetting == 'frequencybars') {
+      } else if (visualSetting === 'frequencybars') {
         analyser.fftSize = 128
         var bufferLengthAlt = analyser.frequencyBinCount
         console.log(bufferLengthAlt)
@@ -87,11 +87,11 @@ $(document).ready(function () {
         }
 
         drawAlt()
-      } else if (visualSetting == 'off') {
+      } else if (visualSetting === 'off') {
         canvasCtx.clearRect(0, 0, WIDTH, HEIGHT)
         canvasCtx.fillStyle = 'red'
         canvasCtx.fillRect(0, 0, WIDTH, HEIGHT)
-      } else if (visualSetting == 'caps') {
+      } else if (visualSetting === 'caps') {
         analyser.fftSize = 256
 
         renderFrame()
@@ -124,24 +124,24 @@ $(document).ready(function () {
     // we could configure the analyser: e.g. analyser.fftSize (for further infos read the spec)
 
     // frequencyBinCount tells you how many values you'll receive from the analyser
-    var frequencyData = new Uint8Array(analyser.frequencyBinCount)
+    // var frequencyData = new Uint8Array(analyser.frequencyBinCount)
     // we're ready to receive some data!
     var canvas = document.getElementById('canvas')
-    canvasCtx = canvas.getContext('2d')
-    var intendedWidth = document.getElementById('canvas').clientWidth
+    var canvasCtx = canvas.getContext('2d')
+    // var intendedWidth = document.getElementById('canvas').clientWidth
     var intendedHeight = document.getElementById('playerControls').clientHeight
     canvas.style.height = intendedHeight + 'px'
     var drawVisual
     var meterWidth = 10
     var cwidth = 300
     var cheight = 150
-    var gap = 2 // gap between meters
-    var totalWidth = meterWidth + gap
+    // var gap = 2 // gap between meters
+    // var totalWidth = meterWidth + gap
     var capHeight = 2
     var capStyle = '#000'
     var meterNum = 300 / 12
     var capYPositionArray = []
-    gradient = canvasCtx.createLinearGradient(0, 0, 0, 200)
+    var gradient = canvasCtx.createLinearGradient(0, 0, 0, 200)
     gradient.addColorStop(0, '#000')
     gradient.addColorStop(1, '#ee4236')
     // loop
@@ -193,14 +193,14 @@ function newSpectrum () {
   // we could configure the analyser: e.g. analyser.fftSize (for further infos read the spec)
   // analyser.fftSize = 64;
   // frequencyBinCount tells you how many values you'll receive from the analyser
-  var frequencyData = new Uint8Array(analyser.frequencyBinCount)
+  // var frequencyData = new Uint8Array(analyser.frequencyBinCount)
 
   // we're ready to receive some data!
   var canvas = document.getElementById('canvas')
   var cwidth = canvas.width
   var cheight = canvas.height - 2
   var meterWidth = 10 // width of the meters in the spectrum
-  var gap = 2 // gap between meters
+  // var gap = 2 // gap between meters
   var capHeight = 2
   var capStyle = '#fff'
   var meterNum = 300 / (10 + 2) // count of the meters
@@ -236,28 +236,4 @@ function newSpectrum () {
   }
   renderFrame()
   audio.play()
-}
-function videoFeed () {
-  if (Hls.isSupported()) {
-    var config = {
-      startPosition: -1,
-      liveDurationInfinity: true
-    }
-    var video = document.getElementById('audio-player')
-    var hls = new Hls(config)
-    hls.loadSource('https://toohotradio.net/video/stream/index.m3u8')
-    hls.attachMedia(video)
-    hls.on(Hls.Events.MANIFEST_PARSED, function () {
-      video.play()
-    })
-    hls.once(Hls.Events.FRAG_LOADED, function () {
-      $('#artDiv').fadeOut()
-      $('#artDiv').remove()
-      $('#cardFABPlay').remove()
-      $('#castPlay').remove()
-      $('#playerCardImage').css('padding-top', '56%')
-      $('#audio-player').attr('controls', true)
-      $('#320switch').remove()
-    })
-  }
 }
