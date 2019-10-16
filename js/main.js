@@ -165,6 +165,7 @@ $('.tlt').on('inAnimationEnd.tlt', function (event) {
 
 function connectWs () {
   var socket = io('https://api.sittingonclouds.net')
+  let currentArt = 'images/soc.png'
   socket.on('metadata', function (data) {
     console.log(data)
     stringAlbum = data.album
@@ -175,10 +176,17 @@ function connectWs () {
     $('#cardArtist').text(stringArtist)
     $('#cardAlbum').text(stringAlbum)
 
-    const art = `https://radio.sittingonclouds.net/covers/${stringAlbum}.jpg`
-    $('#albutwt').attr('src', art)
-    $('#split1').img = art
-    clearTimeout(switchPic)
+    const newArt = `https://radio.sittingonclouds.net/covers/${stringAlbum}.jpg`
+
+    $('.glitch').addClass('glitch_img')
+    $('.glitch_sec').attr('src', currentArt)
+    $('.glitch_primary').attr('src', newArt)
+    setTimeout(() => {
+      $('.glitch').removeClass('glitch_img')
+      currentArt = newArt
+
+      clearTimeout(switchPic)
+    }, 1.5 * 1000)
   })
 }
 connectWs()
@@ -190,13 +198,11 @@ connectWs()
 // var isTouch = ('ontouchstart' in window) || (navigator.msMaxTouchPoints || navigator.maxTouchPoints) > 2
 
 var recordWidth = $('#split1').width()
-var recordWidthTimer
 $(window).resize(function () {
   if (recordWidth === $('#split1').width()) {
     return
   }
-  clearTimeout(recordWidthTimer)
-  recordWidthTimer = setTimeout(function () { resizePlayerEffect() }, 500)
+  resizePlayerEffect()
 })
 function resizePlayerEffect () {
   recordWidth = $('#split1').width()
@@ -297,6 +303,7 @@ function stopRecord () {
 }
 
 function startRecord () {
+  resizePlayerEffect()
   $('.record').css('opacity', 1)
   var posLeft = $('#recordDiv').position().left
   if (posLeft === 0) {
@@ -337,6 +344,16 @@ $('#hqAudio').click(function () {
     audio.play()
   }
 })
+
+function recordTest () {
+  if (audio.paused) {
+    audio.play()
+    startRecord()
+  } else {
+    audio.pause()
+    recordAngle = setInterval(function () { stopRecord() }, 1)
+  }
+}
 
 /* function handleOrientation (event) {
   var absolute = event.absolute
