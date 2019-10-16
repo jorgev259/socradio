@@ -320,7 +320,7 @@ function startRecord () {
     startRecord()
   } else {
     audio.pause()
-    recordAngle = setInterval(function () { stopRecord() }, 1)
+    stop
   }
 } */
 function hdAudio () {
@@ -351,7 +351,7 @@ function recordTest () {
     startRecord()
   } else {
     audio.pause()
-    recordAngle = setInterval(function () { stopRecord() }, 1)
+    stopRecord()
   }
 }
 
