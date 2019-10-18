@@ -1,49 +1,30 @@
 
-/* global $,jQuery,io,Materialize */
-var audio128 = 'https://stream.toohotradio.net/128'
-var audio320 = 'https://stream.toohotradio.net/320'
+/* global $,jQuery,io,Materialize,MediaMetadata */
 var audio = document.getElementById('audio-player')
-
-audio.onvolumechange = function () {
-  console.log('The volume has been changed!')
-}
 
 // var volSlider = document.getElementById('volbar')
 var streamDelay = 0
-$(document).ready(function () {
-  var isAndroid = /Android/i.test(navigator.userAgent)
-  if (isAndroid) {
-    $('.mobileApps').show()
-    $('.googlePlay').show()
-  }
-  var isApple = /iPhone|iPad|iPod/i.test(navigator.userAgent)
-  if (isApple) {
-    $('.mobileApps').show()
-    $('.appleStore').show()
-  }
+$(document).ready(startRecord)
 
-  /* function androidMetadata (data) {
-    if ('mediaSession' in navigator) {
-      var art = 'https://toohotradio.net/resize' + data.art.substr(6)
-      var imgtype = 'image/' + data.art.substr(-3)
-      setTimeout(function () {
-        navigator.mediaSession.metadata = new MediaMetadata({
-          title: stripslashes(data.title),
-          artist: stripslashes(data.artist),
-          album: stripslashes(data.album),
-          artwork: [
-            { src: art + '?w=96', sizes: '96x96', type: imgtype },
-            { src: art + '?w=128', sizes: '128x128', type: imgtype },
-            { src: art + '?w=192', sizes: '192x192', type: imgtype },
-            { src: art + '?w=256', sizes: '256x256', type: imgtype },
-            { src: art + '?w=384', sizes: '384x384', type: imgtype },
-            { src: art + '?w=512', sizes: '512x512', type: imgtype }
-          ]
-        })
-      }, streamDelay)
-    }
-  } */
-})
+function androidMetadata (data) {
+  if ('mediaSession' in navigator) {
+    const albumURL = `https://radio.sittingonclouds.net/covers/${data.album}.jpg`
+    navigator.mediaSession.metadata = new MediaMetadata({
+      title: data.title,
+      artist: data.artist,
+      album: data.album,
+      artwork: [
+        { src: albumURL, sizes: '96x96', type: 'image/jpg' },
+        { src: albumURL, sizes: '128x128', type: 'image/jpg' },
+        { src: albumURL, sizes: '192x192', type: 'image/jpg' },
+        { src: albumURL, sizes: '256x256', type: 'image/jpg' },
+        { src: albumURL, sizes: '384x384', type: 'image/jpg' },
+        { src: albumURL, sizes: '512x512', type: 'image/jpg' }
+      ]
+    })
+  }
+}
+
 jQuery(document).ready(function () {
   if (checkCookie('shoutbox') === false) {
     setCookie('shoutbox', 1, 365)
@@ -85,7 +66,6 @@ audio.onplay = function () {
   }
   $('#playPauseIcon').html('pause')
   clearInterval(recordAngle)
-  startRecord()
 }
 
 // helper function: log message to screen
@@ -168,15 +148,13 @@ function connectWs () {
   let currentArt = 'images/soc.png'
   socket.on('metadata', function (data) {
     console.log(data)
-    stringAlbum = data.album
-    stringTitle = data.title
-    stringArtist = data.artist
-    // $('#cardAlbum').textillate('out');
-    $('#cardTitle').text(stringTitle)
-    $('#cardArtist').text(stringArtist)
-    $('#cardAlbum').text(stringAlbum)
+    $('#cardTitle').text(data.title)
+    $('#cardArtist').text(data.artist)
+    $('#cardAlbum').text(data.album)
 
-    const newArt = `https://radio.sittingonclouds.net/covers/${stringAlbum}.jpg`
+    androidMetadata(data)
+
+    const newArt = `https://radio.sittingonclouds.net/covers/${data.album}.jpg`
 
     $('.glitch').addClass('glitch_img')
     $('.glitch_sec').attr('src', currentArt)
@@ -184,8 +162,6 @@ function connectWs () {
     setTimeout(() => {
       $('.glitch').removeClass('glitch_img')
       currentArt = newArt
-
-      clearTimeout(switchPic)
     }, 1.5 * 1000)
   })
 }
@@ -277,8 +253,6 @@ $(document).ready(function () {
   })
 })
 
-var switchPic
-
 $.fn.rotationInfo = function () {
   var el = $(this)
   var tr = el.css('-webkit-transform') || el.css('-moz-transform') || el.css('-ms-transform') || el.css('-o-transform') || ''
@@ -314,36 +288,6 @@ function startRecord () {
     $('#record').removeClass('rotate-reverse-stop'); $('#record').addClass('rotate-center'); $('#recordDiv').addClass('rotate-reverse-center')
   }
 }
-/* function recordTest () {
-  if (audio.paused) {
-    audio.play()
-    startRecord()
-  } else {
-    audio.pause()
-    stop
-  }
-} */
-function hdAudio () {
-  audio.crossOrigin = 'anonymous'
-  audio.src = audio320
-  audio.crossOrigin = 'anonymous'
-  audio.load()
-  audio.crossOrigin = 'anonymous'
-  audio.play()
-}
-$('#hqAudio').click(function () {
-  var thisCheck = $(this)
-  if (thisCheck.is(':checked')) {
-    hdAudio()
-  } else {
-    audio.crossOrigin = 'anonymous'
-    audio.src = audio128
-    audio.crossOrigin = 'anonymous'
-    audio.load()
-    audio.crossOrigin = 'anonymous'
-    audio.play()
-  }
-})
 
 function recordTest () {
   if (audio.paused) {
