@@ -151,7 +151,8 @@ $(document).ready(function () {
   $('#cardTitle').text(placeholders[Math.floor(Math.random() * placeholders.length)])
 })
 
-function handlePlay () {
+const vdo = document.getElementById('cardFABPlay')
+vdo.addEventListener('click', () => {
   if (audio.paused) {
     $('.waves-animation-one, #pause-button, .seek-field, .volume-icon, .volume-field, .info-two').show()
     $('.waves-animation-two').hide()
@@ -163,7 +164,7 @@ function handlePlay () {
 
     audio.pause()
   }
-}
+})
 
 $.fn.rotationInfo = function () {
   var el = $(this)
