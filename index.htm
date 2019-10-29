@@ -17,8 +17,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0">
   
   <link rel="manifest" href="manifest.json">
-  <link rel="icon" sizes="768x768" href="images\icons\768.png">
-  <link rel="apple-touch-icon" href="images\icons\192.jpg">
   <link rel="stylesheet" href="css/glitch.css">
   <link rel="stylesheet" href="css/player.css">
   <link rel="stylesheet" href="css/main.css">
@@ -201,9 +199,9 @@
           <div class="col s12 m10 offset-m1" id="TooHotCard">
             <div class="card z-depth-5" style="border-radius:20px;" id="TooHotPlayer">
               <div class="card-image" id="playerCardImage">
-                <video id="audio-player" class="responsive-video" crossorigin="anonymous" preload="auto"
+                <video id="audio-player" class="responsive-video" autoplay crossorigin="anonymous" preload="auto" SameSite="None" Secure
                   style="position:absolute;top:0;left:0;width:100%;border-top-left-radius:20px;border-top-right-radius:20px;">
-                  <source src="https://play.sittingonclouds.net/clouds" type="audio/mpeg">
+                  
                 </video>
                 <div class="col s10 m8 l6" id="artDiv" style="padding-left: 0;">
                   <div class="split rotate-reverse-center" id="recordDiv" style="right: -183px; left: 183px;">
@@ -220,13 +218,9 @@
 
                   </div>
                 </div>
-                <a id="castPlay"
-                  class="btn-floating z-depth-5 btn-large halfway-fab waves-effect waves-light teal card-button hidden"
-                  onclick="castPlayButton()" style="z-index:2"><i class="material-icons card-icon"
-                    id="castPlayIcon">play_arrow</i></a>
-                <a id="cardFABPlay"
+                <a id="cardFABPlay" onclick="handlePlay()"
                   class="btn-floating z-depth-5 btn-large halfway-fab waves-effect waves-light red card-button"
-                  style="z-index:2" accesskey="p" onclick="recordTest()"><i class="material-icons card-icon"
+                  style="z-index:2" accesskey="p"><i class="material-icons card-icon"
                     id="playPauseIcon">play_arrow</i></a>
               </div>
               <div class="card-content black-text z-depth-5 left-align" id="playerControls">
@@ -234,10 +228,10 @@
                 </canvas>
                 <div class="row">
                   <div class="col s12">
-                    <span class="card-title playerText truncate" id="cardTitle">TooHotRadio.net</span>
+                    <span class="card-title playerText truncate" id="cardTitle"></span>
                   </div>
                   <div class="col s7">
-                    <p class="playerText truncate" id="cardArtist">Streaming 24/7 from the UK</p>
+                    <p class="playerText truncate" id="cardArtist">Press the Play button to start the radio</p>
                   </div>
                   <div class="right">
                     <div class="switch">
@@ -246,7 +240,7 @@
                     </div>
                   </div>
                   <div class="col s7">
-                    <p class="playerText truncate" id="cardAlbum">Keep it locked!</p>
+                    <p class="playerText truncate" id="cardAlbum"></p>
                   </div>
                 </div>
               </div>
@@ -329,7 +323,6 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.20.1/locale/en-gb.js"
     integrity="sha256-tFU1H7O4obMtCeaZ6i77+4Pe5AE6cyDx8K0c8GfdM9w=" crossorigin="anonymous"></script>
   <script src="js\sweetalert2.min.js"></script>
-  <script src="https://www.gstatic.com/cv/js/sender/v1/cast_sender.js?loadCastFramework=1"></script>
   <script src="wp-content\themes\materialize-child\js\elmposiz.js"></script>
   <script src="js\localforage.min.js"></script>
   <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"
@@ -338,9 +331,6 @@
   <script src="https://cdn.rawgit.com/jschr/textillate/master/assets/jquery.lettering.js"></script>
   <script src="https://cdn.rawgit.com/jschr/textillate/master/jquery.textillate.js"></script>
 
-  <script async="" defer=""
-    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA0PzEASzJcfrDTwX6gZW49xQ0DhaQ9REk&callback=initMap">
-    </script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.3.0/socket.io.dev.js"></script>
   <script src="js/main.js"></script>
   </main>
@@ -361,41 +351,6 @@
     </a>
   </div>
 
-  <div class="tap-target tap-targetnav" data-activates="enterChat">
-    <div class="tap-target-content">
-      <h5 class="white-text">
-        Get involved!
-      </h5>
-      <p class="white-text">
-        Join the live chat
-      </p>
-    </div>
-  </div>
-  <ul id="slidey" class="side-nav">
-    <li>
-      <div class="user-view">
-        <div class="background" style="display:contents">
-          <img src="images\toohot2.png" class="responsive-img">
-        </div>
-        <div><img src="" class="circle userImage"></div>
-        <div><span class="black-text userName"></span></div>
-        <div><span class="black-text userEmail"></span></div>
-      </div>
-    </li>
-    <li><a class="waves-effect" href="#!"><i class="material-icons">audiotrack</i>Request a song</a></li>
-    <li>
-      <div class="divider"></div>
-    </li>
-    <li><a class="waves-effect" href="#!"><i class="material-icons">email</i>Message the Studio</a></li>
-    <li>
-      <div class="divider"></div>
-    </li>
-    <li><a class="waves-effect" href="#!"><i class="material-icons">settings</i>Preferences</a></li>
-    <li>
-      <div class="divider"></div>
-    </li>
-    <li><a class="waves-effect" onclick="signOut()"><i class="material-icons">exit_to_app</i>Sign out</a></li>
-  </ul>
   <script src="js/body.js"></script>
 
 </body>

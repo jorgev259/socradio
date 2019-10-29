@@ -1,10 +1,11 @@
 
-/* global $,jQuery,io,Materialize,MediaMetadata */
+/* global $,io,MediaMetadata */
+var dataSave = {}
 var audio = document.getElementById('audio-player')
+let started = false
 
 // var volSlider = document.getElementById('volbar')
 var streamDelay = 0
-$(document).ready(startRecord)
 
 function androidMetadata (data) {
   if ('mediaSession' in navigator) {
@@ -25,38 +26,31 @@ function androidMetadata (data) {
   }
 }
 
-jQuery(document).ready(function () {
-  if (checkCookie('shoutbox') === false) {
-    setCookie('shoutbox', 1, 365)
-  }
-  if (getCookie('shoutbox') < 4) {
-    setCookie('shoutbox', Number(getCookie('shoutbox')) + 1, 365)
-    var options = [
-      {
-        selector: '#map',
-        offset: 0,
-        callback: function () {
-          $('.tap-target').tapTarget('open')
-          setTimeout(function () { $('.tap-target').tapTarget('close') }, 5000)
-        }
-      }
-    ]
-    Materialize.scrollFire(options)
-  }
-})
-// setTimeout(function(){$('.tap-targetplay').tapTarget('open');drop();}, 1000);
-// setTimeout(function(){$('.tap-targetplay').tapTarget('close');}, 5000);
-// setTimeout(function(){map.setZoom(2);}, 1600);
-// setTimeout(function(){checkCookie();}, 500);
-// setTimeout(function(){addStation();}, 3000);
-
 audio.onpause = function () {
-  console.log('play')
   $('#playPauseIcon').html('play_arrow')
-  recordAngle = setInterval(function () { stopRecord() }, 1)
+  stopRecord()
 }
 audio.onplay = function () {
-  console.log('pause')
+  if (!started) {
+    const data = dataSave
+    let currentArt = 'images/soc.png'
+    $('#cardTitle').text(data.title)
+    $('#cardArtist').text(data.artist)
+    $('#cardAlbum').text(data.album)
+
+    androidMetadata(data)
+
+    const newArt = `https://radio.sittingonclouds.net/covers/${data.album}.jpg`
+
+    $('.glitch').addClass('glitch_img')
+    $('.glitch_sec').attr('src', currentArt)
+    $('.glitch_primary').attr('src', newArt)
+    setTimeout(() => {
+      $('.glitch').removeClass('glitch_img')
+      currentArt = newArt
+    }, 1.5 * 1000)
+  }
+  started = true
   if (streamDelay === 0) {
     setTimeout(function () {
       streamDelay = 30000
@@ -65,62 +59,9 @@ audio.onplay = function () {
     console.log('delay = ' + streamDelay)
   }
   $('#playPauseIcon').html('pause')
+  startRecord()
   clearInterval(recordAngle)
 }
-
-// helper function: log message to screen
-/* function log (msg) {
-  var data = JSON.parse(msg)
-  console.log(data)
-  if (data.type === 'toast') {
-    Materialize.toast(data.msg, data.time, data.class)
-  } else {
-    swal({
-      position: data.position,
-      toast: true,
-      type: 'success',
-      title: data.msg,
-      showConfirmButton: false,
-      timer: data.time
-    })
-  }
-} */
-function setCookie (cname, cvalue, exdays) {
-  var d = new Date()
-  d.setTime(d.getTime() + (exdays * 24 * 60 * 60 * 1000))
-  var expires = 'expires=' + d.toUTCString()
-  document.cookie = cname + '=' + cvalue + ';' + expires + ';path=/'
-}
-function getCookie (cname) {
-  var name = cname + '='
-  var decodedCookie = decodeURIComponent(document.cookie)
-  var ca = decodedCookie.split(';')
-  for (var i = 0; i < ca.length; i++) {
-    var c = ca[i]
-    while (c.charAt(0) === ' ') {
-      c = c.substring(1)
-    }
-    if (c.indexOf(name) === 0) {
-      return c.substring(name.length, c.length)
-    }
-  }
-  return ''
-}
-function checkCookie (cname) {
-  var cookie = getCookie(cname)
-  if (cookie !== '') {
-    return cookie
-  } else {
-    return false
-  }
-}
-
-/* function toastIt () {
-  var myJSON = JSON.stringify($('#shout').serialize())
-  console.log(myJSON)
-  ws.send(myJSON)
-  // document.getElementById("shout").reset();
-} */
 
 // var delay = 0
 var stringAlbum, stringTitle, stringArtist
@@ -147,31 +88,30 @@ function connectWs () {
   var socket = io('https://api.sittingonclouds.net')
   let currentArt = 'images/soc.png'
   socket.on('metadata', function (data) {
+    dataSave = data
     console.log(data)
-    $('#cardTitle').text(data.title)
-    $('#cardArtist').text(data.artist)
-    $('#cardAlbum').text(data.album)
+    if (started) {
+      setTimeout(data => {
+        $('#cardTitle').text(data.title)
+        $('#cardArtist').text(data.artist)
+        $('#cardAlbum').text(data.album)
 
-    androidMetadata(data)
+        androidMetadata(data)
 
-    const newArt = `https://radio.sittingonclouds.net/covers/${data.album}.jpg`
+        const newArt = `https://radio.sittingonclouds.net/covers/${data.album}.jpg`
 
-    $('.glitch').addClass('glitch_img')
-    $('.glitch_sec').attr('src', currentArt)
-    $('.glitch_primary').attr('src', newArt)
-    setTimeout(() => {
-      $('.glitch').removeClass('glitch_img')
-      currentArt = newArt
-    }, 1.5 * 1000)
+        $('.glitch').addClass('glitch_img')
+        $('.glitch_sec').attr('src', currentArt)
+        $('.glitch_primary').attr('src', newArt)
+        setTimeout(() => {
+          $('.glitch').removeClass('glitch_img')
+          currentArt = newArt
+        }, 1.5 * 1000)
+      }, streamDelay, data)
+    }
   })
 }
 connectWs()
-
-/* function stripslashes (str) {
-  return str.replace(/\\'/g, '\'').replace(/\"/g, '"').replace(/\\\\/g, '\\').replace(/\\0/g, '\0')
-} */
-
-// var isTouch = ('ontouchstart' in window) || (navigator.msMaxTouchPoints || navigator.maxTouchPoints) > 2
 
 var recordWidth = $('#split1').width()
 $(window).resize(function () {
@@ -180,6 +120,7 @@ $(window).resize(function () {
   }
   resizePlayerEffect()
 })
+
 function resizePlayerEffect () {
   recordWidth = $('#split1').width()
   var posLeft = $('#recordDiv').position().left
@@ -188,70 +129,41 @@ function resizePlayerEffect () {
     $('#recordDiv').css({ right: '-' + left + 'px', left: left + 'px' })
   }
 }
-$(document).ready(function () {
-  $('#play-button').click(function () {
-    if ($(this).hasClass('unchecked')) {
-      $(this)
-        .addClass('play-active')
-        .removeClass('play-inactive')
-        .removeClass('unchecked')
-      $('.info-two')
-        .addClass('info-active')
-      $('#pause-button')
-        .addClass('scale-animation-active')
-      $('.waves-animation-one, #pause-button, .seek-field, .volume-icon, .volume-field, .info-two').show()
-      $('.waves-animation-two').hide()
-      $('#pause-button')
-        .children('.icon')
-        .addClass('icon-pause')
-        .removeClass('icon-play')
-      setTimeout(function () {
-        $('.info-one').hide()
-      }, 400)
-      audio.play()
-      //    audio.currentTime = 0;
-    } else {
-      $(this)
-        .removeClass('play-active')
-        .addClass('play-inactive')
-        .addClass('unchecked')
-      $('#pause-button')
-        .children('.icon')
-        .addClass('icon-pause')
-        .removeClass('icon-play')
-      $('.info-two')
-        .removeClass('info-active')
-      $('.waves-animation-one, #pause-button, .seek-field, .volume-icon, .volume-field, .info-two').hide()
-      $('.waves-animation-two').show()
-      setTimeout(function () {
-        $('.info-one').show()
-      }, 150)
-      audio.pause()
-      //     audio.currentTime = 0;
-    }
-  })
-  $('#pause-button').click(function () {
-    $(this).children('.icon')
-      .toggleClass('icon-pause')
-      .toggleClass('icon-play')
+const placeholders = [
+  "Riku's radio extravaganza",
+  "Kobayashi's homemade playlist",
+  "Ayanami's Anime Socks",
+  "Ritsu's tightly locked treasure"
+]
 
-    if (audio.paused) {
+$(document).ready(function () {
+  /* const para = document.querySelector('body')
+  para.onpointermove = (event) => {
+    if (!initialized) {
       audio.play()
-    } else {
-      audio.pause()
+        .catch(err => console.log(err))
+        .finally(() => { initialized = true })
     }
-  })
-  $('#play-button').click(function () {
-    setTimeout(function () {
-      $('#play-button').children('.icon')
-        .toggleClass('icon-play')
-        .toggleClass('icon-cancel')
-    }, 350)
-  })
-  $('.like').click(function () {
-    $('.icon-heart').toggleClass('like-active')
-  })
+  } */
+
+  resizePlayerEffect()
+  $('#audio-player').html(`<source src="https://play.sittingonclouds.net/clouds?cache_ts=${new Date().getTime()}" type="audio/mpeg">`)
+  $('#cardTitle').text(placeholders[Math.floor(Math.random() * placeholders.length)])
 })
+
+function handlePlay () {
+  if (audio.paused) {
+    $('.waves-animation-one, #pause-button, .seek-field, .volume-icon, .volume-field, .info-two').show()
+    $('.waves-animation-two').hide()
+
+    $('#audio-player')[0].play()
+  } else {
+    $('.waves-animation-one, #pause-button, .seek-field, .volume-icon, .volume-field, .info-two').hide()
+    $('.waves-animation-two').show()
+
+    audio.pause()
+  }
+}
 
 $.fn.rotationInfo = function () {
   var el = $(this)
@@ -286,16 +198,6 @@ function startRecord () {
     setTimeout(function () { startRecord() }, 3500)
   } else {
     $('#record').removeClass('rotate-reverse-stop'); $('#record').addClass('rotate-center'); $('#recordDiv').addClass('rotate-reverse-center')
-  }
-}
-
-function recordTest () {
-  if (audio.paused) {
-    audio.play()
-    startRecord()
-  } else {
-    audio.pause()
-    stopRecord()
   }
 }
 

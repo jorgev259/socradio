@@ -175,7 +175,7 @@ $(document).ready(function () {
     lowPass.gain.setTargetAtTime(-3, ctx.currentTime, 1)
     setTimeout(function () {
       if (!session) {
-        audio.play()
+        // audio.play()
       }
       gainNode.gain.setTargetAtTime(1, ctx.currentTime, 0.1)
     }, 2500)
