@@ -1,5 +1,5 @@
 
-/* global $,io,MediaMetadata */
+/* global $,io,MediaMetadata, startSpectrum */
 var dataSave = {}
 var audio = document.getElementById('audio-player')
 let started = false
@@ -32,6 +32,7 @@ audio.onpause = function () {
 }
 audio.onplay = function () {
   if (!started) {
+    startSpectrum()
     const data = dataSave
     let currentArt = 'images/soc.png'
     $('#cardTitle').text(data.title)
@@ -156,7 +157,6 @@ vdo.addEventListener('click', () => {
   if (audio.paused) {
     $('.waves-animation-one, #pause-button, .seek-field, .volume-icon, .volume-field, .info-two').show()
     $('.waves-animation-two').hide()
-
     $('#audio-player')[0].play()
   } else {
     $('.waves-animation-one, #pause-button, .seek-field, .volume-icon, .volume-field, .info-two').hide()
@@ -164,7 +164,7 @@ vdo.addEventListener('click', () => {
 
     audio.pause()
   }
-})
+}, false)
 
 $.fn.rotationInfo = function () {
   var el = $(this)
