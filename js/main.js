@@ -148,7 +148,7 @@ $(document).ready(function () {
   } */
 
   resizePlayerEffect()
-  $('#audio-player').html(`<source src="https://play.sittingonclouds.net/clouds?cache_ts=${new Date().getTime()}" type="audio/mpeg">`)
+  $('#audio-player').html(`<source src="https://play.sittingonclouds.net/${stationName}?cache_ts=${new Date().getTime()}" type="audio/mpeg">`)
   $('#cardTitle').text(placeholders[Math.floor(Math.random() * placeholders.length)])
 })
 
