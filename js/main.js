@@ -1,5 +1,5 @@
 
-/* global $,io,MediaMetadata, startSpectrum */
+/* global $,io,MediaMetadata, startSpectrum, stationName */
 var dataSave = {}
 var audio = document.getElementById('audio-player')
 let started = false
@@ -88,7 +88,7 @@ $('.tlt').on('inAnimationEnd.tlt', function (event) {
 function connectWs () {
   var socket = io('https://api.sittingonclouds.net')
   let currentArt = 'images/soc.png'
-  socket.on('metadata', function (data) {
+  socket.on(stationName, function (data) {
     dataSave = data
     console.log(data)
     if (started) {
