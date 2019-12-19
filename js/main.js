@@ -54,7 +54,7 @@ audio.onplay = function () {
   started = true
   if (streamDelay === 0) {
     setTimeout(function () {
-      streamDelay = 30000
+      streamDelay = 3000
       console.log('delay = ' + streamDelay)
     }, 2000)
     console.log('delay = ' + streamDelay)
