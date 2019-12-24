@@ -14,7 +14,7 @@ import Background from './js/background'
 
 function androidMetadata (data) {
   if ('mediaSession' in navigator) {
-    const albumURL = `https://radio.sittingonclouds.net/covers/${data.album}.jpg`
+    const albumURL = `https://radio.squid-radio.net/covers/${data.album}.jpg`
     navigator.mediaSession.metadata = new MediaMetadata({
       title: data.title,
       artist: data.artist,
@@ -49,7 +49,7 @@ export default class App extends React.Component {
     started: false
   }
 
-  socket = io('https://api.sittingonclouds.net')
+  socket = io('https://api.squid-radio.net')
 
   emitter = this.socket.on(this.state.station, (data) => {
     console.log(data)
@@ -58,7 +58,7 @@ export default class App extends React.Component {
       setTimeout(data => {
         androidMetadata(data)
 
-        const newArt = `https://radio.sittingonclouds.net/covers/${data.album}.jpg`
+        const newArt = `https://radio.squid-radio.net/covers/${data.album}.jpg`
 
         $('.glitch').addClass('glitch_img')
         $('.glitch_sec').attr('src', this.state.currentArt)
@@ -150,7 +150,7 @@ export default class App extends React.Component {
 
         androidMetadata(this.state.songData)
 
-        const newArt = `https://radio.sittingonclouds.net/covers/${this.state.songData.album}.jpg`
+        const newArt = `https://radio.squid-radio.net/covers/${this.state.songData.album}.jpg`
 
         $('.glitch').addClass('glitch_img')
         $('.glitch_sec').attr('src', currentArt)
@@ -280,7 +280,7 @@ export default class App extends React.Component {
                       samesite='None' secure='true'
                       style={{ position: 'absolute', top: 0, left: 0, width: '100%', borderTopLeftRadius: '20px', borderTopRightRadius: '20px' }}
                     >
-                      <source src={`https://play.sittingonclouds.net/${this.state.station}?cache_ts=${new Date().getTime()}`} type='audio/mpeg' />
+                      <source src={`https://play.squid-radio.net/${this.state.station}?cache_ts=${new Date().getTime()}`} type='audio/mpeg' />
                     </video>
                     <div className='col s10 m8 l6' id='artDiv' style={{ paddingLeft: 0 }}>
                       <div className='split rotate-reverse-center' id='recordDiv' style={{ right: '-183px', left: '183px' }}>
