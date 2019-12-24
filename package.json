@@ -33,7 +33,7 @@
     "socket.io-client": "^2.3.0"
   },
   "scripts": {
-    "release": "npm run build && npm run zip && release-it",
+    "release": "npm run build && npm run zip && release-it --ci",
     "zip": "cd build/ && bestzip ../dist/release.zip * && cd ..",
     "start": "react-app-rewired start",
     "build": "react-app-rewired build",
@@ -41,6 +41,7 @@
     "eject": "react-scripts eject"
   },
   "release-it": {
+    "npm":false,
     "github": {
       "release": true,
       "assets": [
