@@ -14,7 +14,7 @@ import Background from './js/background'
 
 function androidMetadata (data) {
   if ('mediaSession' in navigator) {
-    const albumURL = `https://radio.squid-radio.net/covers/${data.album}.jpg`
+    const albumURL = `https://squid-radio.net/covers/${data.album}.jpg`
     navigator.mediaSession.metadata = new MediaMetadata({
       title: data.title,
       artist: data.artist,
@@ -58,7 +58,7 @@ export default class App extends React.Component {
       setTimeout(data => {
         androidMetadata(data)
 
-        const newArt = `https://radio.squid-radio.net/covers/${data.album}.jpg`
+        const newArt = `https://squid-radio.net/covers/${data.album}.jpg`
 
         $('.glitch').addClass('glitch_img')
         $('.glitch_sec').attr('src', this.state.currentArt)
@@ -143,14 +143,14 @@ export default class App extends React.Component {
     audio.onplay = function () {
       if (!this.state.started) {
         // startSpectrum()
-        let currentArt = 'images/soc.png'
+        let currentArt = `images/logo/soc_${this.state.station}.png`
         $('#cardTitle').text(this.state.songData.title)
         $('#cardArtist').text(this.state.songData.artist)
         $('#cardAlbum').text(this.state.songData.album)
 
         androidMetadata(this.state.songData)
 
-        const newArt = `https://radio.squid-radio.net/covers/${this.state.songData.album}.jpg`
+        const newArt = `https://squid-radio.net/covers/${this.state.songData.album}.jpg`
 
         $('.glitch').addClass('glitch_img')
         $('.glitch_sec').attr('src', currentArt)
