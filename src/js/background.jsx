@@ -4,7 +4,7 @@ import { useRoutes } from 'hookrouter'
 const routes = {
   '/': () => (
     <video autoPlay muted loop id='myBG'>
-      <source src='images/bgs/video/fire_logo.mp4' type='video/mp4' />
+      <source src='images/bg/fire_logo.mp4' type='video/mp4' />
     </video>
   ),
   '/persona': () => (

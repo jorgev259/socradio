@@ -284,17 +284,17 @@ export default class App extends React.Component {
                     </video>
                     <div className='col s10 m8 l6' id='artDiv' style={{ paddingLeft: 0 }}>
                       <div className='split rotate-reverse-center' id='recordDiv' style={{ right: '-183px', left: '183px' }}>
-                        <img alt='record' id='record' className='record rotate-center' src='images/record.png' style={{ opacity: 1 }} />
+                        <img alt='record' id='record' className='record rotate-center' src={`images/record/record_${this.state.station}.png`} style={{ opacity: 1 }} />
                       </div>
                       <div
                         className='active splitimg' id='split1'
                         style={{ backgroundColor: 'rgb(51, 51, 51)', height: '100%', borderRadius: '20px 0 0' }}
                       >
                         <div id='albutwt' style={{ height: '100%', width: '100%' }}>
-                          <img alt='' className='glitch glitch_sec' src='images\soc.png' />
-                          <img alt='' className='glitch glitch_primary' src='images\soc.png' />
-                          <img alt='' className='glitch glitch_sec' src='images\soc.png' />
-                          <img alt='' className='glitch glitch_primary' src='images\soc.png' />
+                          <img alt='' className='glitch glitch_sec' src={`images/logo/soc_${this.state.station}.png`} />
+                          <img alt='' className='glitch glitch_primary' src={`images/logo/soc_${this.state.station}.png`} />
+                          <img alt='' className='glitch glitch_sec' src={`images/logo/soc_${this.state.station}.png`} />
+                          <img alt='' className='glitch glitch_primary' src={`images/logo/soc_${this.state.station}.png`} />
                         </div>
 
                       </div>

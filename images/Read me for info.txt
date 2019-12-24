@@ -1,8 +1,0 @@
-The following is to identify the records :
-
-h = Halloween
-p5/p = Persona 5 or Persona related
-w = Winter
-c = Christmas
-n = Nobody/None
-t = Twitch
