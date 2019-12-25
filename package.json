@@ -33,7 +33,7 @@
     "socket.io-client": "^2.3.0"
   },
   "scripts": {
-    "release": "npm run build && npm run zip && release-it",
+    "release": "git clone https://github.com/jorgev259/socradio_web -b dist .stage && npm run build && xcopy /s src\\*.* dest",
     "zip": "cd build/ && bestzip ../dist/release.zip * && cd ..",
     "start": "react-app-rewired start",
     "build": "react-app-rewired build",
@@ -41,12 +41,13 @@
     "eject": "react-scripts eject"
   },
   "release-it": {
-    "npm":false,
-    "github": {
-      "release": true,
-      "assets": [
-        "dist/*.zip"
-      ]
+    "increment": "minor",
+    "git": { "tagName": "v${version}" },
+    "npm": { "publish": false },
+    "hooks": {
+      "before:init": "git clone https://github.com/jorgev259/socradio_web -b dist .stage",
+      "before:release": "npm run build",
+      "after:release": "cd .stage && git add . --all && git commit -m 'Updated!' && git push && cd -"
     }
   },
   "browserslist": {
