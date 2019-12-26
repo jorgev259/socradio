@@ -19,6 +19,18 @@ const routes = {
       }}
     />
   ),
+  '/anime': () => (
+    <div
+      id='myBG'
+      style={{
+        backgroundImage: 'url("images/bg/persona_2.jpg")',
+        backgroundPosition: 'center',
+        backgroundSize: 'cover',
+        backgroundRepeat: 'no-repeat',
+        backgroundAttachment: 'fixed'
+      }}
+    />
+  ),
   '/weekly': () => (
     <div
       id='myBG'

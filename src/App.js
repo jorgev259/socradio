@@ -2,6 +2,7 @@
 import React from 'react'
 import $ from 'jquery'
 import io from 'socket.io-client'
+import Snowfall from 'react-snowfall'
 
 import './css/glitch.css'
 import './css/player.css'
@@ -268,7 +269,6 @@ export default class App extends React.Component {
     return (
       <>
         <Background />
-
         <div id='titlepara' className='slidepara headerpara' style={{ height: '100%' }}>
           <div className='container'>
             <div className='row'>
@@ -335,6 +335,7 @@ export default class App extends React.Component {
             </div>
           </div>
         </div>
+        <Snowfall style={{ zIndex: 999 }} snowflakeCount={50} />
         <script src='wp-content\themes\materialize-child\js\materializemod.js' />
         <script
           src='https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.20.1/moment.min.js'
