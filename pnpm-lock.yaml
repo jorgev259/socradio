@@ -9,6 +9,7 @@ dependencies:
   '@widgetbot/embed-api': 1.1.3
   babel-eslint: 10.0.3
   babel-plugin-transform-class-properties: 6.24.1
+  bootstrap: 4.4.1_jquery@3.4.1
   customize-cra: 0.9.1
   dat.gui: 0.7.6
   hookrouter: 1.2.3_react@16.12.0
@@ -16,6 +17,7 @@ dependencies:
   moment: 2.24.0
   react: 16.12.0
   react-app-rewired: 2.1.5_react-scripts@3.3.0
+  react-bootstrap: 1.0.0-beta.16_react-dom@16.12.0+react@16.12.0
   react-dom: 16.12.0_react@16.12.0
   react-scripts: 3.3.0
   react-snowfall: 1.0.2_react-dom@16.12.0+react@16.12.0
@@ -1413,7 +1415,7 @@ packages:
       '@babel/plugin-transform-unicode-regex': 7.7.4_@babel+core@7.7.4
       '@babel/types': 7.7.4
       browserslist: 4.8.2
-      core-js-compat: 3.6.0
+      core-js-compat: 3.6.1
       invariant: 2.2.4
       js-levenshtein: 1.1.6
       semver: 5.7.1
@@ -1471,7 +1473,7 @@ packages:
       '@babel/plugin-transform-unicode-regex': 7.7.4
       '@babel/types': 7.7.4
       browserslist: 4.8.2
-      core-js-compat: 3.6.0
+      core-js-compat: 3.6.1
       invariant: 2.2.4
       js-levenshtein: 1.1.6
       semver: 5.7.1
@@ -1530,7 +1532,7 @@ packages:
       '@babel/plugin-transform-unicode-regex': 7.7.4_@babel+core@7.7.4
       '@babel/types': 7.7.4
       browserslist: 4.8.2
-      core-js-compat: 3.6.0
+      core-js-compat: 3.6.1
       invariant: 2.2.4
       js-levenshtein: 1.1.6
       semver: 5.7.1
@@ -1576,7 +1578,7 @@ packages:
       integrity: sha512-rqrjxfdiHPsnuPur0jKrIIGQCIgoTWMTjlbWE69G4QJ6TIOVnnRnIJhUxNTL/VwDmEAVX08Tq3B1nirer5341w==
   /@babel/runtime-corejs3/7.7.7:
     dependencies:
-      core-js-pure: 3.6.0
+      core-js-pure: 3.6.1
       regenerator-runtime: 0.13.3
     dev: false
     resolution:
@@ -1893,6 +1895,22 @@ packages:
       node: '>= 6'
     resolution:
       integrity: sha512-shAmDyaQC4H92APFoIaVDHCx5bStIocgvbwQyxPRrbUY20V1EYTbSDchWbuwlMG3V17cprZhA6+78JfB+3DTPw==
+  /@restart/context/2.1.4_react@16.12.0:
+    dependencies:
+      react: 16.12.0
+    dev: false
+    peerDependencies:
+      react: '>=16.3.2'
+    resolution:
+      integrity: sha512-INJYZQJP7g+IoDUh/475NlGiTeMfwTXUEr3tmRneckHIxNolGOW9CTq83S8cxq0CgJwwcMzMJFchxvlwe7Rk8Q==
+  /@restart/hooks/0.3.19_react@16.12.0:
+    dependencies:
+      react: 16.12.0
+    dev: false
+    peerDependencies:
+      react: ^16.8.0
+    resolution:
+      integrity: sha512-8bskLEkiDvuZztnfGN+vM56q2HQV8dyXS/Eb0nhXPx6fonii3hQLxfNVA2r5NTMbvEkwDo59bAau3idUXaGvww==
   /@sheerun/mutationobserver-shim/0.3.2:
     dev: false
     resolution:
@@ -2106,7 +2124,7 @@ packages:
     dependencies:
       '@types/events': 3.0.0
       '@types/minimatch': 3.0.3
-      '@types/node': 13.1.0
+      '@types/node': 13.1.1
     dev: false
     resolution:
       integrity: sha512-1Bh06cbWJUHMC97acuD6UMG29nMt0Aqz1vF3guLfG+kHHJhy3AyohZFFxYk2f7Q1SQIrNwvncxAE0N/9s70F2w==
@@ -2135,10 +2153,10 @@ packages:
     dev: false
     resolution:
       integrity: sha512-tHq6qdbT9U1IRSGf14CL0pUlULksvY9OZ+5eEgl1N7t+OA3tGvNpxJCzuKQlsNgCVwbAs670L1vcVQi8j9HjnA==
-  /@types/node/13.1.0:
+  /@types/node/13.1.1:
     dev: false
     resolution:
-      integrity: sha512-zwrxviZS08kRX40nqBrmERElF2vpw4IUTd5khkhBTfFH8AOaeoLVx48EC4+ZzS2/Iga7NevncqnsUSYjM4OWYA==
+      integrity: sha512-hx6zWtudh3Arsbl3cXay+JnkvVgCKzCWKv42C9J01N2T2np4h8w5X8u6Tpz5mj38kE3M9FM0Pazx8vKFFMnjLQ==
   /@types/parse-json/4.0.0:
     dev: false
     resolution:
@@ -3272,6 +3290,17 @@ packages:
     dev: false
     resolution:
       integrity: sha1-aN/1++YMUes3cl6p4+0xDcwed24=
+  /bootstrap/4.4.1_jquery@3.4.1:
+    dependencies:
+      jquery: 3.4.1
+    dev: false
+    engines:
+      node: '>=6'
+    peerDependencies:
+      jquery: 1.9.1 - 3
+      popper.js: ^1.16.0
+    resolution:
+      integrity: sha512-tbx5cHubwE6e2ZG7nqM3g/FZ5PQEDMWmMGNrCUBVRPHXTJaH7CBDdsLeu3eCh3B1tzAxTnAbtmrzvWEvT2NNEA==
   /brace-expansion/1.1.11:
     dependencies:
       balanced-match: 1.0.0
@@ -3660,6 +3689,10 @@ packages:
       node: '>=0.10.0'
     resolution:
       integrity: sha512-qOhPa/Fj7s6TY8H8esGu5QNpMMQxz79h+urzrNYN6mn+9BnxlDGf5QZ+XeCDsxSjPqsSR56XOZOJmpeurnLMeg==
+  /classnames/2.2.6:
+    dev: false
+    resolution:
+      integrity: sha512-JR/iSQOSt+LQIWwrwEzJ9uk0xfN3mTVYMwt1Ir5mUcSN6pU+V4zQFFaJsclJbPuAUQH+yfWef6tm7l1quW3C8Q==
   /clean-css/4.2.1:
     dependencies:
       source-map: 0.6.1
@@ -3960,29 +3993,29 @@ packages:
       node: '>=0.10.0'
     resolution:
       integrity: sha1-Z29us8OZl8LuGsOpJP1hJHSPV40=
-  /core-js-compat/3.6.0:
+  /core-js-compat/3.6.1:
     dependencies:
       browserslist: 4.8.2
       semver: 7.0.0
     dev: false
     resolution:
-      integrity: sha512-Z3eCNjGgoYluH89Jt4wVkfYsc/VdLrA2/woX5lm0isO/pCT+P+Y+o65bOuEnjDJLthdwTBxbCVzptTXtc18fJg==
-  /core-js-pure/3.6.0:
+      integrity: sha512-2Tl1EuxZo94QS2VeH28Ebf5g3xbPZG/hj/N5HDDy4XMP/ImR0JIer/nggQRiMN91Q54JVkGbytf42wO29oXVHg==
+  /core-js-pure/3.6.1:
     dev: false
     requiresBuild: true
     resolution:
-      integrity: sha512-+YSSo7UFDFuVvMUr1HVFYArb22pYIKRDISBo6V50kRuS0MsXgsuDWmJYFu6dJsJupr77S486xRnDkr/BWQQonw==
+      integrity: sha512-yKiUdvQWq66xUc408duxUCxFHuDfz5trF5V4xnQzb8C7P/5v2gFUdyNWQoevyAeGYB1hl1X/pzGZ20R3WxZQBA==
   /core-js/2.6.11:
     deprecated: 'core-js@<3 is no longer maintained and not recommended for usage due to the number of issues. Please, upgrade your dependencies to the actual version of core-js@3.'
     dev: false
     requiresBuild: true
     resolution:
       integrity: sha512-5wjnpaT/3dV+XB4borEsnAYQchn00XSgTAWKDkEqv+K8KevjbzmofK6hfJ9TZIlpj2N0xQpazy7PiRQiWHqzWg==
-  /core-js/3.6.0:
+  /core-js/3.6.1:
     dev: false
     requiresBuild: true
     resolution:
-      integrity: sha512-AHPTNKzyB+YwgDWoSOCaid9PUSEF6781vsfiK8qUz62zRR448/XgK2NtCbpiUGizbep8Lrpt0Du19PpGGZvw3Q==
+      integrity: sha512-186WjSik2iTGfDjfdCZAxv2ormxtKgemjC3SI6PL31qOA0j5LhTDVjHChccoc7brwLvpvLPiMyRlcO88C4l1QQ==
   /core-util-is/1.0.2:
     dev: false
     resolution:
@@ -4589,6 +4622,13 @@ packages:
     dev: false
     resolution:
       integrity: sha512-LnuPJ+dwqKDIyotW1VzmOZ5TONUN7CwkCR5hrgawTUbkBGYdeoNLZo6nNfGkCrjtE1nXXaj7iMMpDa8/d9WoIA==
+  /dom-helpers/5.1.3:
+    dependencies:
+      '@babel/runtime': 7.7.7
+      csstype: 2.6.8
+    dev: false
+    resolution:
+      integrity: sha512-nZD1OtwfWGRBWlpANxacBEZrEuLa16o1nh7YopFWeoF68Zt8GGEmzHu6Xv4F3XaFIC+YXtTLrzgqKxFgLEe4jw==
   /dom-serializer/0.2.2:
     dependencies:
       domelementtype: 2.0.1
@@ -5851,7 +5891,7 @@ packages:
       node: '>=0.4.7'
     hasBin: true
     optionalDependencies:
-      uglify-js: 3.7.2
+      uglify-js: 3.7.3
     resolution:
       integrity: sha512-3yPecJoJHK/4c6aZhSvxOyG4vJKDshV36VHp0iVCDVh7o9w2vwi3NSnL2MMPj3YdduqaBcu7cGbggJQM0br9xA==
   /har-schema/2.0.0:
@@ -7399,6 +7439,10 @@ packages:
     dev: false
     resolution:
       integrity: sha512-mjzgSOFzlrurlURaHVjnQodyPNvrHrf1TbQP2XU9NSqBtHQPuHZ+Eb6TAJP7ASeJN9h9K0KXoRTs8u6ouHBKvg==
+  /keycode/2.2.0:
+    dev: false
+    resolution:
+      integrity: sha1-PQr1bce4uOXLqNCpfxByBO7CKwQ=
   /killable/1.0.1:
     dev: false
     resolution:
@@ -8824,6 +8868,10 @@ packages:
       node: '>=6'
     resolution:
       integrity: sha512-jd9olUr9D7do+RN8Wspzhpxhgp1n6Vd0NtQ4SFkmIACZoEL1nkyAdW9Ygrinjec0vgDcWjscFQQ1gDW8rsfKTg==
+  /popper.js/1.16.0:
+    dev: false
+    resolution:
+      integrity: sha512-+G+EkOPoE5S/zChTpmBSSDYmhXJ5PsW8eMhH8cP/CQHMFPBG/kC9Y5IIw6qNYgdJ+/COf0ddY2li28iHaZRSjw==
   /portfinder/1.0.25:
     dependencies:
       async: 2.6.3
@@ -9633,6 +9681,16 @@ packages:
       node: '>= 6'
     resolution:
       integrity: sha512-NfbbPPg/74fT7wk2XYQ7hAIp9zJyZp5Fu19iRbORqqy1BhtrkZ0fPafBU+7bmn8ie69DpT0R6QpJIN2oisYjJg==
+  /prop-types-extra/1.1.0_react@16.12.0:
+    dependencies:
+      react: 16.12.0
+      react-is: 16.12.0
+      warning: 3.0.0
+    dev: false
+    peerDependencies:
+      react: '>=0.14.0'
+    resolution:
+      integrity: sha512-QFyuDxvMipmIVKD2TwxLVPzMnO4e5oOf1vr3tJIomL8E7d0lr6phTHd5nkPhFIzTD1idBLLEPeylL9g+rrTzRg==
   /prop-types/15.7.2:
     dependencies:
       loose-envify: 1.4.0
@@ -9787,7 +9845,7 @@ packages:
       integrity: sha512-4Oz8DUIwdvoa5qMJelxipzi/iJIi40O5cGV1wNYp5hvZP8ZN0T+jiNkL0QepXs+EsQ9XJ8ipEDoiH70ySUJP3Q==
   /react-app-polyfill/1.0.5:
     dependencies:
-      core-js: 3.6.0
+      core-js: 3.6.1
       object-assign: 4.1.1
       promise: 8.0.3
       raf: 3.4.1
@@ -9808,6 +9866,31 @@ packages:
       react-scripts: '>=2.1.3'
     resolution:
       integrity: sha512-Gr8KfCeL9/PTQs8Vvxc7v8wQ9vCFMnYPhcAkrMlzkLiMFXS+BgSwm11MoERjZm7dpA2WjTi+Pvbu/w7rujAV+A==
+  /react-bootstrap/1.0.0-beta.16_react-dom@16.12.0+react@16.12.0:
+    dependencies:
+      '@babel/runtime': 7.7.7
+      '@restart/context': 2.1.4_react@16.12.0
+      '@restart/hooks': 0.3.19_react@16.12.0
+      '@types/react': 16.9.17
+      classnames: 2.2.6
+      dom-helpers: 5.1.3
+      invariant: 2.2.4
+      keycode: 2.2.0
+      popper.js: 1.16.0
+      prop-types: 15.7.2
+      prop-types-extra: 1.1.0_react@16.12.0
+      react: 16.12.0
+      react-dom: 16.12.0_react@16.12.0
+      react-overlays: 2.1.0_react-dom@16.12.0+react@16.12.0
+      react-transition-group: 4.3.0_react-dom@16.12.0+react@16.12.0
+      uncontrollable: 7.1.1_react@16.12.0
+      warning: 4.0.3
+    dev: false
+    peerDependencies:
+      react: '>=16.8.0'
+      react-dom: '>=16.8.0'
+    resolution:
+      integrity: sha512-wjb+3CwviDWAaz4O3gQpd2XMDNqbOiqOOzpLm5aLPcp1wTsQsVRhyM+rTPmO3hYU8auA2eNpTYLz08/fAcMqDA==
   /react-dev-utils/10.0.0:
     dependencies:
       '@babel/code-frame': 7.5.5
@@ -9877,6 +9960,23 @@ packages:
       react: ^15.0.0 || ^16.0.0
     resolution:
       integrity: sha512-TV0wQDHHPCEeKJHWXFfEAKJ8uSEsJ9LgrMERkXx05WV/3q6Ig+59KDNaTmjcoqlCpE/sH5PqqLMh4t0QWKrJ8Q==
+  /react-overlays/2.1.0_react-dom@16.12.0+react@16.12.0:
+    dependencies:
+      '@babel/runtime': 7.7.7
+      '@restart/hooks': 0.3.19_react@16.12.0
+      dom-helpers: 5.1.3
+      popper.js: 1.16.0
+      prop-types: 15.7.2
+      react: 16.12.0
+      react-dom: 16.12.0_react@16.12.0
+      uncontrollable: 7.1.1_react@16.12.0
+      warning: 4.0.3
+    dev: false
+    peerDependencies:
+      react: '>=16.3.0'
+      react-dom: '>=16.3.0'
+    resolution:
+      integrity: sha512-tHPGTZosbQSo82yb9x4YCsmJJtspKvAPL5kXVnyoB2Z5UoAU3VetIuh2VblfVT408us5nLJd9uDtwI3xWDHS6w==
   /react-redux/5.1.2_react@16.12.0+redux@4.0.5:
     dependencies:
       '@babel/runtime': 7.7.7
@@ -9995,6 +10095,20 @@ packages:
       react-dom: '>=15.0.0'
     resolution:
       integrity: sha512-+HzNTCHpeQyl4MJ/bdE0u6XRMe9+XG/+aL4mCxVN4DnPBQ0/5bfHWPDuOZUzYdMj94daZaZdCCc1Dzt9R/xSSg==
+  /react-transition-group/4.3.0_react-dom@16.12.0+react@16.12.0:
+    dependencies:
+      '@babel/runtime': 7.7.7
+      dom-helpers: 5.1.3
+      loose-envify: 1.4.0
+      prop-types: 15.7.2
+      react: 16.12.0
+      react-dom: 16.12.0_react@16.12.0
+    dev: false
+    peerDependencies:
+      react: '>=16.6.0'
+      react-dom: '>=16.6.0'
+    resolution:
+      integrity: sha512-1qRV1ZuVSdxPlPf4O8t7inxUGpdyO5zG9IoNfJxSO0ImU2A1YWkEQvFPuIPZmMLkg5hYs7vv5mMOyfgSkvAwvw==
   /react/16.12.0:
     dependencies:
       loose-envify: 1.4.0
@@ -11649,7 +11763,7 @@ packages:
     hasBin: true
     resolution:
       integrity: sha512-Y2VsbPVs0FIshJztycsO2SfPk7/KAF/T72qzv9u5EpQ4kB2hQoHlhNQTsNyy6ul7lQtqJN/AoWeS23OzEiEFxw==
-  /uglify-js/3.7.2:
+  /uglify-js/3.7.3:
     dependencies:
       commander: 2.20.3
       source-map: 0.6.1
@@ -11659,7 +11773,19 @@ packages:
     hasBin: true
     optional: true
     resolution:
-      integrity: sha512-uhRwZcANNWVLrxLfNFEdltoPNhECUR3lc+UdJoG9CBpMcSnKyWA94tc3eAujB1GcMY5Uwq8ZMp4qWpxWYDQmaA==
+      integrity: sha512-7tINm46/3puUA4hCkKYo4Xdts+JDaVC9ZPRcG8Xw9R4nhO/gZgUM3TENq8IF4Vatk8qCig4MzP/c8G4u2BkVQg==
+  /uncontrollable/7.1.1_react@16.12.0:
+    dependencies:
+      '@babel/runtime': 7.7.7
+      '@types/react': 16.9.17
+      invariant: 2.2.4
+      react: 16.12.0
+      react-lifecycles-compat: 3.0.4
+    dev: false
+    peerDependencies:
+      react: '>=15.0.0'
+    resolution:
+      integrity: sha512-EcPYhot3uWTS3w00R32R2+vS8Vr53tttrvMj/yA1uYRhf8hbTG2GyugGqWDY0qIskxn0uTTojVd6wPYW9ZEf8Q==
   /unherit/1.1.2:
     dependencies:
       inherits: 2.0.4
@@ -11965,6 +12091,18 @@ packages:
     dev: false
     resolution:
       integrity: sha1-L3+bj9ENZ3JisYqITijRlhjgKPs=
+  /warning/3.0.0:
+    dependencies:
+      loose-envify: 1.4.0
+    dev: false
+    resolution:
+      integrity: sha1-MuU3fLVy3kqwR1O9+IIcAe1gW3w=
+  /warning/4.0.3:
+    dependencies:
+      loose-envify: 1.4.0
+    dev: false
+    resolution:
+      integrity: sha512-rpJyN222KWIvHJ/F53XSZv0Zl/accqHR8et1kpaMTD/fLCRxtV8iX8czMzY7sVZupTI3zcUTg8eycS2kNF9l6w==
   /watchpack/1.6.0:
     dependencies:
       chokidar: 2.1.8
@@ -12474,6 +12612,7 @@ specifiers:
   '@widgetbot/embed-api': ^1.1.3
   babel-eslint: ^10.0.3
   babel-plugin-transform-class-properties: ^6.24.1
+  bootstrap: ^4.4.1
   customize-cra: ^0.9.1
   dat.gui: ^0.7.6
   hookrouter: ^1.2.3
@@ -12481,6 +12620,7 @@ specifiers:
   moment: ^2.24.0
   react: ^16.12.0
   react-app-rewired: ^2.1.5
+  react-bootstrap: ^1.0.0-beta.16
   react-dom: ^16.12.0
   react-scripts: 3.3.0
   react-snowfall: ^1.0.2
