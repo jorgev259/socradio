@@ -10,8 +10,11 @@ import './css/main.css'
 import './css/material.css'
 import './css/font.css'
 
+import anime from 'animejs/lib/anime.es.js'
+
 import 'dat.gui'
 import Background from './js/background'
+import Record from './js/Record'
 
 function androidMetadata (data) {
   if ('mediaSession' in navigator) {
@@ -77,6 +80,15 @@ export default class Radio extends React.Component {
   streamDelay = 0
 
   componentDidMount () {
+    const spin = anime({
+      targets: '#record',
+      rotate: '1turn',
+      loop: true,
+      duration: 1100,
+      easing: 'linear',
+      autoplay: false
+    })
+
     var audio = document.getElementById('audio-player')
 
     $('.muted').click(function () {
@@ -141,7 +153,8 @@ export default class Radio extends React.Component {
 
     audio.onpause = function () {
       $('#playPauseIcon').html('play_arrow')
-      stopRecord()
+      spin.pause()
+      // stopRecord()
     }
     audio.onplay = function () {
       if (!this.state.started) {
@@ -172,49 +185,8 @@ export default class Radio extends React.Component {
         console.log('delay = ' + this.streamDelay)
       }
       $('#playPauseIcon').html('pause')
-      startRecord()
-      clearInterval(recordAngle)
+      spin.play()
     }.bind(this)
-
-    // var delay = 0
-    var stringAlbum, stringTitle, stringArtist
-    $('.tlt').on('outAnimationEnd.tlt', function (event) {
-      var tar = $('.tlt').index(event.target)
-      console.log(tar)
-      if (tar === 0) {
-        $('#cardTitle').text(stringTitle)
-        $('#cardArtist').text(stringArtist)
-        $('#cardAlbum').text(stringAlbum)
-        $('.tlt').eq(tar).textillate('in')
-      }
-      if (tar > 0) {
-        $('.tlt').eq(tar - 1).textillate('out')
-      }
-    })
-    $('.tlt').on('inAnimationEnd.tlt', function (event) {
-      var tar = 1 + $('.tlt').index(event.target)
-      console.log(tar)
-      $('.tlt').eq(tar).textillate('in')
-    })
-
-    var recordWidth = $('#split1').width()
-    $(window).resize(function () {
-      if (recordWidth === $('#split1').width()) {
-        return
-      }
-      resizePlayerEffect()
-    })
-
-    function resizePlayerEffect () {
-      recordWidth = $('#split1').width()
-      var posLeft = $('#recordDiv').position().left
-      if (posLeft !== 0) {
-        var left = ($('#playerCardImage').width() - $('#recordDiv').width()) - 1
-        $('#recordDiv').css({ right: '-' + left + 'px', left: left + 'px' })
-      }
-    }
-
-    $(document).ready(resizePlayerEffect())
 
     const vdo = document.getElementById('cardFABPlay')
     vdo.addEventListener('click', () => {
@@ -229,42 +201,6 @@ export default class Radio extends React.Component {
         audio.pause()
       }
     }, false)
-
-    $.fn.rotationInfo = function () {
-      var el = $(this)
-      var tr = el.css('-webkit-transform') || el.css('-moz-transform') || el.css('-ms-transform') || el.css('-o-transform') || ''
-      var info = { rad: 0, deg: 0 }
-      if (tr === tr.match('matrix\\((.*)\\)')) {
-        tr = tr[1].split(',')
-        if (typeof tr[0] !== 'undefined' && typeof tr[1] !== 'undefined') {
-          info.rad = Math.atan2(tr[1], tr[0])
-          info.deg = parseFloat((info.rad * 180 / Math.PI).toFixed(1))
-        }
-      }
-      return info
-    }
-    var recordAngle
-    function stopRecord () {
-      var angle = $('#record').rotationInfo().deg
-      if (angle < -5 || angle > 5) {
-        return
-      }
-      $('#record').removeClass('rotate-center'); $('#record').addClass('rotate-reverse-stop'); $('#recordDiv').removeClass('rotate-reverse-center')
-      clearInterval(recordAngle)
-    }
-
-    function startRecord () {
-      resizePlayerEffect()
-      $('.record').css('opacity', 1)
-      var posLeft = $('#recordDiv').position().left
-      if (posLeft === 0) {
-        var left = ($('#playerCardImage').width() - $('#recordDiv').width()) - 1
-        $('#recordDiv').css({ right: '-' + left + 'px', left: left + 'px' })
-        setTimeout(function () { startRecord() }, 3500)
-      } else {
-        $('#record').removeClass('rotate-reverse-stop'); $('#record').addClass('rotate-center'); $('#recordDiv').addClass('rotate-reverse-center')
-      }
-    }
   }
 
   render () {
@@ -284,9 +220,7 @@ export default class Radio extends React.Component {
                     <source src={`https://play.squid-radio.net/${this.state.station}?cache_ts=${new Date().getTime()}`} type='audio/mpeg' />
                   </video>
                   <div className='col s10 m8 l6' id='artDiv' style={{ paddingLeft: 0 }}>
-                    <div className='split rotate-reverse-center' id='recordDiv' style={{ right: '-183px', left: '183px' }}>
-                      <img alt='record' id='record' className='record rotate-center' src={`images/record/record_${this.state.station}.png`} style={{ opacity: 1 }} />
-                    </div>
+                    <Record station={this.state.station} />
                     <div
                       className='active splitimg' id='split1'
                       style={{ backgroundColor: 'rgb(51, 51, 51)', height: '100%', borderRadius: '20px 0 0' }}
