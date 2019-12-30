@@ -1,0 +1,19 @@
+{
+	"anime": [
+		"images/bg/anime/1.jpg"
+	],
+	"clouds": [
+		"images/bg/clouds/fire_logo.mp4"
+	],
+	"persona": [
+		"images/bg/persona/1.jpg",
+		"images/bg/persona/2.jpg"
+	],
+	"weekly": [
+		"images/bg/weekly/Inkling.png",
+		"images/bg/weekly/Splatoon_Splatoon_2_Nintendo_Switch_Nintendo_Inkling-1178303.png",
+		"images/bg/weekly/Splatoon.png",
+		"images/bg/weekly/thumb-1920-1025915.png",
+		"images/bg/weekly/tumblr_oyzfhrS09j1stbkjno8_1280.png"
+	]
+}

@@ -23,6 +23,7 @@
     "bootstrap": "^4.4.1",
     "customize-cra": "^0.9.1",
     "dat.gui": "^0.7.6",
+    "glob": "^7.1.6",
     "hookrouter": "^1.2.3",
     "jquery": "^3.4.1",
     "moment": "^2.24.0",
@@ -33,7 +34,8 @@
     "react-scripts": "3.3.0",
     "react-snowfall": "^1.0.2",
     "rimraf": "^3.0.0",
-    "socket.io-client": "^2.3.0"
+    "socket.io-client": "^2.3.0",
+    "write-json-file": "^4.2.1"
   },
   "scripts": {
     "release": "npm run build && rimraf ../socradio_web_build/* && cd .. && xcopy /s socradio_web\\build\\*.* socradio_web_build && cd socradio_web_build && git add . --all && git commit -m 'Updated!' && git push",

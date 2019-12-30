@@ -13,7 +13,7 @@ import './css/font.css'
 import anime from 'animejs/lib/anime.es.js'
 
 import 'dat.gui'
-import Background from './js/background'
+import Background from './js/Background'
 import Record from './js/Record'
 
 function androidMetadata (data) {
@@ -45,7 +45,7 @@ const placeholders = [
 export default class Radio extends React.Component {
   station = window.location.pathname.replace('/', '')
   state = {
-    station: this.station === '' ? 'clouds' : this.station,
+    station: this.station || 'clouds',
     songData: {
       album: 'Press the Play button to start the radio',
       title: placeholders[Math.floor(Math.random() * placeholders.length)]
