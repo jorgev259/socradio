@@ -309,13 +309,20 @@ html,
       font-size: 175%;
       color: #fff;
     }
-
-    #myBG { 
+    #newBG{
+      right: 100%
+    }
+    .myBG { 
       position: fixed;
-      right: 0;
       bottom: 0;
+      right:0;
       min-width: 100%;
       min-height: 100%;
+      background-position: center;
+      background-size: cover;
+      background-repeat: no-repeat;
+      background-attachment: fixed;
+      z-index: 1
     }
 
     html { 

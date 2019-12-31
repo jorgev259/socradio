@@ -20,10 +20,7 @@ export default class Record extends React.Component {
       }
     }
 
-    $(document).ready(() => {
-      resizePlayerEffect()
-      console.log($('#record').webkitAnimationPlayState)
-    })
+    $(document).ready(resizePlayerEffect)
   }
 
   render () {
