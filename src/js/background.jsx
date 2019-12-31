@@ -1,5 +1,6 @@
 import React from 'react'
 import info from './bg.json'
+import Config from './SwapBG'
 
 /* const routes = {
   '/': () => (
@@ -49,29 +50,47 @@ export default class Background extends React.Component {
   station = window.location.pathname.replace('/', '') || 'clouds'
   state = { station: this.station, background: info[this.station][Math.floor(Math.random() * info[this.station].length)] }
 
-  render () {
-    const type = this.state.background.endsWith('.mp4') ? 'video' : 'image'
-    switch (type) {
-      case 'video':
-        return (
-          <video autoPlay muted loop id='myBG'>
-            <source src={this.state.background} type='video/mp4' />
-          </video>
-        )
+  updateBG () {
+    let index = info[this.station].findIndex(e => e === this.state.background)
+    if (index + 1 === info[this.station].length) index = 0
+    else index++
 
-      default:
-        return (
-          <div
-            id='myBG'
-            style={{
-              backgroundImage: `url("${this.state.background}")`,
-              backgroundPosition: 'center',
-              backgroundSize: 'cover',
-              backgroundRepeat: 'no-repeat',
-              backgroundAttachment: 'fixed'
-            }}
-          />
-        )
-    }
+    this.setState({ background: info[this.station][index] })
+  }
+
+  render () {
+    const background = this.state.background
+    return (
+      <>
+        <Config handleBG={this.updateBG.bind(this)} />
+        {getType(background)}
+      </>
+    )
+  }
+}
+
+function getType (bg) {
+  const type = bg.endsWith('.mp4') ? 'video' : 'image'
+  switch (type) {
+    case 'video':
+      return (
+        <video autoPlay muted loop id='myBG'>
+          <source src={bg} type='video/mp4' />
+        </video>
+      )
+
+    default:
+      return (
+        <div
+          id='myBG'
+          style={{
+            backgroundImage: `url("${bg}")`,
+            backgroundPosition: 'center',
+            backgroundSize: 'cover',
+            backgroundRepeat: 'no-repeat',
+            backgroundAttachment: 'fixed'
+          }}
+        />
+      )
   }
 }
