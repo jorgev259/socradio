@@ -1,11 +1,10 @@
 import React from 'React'
-import '../css/SwapBG.css'
 import { FiImage } from 'react-icons/fi'
 
-export default class Config extends React.Component {
+export default class SwapBG extends React.Component {
   render () {
     return (
-      <div className='config-btn' onClick={this.props.handleBG}>
+      <div className='config-item' onClick={this.props.onHandleBG}>
         <FiImage
           id='swapBG'
           style={{

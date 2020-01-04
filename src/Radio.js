@@ -43,9 +43,8 @@ const placeholders = [
 ]
 
 export default class Radio extends React.Component {
-  station = window.location.pathname.replace('/', '')
   state = {
-    station: this.station || 'clouds',
+    station: window.location.pathname.replace('/', '') || 'clouds',
     songData: {
       album: 'Press the Play button to start the radio',
       title: placeholders[Math.floor(Math.random() * placeholders.length)]
@@ -53,9 +52,18 @@ export default class Radio extends React.Component {
     started: false
   }
 
-  socket = io('https://api.squid-radio.net')
+  updateStation = (station, cb) => {
+    this.socket.close()
+    this.setState({ station: station }, () => this.startSocket(cb))
+  }
 
-  emitter = this.socket.on(this.state.station, (data) => {
+  startSocket = (cb = null) => {
+    this.socket = io('https://api.squid-radio.net')
+    this.socket.on(this.state.station, this.handleSong)
+    if (cb) cb()
+  }
+
+  handleSong = data => {
     console.log(data)
     if (data !== null) {
       this.setState({ songData: data })
@@ -75,11 +83,12 @@ export default class Radio extends React.Component {
         }, this.streamDelay, data)
       }
     }
-  })
+  }
 
   streamDelay = 0
 
   componentDidMount () {
+    this.startSocket()
     const spin = anime({
       targets: '#record',
       rotate: '1turn',
@@ -206,7 +215,7 @@ export default class Radio extends React.Component {
   render () {
     return (
       <>
-        <Background />
+        <Background station={this.state.station} updateStation={this.updateStation} />
         <div id='titlepara' className='slidepara headerpara' style={{ height: '100%' }}>
           <div className='row'>
             <div className='col s12 m10 offset-m1' id='TooHotCard'>
