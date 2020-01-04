@@ -10,20 +10,21 @@ export default class Background extends React.Component {
     bgIndex: Math.floor(Math.random() * info[this.props.station].length)
   }
 
-  updateBG () {
-    const context = this
+  updateBG = () => {
+    if (this.state.anim === 'running') return
     let index = this.state.bgIndex
     if (index + 1 >= info[this.props.station].length) index = 0
     else index++
-    this.spin.restart()
-    this.setState({ anim: 'running', bgIndex: index }, function () {
+
+    this.spin.play()
+    this.setState({ anim: 'running', bgIndex: index }, () => {
       anime({
         targets: '#newBG',
-        duration: 4000,
+        duration: 1100,
         translateX: '100%',
         easing: 'spring(1, 80, 10, 0)',
-        complete: function (anim) {
-          context.setState({ anim: 'stale' })
+        complete: (anim) => {
+          this.setState({ anim: 'stale' })
         }
       })
     })
