@@ -2130,7 +2130,7 @@ packages:
     dependencies:
       '@types/events': 3.0.0
       '@types/minimatch': 3.0.3
-      '@types/node': 13.1.2
+      '@types/node': 13.1.4
     dev: false
     resolution:
       integrity: sha512-1Bh06cbWJUHMC97acuD6UMG29nMt0Aqz1vF3guLfG+kHHJhy3AyohZFFxYk2f7Q1SQIrNwvncxAE0N/9s70F2w==
@@ -2159,10 +2159,10 @@ packages:
     dev: false
     resolution:
       integrity: sha512-tHq6qdbT9U1IRSGf14CL0pUlULksvY9OZ+5eEgl1N7t+OA3tGvNpxJCzuKQlsNgCVwbAs670L1vcVQi8j9HjnA==
-  /@types/node/13.1.2:
+  /@types/node/13.1.4:
     dev: false
     resolution:
-      integrity: sha512-B8emQA1qeKerqd1dmIsQYnXi+mmAzTB7flExjmy5X1aVAKFNNNDubkavwR13kR6JnpeLp3aLoJhwn9trWPAyFQ==
+      integrity: sha512-Lue/mlp2egZJoHXZr4LndxDAd7i/7SQYhV0EjWfb/a4/OZ6tuVwMCVPiwkU5nsEipxEf7hmkSU7Em5VQ8P5NGA==
   /@types/parse-json/4.0.0:
     dev: false
     resolution:
@@ -2846,7 +2846,7 @@ packages:
   /autoprefixer/9.7.3:
     dependencies:
       browserslist: 4.8.3
-      caniuse-lite: 1.0.30001017
+      caniuse-lite: 1.0.30001018
       chalk: 2.4.2
       normalize-range: 0.1.2
       num2fraction: 1.2.2
@@ -3411,8 +3411,8 @@ packages:
       integrity: sha512-Z942RysHXmJrhqk88FmKBVq/v5tqmSkDz7p54G/MGyjMnCFFnC79XWNbg+Vta8W6Wb2qtSZTSxIGkJrRpCFEiA==
   /browserslist/4.7.3:
     dependencies:
-      caniuse-lite: 1.0.30001017
-      electron-to-chromium: 1.3.322
+      caniuse-lite: 1.0.30001018
+      electron-to-chromium: 1.3.323
       node-releases: 1.1.44
     dev: false
     hasBin: true
@@ -3420,8 +3420,8 @@ packages:
       integrity: sha512-jWvmhqYpx+9EZm/FxcZSbUZyDEvDTLDi3nSAKbzEkyWvtI0mNSmUosey+5awDW1RUlrgXbQb5A6qY1xQH9U6MQ==
   /browserslist/4.8.3:
     dependencies:
-      caniuse-lite: 1.0.30001017
-      electron-to-chromium: 1.3.322
+      caniuse-lite: 1.0.30001018
+      electron-to-chromium: 1.3.323
       node-releases: 1.1.44
     dev: false
     hasBin: true
@@ -3588,16 +3588,16 @@ packages:
   /caniuse-api/3.0.0:
     dependencies:
       browserslist: 4.8.3
-      caniuse-lite: 1.0.30001017
+      caniuse-lite: 1.0.30001018
       lodash.memoize: 4.1.2
       lodash.uniq: 4.5.0
     dev: false
     resolution:
       integrity: sha512-bsTwuIg/BZZK/vreVTYYbSWoe2F+71P7K5QGEX+pT250DZbfU1MQ5prOKpPR+LL6uWKK3KMwMCAS74QB3Um1uw==
-  /caniuse-lite/1.0.30001017:
+  /caniuse-lite/1.0.30001018:
     dev: false
     resolution:
-      integrity: sha512-EDnZyOJ6eYh6lHmCvCdHAFbfV4KJ9lSdfv4h/ppEhrU/Yudkl7jujwMZ1we6RX7DXqBfT04pVMQ4J+1wcTlsKA==
+      integrity: sha512-GTHI7xdD2EX/U9UgNCEdekriT81N6ZwipsTGKAI1hrv3VEC96BvS5RVoc9Odlf9ftS92oxgflAGbYLi8UjIiVA==
   /capture-exit/2.0.0:
     dependencies:
       rsvp: 4.8.5
@@ -4591,6 +4591,15 @@ packages:
       node: '>=4'
     resolution:
       integrity: sha512-37qirFDz8cA5fimp9feo43fSuRo2gHwaIn6dXL8Ber1dGwUosDrGZeCCXq57WnIqE4aQ+u3eQZzsk1yOzhdwag==
+  /discord-rpc/3.1.0:
+    dependencies:
+      node-fetch: 2.6.0
+      ws: 7.1.2
+    dev: false
+    peerDependencies:
+      register-scheme: 'github:devsnek/node-register-scheme'
+    resolution:
+      integrity: sha512-/j0yLDBsuGX/QmxDIbbmKl5hqOQMy57O+KUJJdti6fcpVygn7gCJNPuNNHO6ZebPqGU8qFcCs09crIRljShTWQ==
   /dns-equal/1.0.0:
     dev: false
     resolution:
@@ -4742,10 +4751,10 @@ packages:
     dev: false
     resolution:
       integrity: sha1-WQxhFWsK4vTwJVcyoViyZrxWsh0=
-  /electron-to-chromium/1.3.322:
+  /electron-to-chromium/1.3.323:
     dev: false
     resolution:
-      integrity: sha512-Tc8JQEfGQ1MzfSzI/bTlSr7btJv/FFO7Yh6tanqVmIWOuNCu6/D1MilIEgLtmWqIrsv+o4IjpLAhgMBr/ncNAA==
+      integrity: sha512-c7pOUGnqNv6otzwcedViWOTGMEUG70PkhrTzVtc20Txh9nDC4s8zWvocJl7q+OpoC0ACXtxud8PX2y8zk/RZiw==
   /elliptic/6.5.2:
     dependencies:
       bn.js: 4.11.8
@@ -8141,6 +8150,12 @@ packages:
     dev: false
     resolution:
       integrity: sha512-rmTZ9kz+f3rCvK2TD1Ue/oZlns7OGoIWP4fc3llxxRXlOkHKoWPPWJOfFYpITabSow43QJbRIoHQXtt10VldyQ==
+  /node-fetch/2.6.0:
+    dev: false
+    engines:
+      node: 4.x || >=6.0.0
+    resolution:
+      integrity: sha512-8dG4H5ujfvFiqDmVu9fQ5bOHUC15JMjMY/Zumv26oOvvVJjM67KF8koCWIabKQ1GJIa9r2mMZscBq/TbdOcmNA==
   /node-forge/0.9.0:
     dev: false
     engines:
@@ -9459,7 +9474,7 @@ packages:
     dependencies:
       autoprefixer: 9.7.3
       browserslist: 4.8.3
-      caniuse-lite: 1.0.30001017
+      caniuse-lite: 1.0.30001018
       css-blank-pseudo: 0.1.4
       css-has-pseudo: 0.10.0
       css-prefers-color-scheme: 3.1.1
@@ -12602,6 +12617,12 @@ packages:
     dev: false
     resolution:
       integrity: sha512-GIyAXC2cB7LjvpgMt9EKS2ldqr0MTrORaleiOno6TweZ6r3TKtoFQWay/2PceJ3RuBasOHzXNn5Lrw1X0bEjqA==
+  /ws/7.1.2:
+    dependencies:
+      async-limiter: 1.0.1
+    dev: false
+    resolution:
+      integrity: sha512-gftXq3XI81cJCgkUiAVixA0raD9IVmXqsylCrjRygw4+UOOGzPoxnQ6r/CnVL9i+mDncJo94tSkyrtuuQVBmrg==
   /x-is-string/0.1.0:
     dev: false
     resolution:
@@ -12712,6 +12733,7 @@ specifiers:
   bootstrap: ^4.4.1
   customize-cra: ^0.9.1
   dat.gui: ^0.7.6
+  discord-rpc: ^3.1.0
   glob: ^7.1.6
   hookrouter: ^1.2.3
   jquery: ^3.4.1

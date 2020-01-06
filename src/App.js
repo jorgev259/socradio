@@ -13,7 +13,7 @@ const routes = {
 const App = () => {
   const routeResult = useRoutes(routes)
   return routeResult || (
-    <div>{navigate('404.html')}</div>
+    <script>window.location.href = '/404.html'</script>
   )
 }
 
