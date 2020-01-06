@@ -1,5 +1,5 @@
 import React from 'react'
-import { useRoutes, navigate } from 'hookrouter'
+import { useRoutes } from 'hookrouter'
 import Radio from './Radio'
 
 const routes = {
