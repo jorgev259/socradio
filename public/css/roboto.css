@@ -2,7 +2,7 @@
   font-family: 'Roboto';
   font-style: normal;
   font-weight: 400;
-  src: local('Roboto'), local('Roboto-Regular'), url(roboto.woff2) format('woff2');
+  src: local('Roboto'), local('Roboto-Regular'), url(../fonts/roboto.woff2) format('woff2');
 }
 .font-effect-anaglyph {
   text-shadow: -0.06em 0 red, 0.06em 0 cyan;
