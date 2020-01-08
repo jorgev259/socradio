@@ -40,7 +40,7 @@
     "write-json-file": "^4.2.1"
   },
   "scripts": {
-    "release": "npm run build && rimraf ../socradio_web_build/* && cd .. && xcopy /s socradio_web\\build\\*.* socradio_web_build && cd socradio_web_build && git add . --all && git commit -m 'Updated!' && git push",
+    "release": "npm run build && rimraf ../radio_build/* && cd .. && xcopy /s socradio_web\\build\\*.* radio_build && cd radio_build && git add . --all && git commit -m 'Updated!' && git push",
     "start": "react-app-rewired start",
     "build": "react-app-rewired build",
     "test": "react-app-rewired test --env=jsdom",
