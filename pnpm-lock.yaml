@@ -24,7 +24,6 @@ dependencies:
   react-dom: 16.12.0_react@16.12.0
   react-icons: 3.8.0_react@16.12.0
   react-scripts: 3.3.0
-  react-snowfall: 1.0.2_react-dom@16.12.0+react@16.12.0
   rimraf: 3.0.0
   socket.io-client: 2.3.0
   write-json-file: 4.2.1
@@ -4568,6 +4567,10 @@ packages:
     hasBin: true
     resolution:
       integrity: sha512-5tQykt+LqfJFBEYaDITx7S7cR7mJ/zQmLXZ2qt5w04ainYZw6tBf9dBunMjVeVOdYVRUzUOE4HkY5J7+uttb5Q==
+  /dev-null/0.1.1:
+    dev: false
+    resolution:
+      integrity: sha1-WiBc48Ky73e2I41roXnrdMag6Bg=
   /diff-sequences/24.9.0:
     dev: false
     engines:
@@ -4591,15 +4594,6 @@ packages:
       node: '>=4'
     resolution:
       integrity: sha512-37qirFDz8cA5fimp9feo43fSuRo2gHwaIn6dXL8Ber1dGwUosDrGZeCCXq57WnIqE4aQ+u3eQZzsk1yOzhdwag==
-  /discord-rpc/3.1.0:
-    dependencies:
-      node-fetch: 2.6.0
-      ws: 7.1.2
-    dev: false
-    peerDependencies:
-      register-scheme: 'github:devsnek/node-register-scheme'
-    resolution:
-      integrity: sha512-/j0yLDBsuGX/QmxDIbbmKl5hqOQMy57O+KUJJdti6fcpVygn7gCJNPuNNHO6ZebPqGU8qFcCs09crIRljShTWQ==
   /dns-equal/1.0.0:
     dev: false
     resolution:
@@ -6251,6 +6245,13 @@ packages:
       node: '>= 6'
     resolution:
       integrity: sha512-4aFq7wvWyMHKgxsH8QQtGpvbASCf+eM3wPRLI6R+MgAnTCZ6STYsRvttLvRWK0Nfif5piF394St3HeJDaljGPA==
+  /icy-socket/1.0.5:
+    dependencies:
+      dev-null: 0.1.1
+      icy: github.com/jorgev259/node-icy/84a28a52408a3dbe78921904f206b8be7de88882
+    dev: false
+    resolution:
+      integrity: sha512-Ex7RG7fruzKSRLKbX+2cHonfnsrBN/DXnnQ6p+HizOtGVGIhwVHG6ylW+RUIP1tBFruEUg5Hqx9iYz5MX3al4A==
   /identity-obj-proxy/3.0.0:
     dependencies:
       harmony-reflect: 1.6.1
@@ -7113,6 +7114,9 @@ packages:
       node: '>=6'
     peerDependencies:
       jest-resolve: '*'
+    peerDependenciesMeta:
+      jest-resolve:
+        optional: true
     resolution:
       integrity: sha512-pgFw2tm54fzgYvc/OHrnysABEObZCUNFnhjoRjaVOCN8NYc032/gVjPaHD4Aq6ApkSieWtfKAFQtmDKAmhupnQ==
   /jest-regex-util/24.9.0:
@@ -8150,12 +8154,6 @@ packages:
     dev: false
     resolution:
       integrity: sha512-rmTZ9kz+f3rCvK2TD1Ue/oZlns7OGoIWP4fc3llxxRXlOkHKoWPPWJOfFYpITabSow43QJbRIoHQXtt10VldyQ==
-  /node-fetch/2.6.0:
-    dev: false
-    engines:
-      node: 4.x || >=6.0.0
-    resolution:
-      integrity: sha512-8dG4H5ujfvFiqDmVu9fQ5bOHUC15JMjMY/Zumv26oOvvVJjM67KF8koCWIabKQ1GJIa9r2mMZscBq/TbdOcmNA==
   /node-forge/0.9.0:
     dev: false
     engines:
@@ -10236,6 +10234,18 @@ packages:
     dev: false
     resolution:
       integrity: sha512-tQtKA9WIAhBF3+VLAseyMqZeBjW0AHJoxOtYqSUZNJxauErmLbVm2FW1y+J/YA9dUrAC39ITejlZWhVIwawkKw==
+  /readable-stream/2.3.7:
+    dependencies:
+      core-util-is: 1.0.2
+      inherits: 2.0.4
+      isarray: 1.0.0
+      process-nextick-args: 2.0.1
+      safe-buffer: 5.1.2
+      string_decoder: 1.1.1
+      util-deprecate: 1.0.2
+    dev: false
+    resolution:
+      integrity: sha512-Ebho8K4jIbHAxnuxi7o42OrZgF/ZTNcsZj6nRKyUmkhLFq8CHItp/fy6hQZuZmP/n3yZ9VBUbp4zz/mX8hmYPw==
   /readable-stream/3.4.0:
     dependencies:
       inherits: 2.0.4
@@ -10734,6 +10744,13 @@ packages:
       node-sass: ^4.0.0
       sass: ^1.3.0
       webpack: ^4.36.0
+    peerDependenciesMeta:
+      fibers:
+        optional: true
+      node-sass:
+        optional: true
+      sass:
+        optional: true
     resolution:
       integrity: sha512-+qeMu563PN7rPdit2+n5uuYVR0SSVwm0JsOUsaJXzgYcClWSlmX0iHDnmeOobPkf5kUglVot3QS6SyLyaQoJ4w==
   /sax/1.2.4:
@@ -11251,6 +11268,12 @@ packages:
     dev: false
     resolution:
       integrity: sha512-+TSkfINHDo4J+ZobQLWiMouQYB+UVYFttRA94FpEzzJ7ZdqcL4uUUQ7WkdkI4DSozGmgBUE/a47L+38PenXhUw==
+  /stream-parser/0.3.1:
+    dependencies:
+      debug: 2.6.9
+    dev: false
+    resolution:
+      integrity: sha1-FhhUhpRCACGhGC/wrxkRwSl2F3M=
   /stream-shift/1.0.1:
     dev: false
     resolution:
@@ -12617,12 +12640,6 @@ packages:
     dev: false
     resolution:
       integrity: sha512-GIyAXC2cB7LjvpgMt9EKS2ldqr0MTrORaleiOno6TweZ6r3TKtoFQWay/2PceJ3RuBasOHzXNn5Lrw1X0bEjqA==
-  /ws/7.1.2:
-    dependencies:
-      async-limiter: 1.0.1
-    dev: false
-    resolution:
-      integrity: sha512-gftXq3XI81cJCgkUiAVixA0raD9IVmXqsylCrjRygw4+UOOGzPoxnQ6r/CnVL9i+mDncJo94tSkyrtuuQVBmrg==
   /x-is-string/0.1.0:
     dev: false
     resolution:
@@ -12717,6 +12734,17 @@ packages:
     dev: false
     resolution:
       integrity: sha1-AI4G2AlDIMNy28L47XagymyKxBk=
+  github.com/jorgev259/node-icy/84a28a52408a3dbe78921904f206b8be7de88882:
+    dependencies:
+      debug: 2.6.9
+      he: 1.2.0
+      readable-stream: 2.3.7
+      stream-parser: 0.3.1
+    dev: false
+    name: icy
+    resolution:
+      tarball: 'https://codeload.github.com/jorgev259/node-icy/tar.gz/84a28a52408a3dbe78921904f206b8be7de88882'
+    version: 2.1.0
 specifiers:
   '@babel/plugin-proposal-class-properties': ^7.7.4
   '@babel/preset-env': ^7.7.7
@@ -12733,9 +12761,9 @@ specifiers:
   bootstrap: ^4.4.1
   customize-cra: ^0.9.1
   dat.gui: ^0.7.6
-  discord-rpc: ^3.1.0
   glob: ^7.1.6
   hookrouter: ^1.2.3
+  icy-socket: ^1.0.5
   jquery: ^3.4.1
   moment: ^2.24.0
   react: ^16.12.0
