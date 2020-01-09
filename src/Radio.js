@@ -2,7 +2,6 @@
 import React from 'react'
 import $ from 'jquery'
 import io from 'socket.io-client'
-import Snowfall from 'react-snowfall'
 import { MdPlayArrow, MdPause, MdVolumeOff } from 'react-icons/md'
 
 import './css/glitch.css'
@@ -119,7 +118,10 @@ export default class Radio extends React.Component {
 
   handlePlay = () => {
     if (this.state.playing) this.audio.pause()
-    else this.audio.play()
+    else {
+      this.audio.load()
+      this.audio.play()
+    }
   }
 
   handleSong = data => {
@@ -212,7 +214,7 @@ export default class Radio extends React.Component {
   render () {
     return (
       <>
-        <Background station={this.state.station} updateStation={this.updateStation} />
+        <Background socket={this.socket} station={this.state.station} updateStation={this.updateStation} />
         <div id='titlepara' className='slidepara headerpara' style={{ height: '100%' }}>
           <div className='row'>
             <div className='col s12 m10 offset-m1' id='TooHotCard'>
@@ -268,7 +270,6 @@ export default class Radio extends React.Component {
             </div>
           </div>
         </div>
-        <Snowfall style={{ zIndex: 999 }} snowflakeCount={50} />
         <script src='wp-content\themes\materialize-child\js\materializemod.js' />
         <script
           src='https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.20.1/moment.min.js'
