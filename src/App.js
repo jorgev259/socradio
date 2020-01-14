@@ -7,13 +7,17 @@ const routes = {
   '/clouds': () => <Radio />,
   '/persona': () => <Radio />,
   '/anime': () => <Radio />,
-  '/weekly': () => <Radio />
+  '/weekly': () => <Radio />,
+  '/sonic': () => <Radio />
 }
 
 const App = () => {
   const routeResult = useRoutes(routes)
   return routeResult || (
-    <script>window.location.href = '/404.html'</script>
+    <script>{(
+      window.location.href = '/404.html'
+    )}
+    </script>
   )
 }
 
