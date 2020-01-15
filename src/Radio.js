@@ -61,6 +61,10 @@ export default class Radio extends React.Component {
     this.setState({ station: station }, () => this.startSocket(cb))
   }
 
+  addDefaultSrc = (ev) => {
+    ev.target.src = `images/logo/soc_${this.state.station}.png`
+  }
+
   startSocket = (cb = null) => {
     this.socket = io('https://api.squid-radio.net')
     this.socket.on(this.state.station, this.handleSong)
@@ -227,10 +231,10 @@ export default class Radio extends React.Component {
                       style={{ backgroundColor: 'rgb(51, 51, 51)', height: '100%', borderRadius: '20px 0 0' }}
                     >
                       <div id='albutwt' style={{ height: '100%', width: '100%' }}>
-                        <img alt='' className='glitch glitch_sec' src={`images/logo/soc_${this.state.station}.png`} />
-                        <img alt='' className='glitch glitch_primary' src={`images/logo/soc_${this.state.station}.png`} />
-                        <img alt='' className='glitch glitch_sec' src={`images/logo/soc_${this.state.station}.png`} />
-                        <img alt='' className='glitch glitch_primary' src={`images/logo/soc_${this.state.station}.png`} />
+                        <img alt='' onError={this.addDefaultSrc} className='glitch glitch_sec' src={`images/logo/soc_${this.state.station}.png`} />
+                        <img alt='' onError={this.addDefaultSrc} className='glitch glitch_primary' src={`images/logo/soc_${this.state.station}.png`} />
+                        <img alt='' onError={this.addDefaultSrc} className='glitch glitch_sec' src={`images/logo/soc_${this.state.station}.png`} />
+                        <img alt='' onError={this.addDefaultSrc} className='glitch glitch_primary' src={`images/logo/soc_${this.state.station}.png`} />
                       </div>
 
                     </div>
