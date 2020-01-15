@@ -42,33 +42,36 @@ export default class Station extends React.Component {
 
   render () {
     return (
-      <>
-        <div className='config-item' onClick={this.handleToggle}>
-          {this.state.open ? (
-            <FiArrowDown
-              style={{
-                height: '30px',
-                width: '30px'
-              }}
-            />
-          ) : (
-            <FiRadio
-              style={{
-                height: '30px',
-                width: '30px'
-              }}
-            />
-          )}
+      <div className='config-list'>
+        <div className='config-row'>
+          <div className='config-icon' onClick={this.handleToggle}>
+            {this.state.open ? (
+              <FiArrowDown
+                style={{
+                  height: '30px',
+                  width: '30px'
+                }}
+              />
+            ) : (
+              <FiRadio
+                style={{
+                  height: '30px',
+                  width: '30px'
+                }}
+              />
+            )}
+          </div>
         </div>
         {this.state.open ? (
           Object.keys(this.state.stations).filter(station => station !== this.props.station).map(station =>
-            <div key={station} className='config-row'>
-              <div>Now Playing: {`${this.state.stations[station].artist} - ${this.state.stations[station].title}`}</div>
-              <img src={`/images/station/station_${station}.png`} onClick={() => this.props.onStation(station, () => navigate(`/${station}`))} />
+            <div className='config-row' key={station}>
+              <div className='config-label'>Now Playing: {`${this.state.stations[station].artist} - ${this.state.stations[station].title}`}</div>
+              <img className='config-img' src={`/images/station/station_${station}.png`} onClick={() => this.props.onStation(station, () => navigate(`/${station}`))} />
             </div>
           )
         ) : null}
-      </>
+
+      </div>
     )
   }
 }

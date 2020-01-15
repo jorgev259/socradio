@@ -64,7 +64,13 @@ export default class Radio extends React.Component {
   startSocket = (cb = null) => {
     this.socket = io('https://api.squid-radio.net')
     this.socket.on(this.state.station, this.handleSong)
+    this.socket.emit('station', { station: this.state.station })
+    this.startAudio()
 
+    if (cb) cb()
+  }
+
+  startAudio = () => {
     this.audio = new Audio(`https://play.squid-radio.net/${this.state.station}?cache_ts=${new Date().getTime()}`)
     this.audio.onpause = () => {
       // $('#playPauseIcon').html('play_arrow')
@@ -110,10 +116,12 @@ export default class Radio extends React.Component {
       this.setState({ playing: true })
       this.spin.play()
     }
+    this.audio.onended = () => {
+      console.log('Stream Ended. Restarting')
+      this.startAudio()
+    }
     this.audio.loop = false
     this.audio.play()
-
-    if (cb) cb()
   }
 
   handlePlay = () => {

@@ -18,9 +18,11 @@ dependencies:
   hookrouter: 1.2.3_react@16.12.0
   jquery: 3.4.1
   moment: 2.24.0
+  qs: 6.9.1
   react: 16.12.0
   react-app-rewired: 2.1.5_react-scripts@3.3.0
   react-bootstrap: 1.0.0-beta.16_react-dom@16.12.0+react@16.12.0
+  react-countdown-circle-timer: 1.0.6_react-dom@16.12.0+react@16.12.0
   react-dom: 16.12.0_react@16.12.0
   react-icons: 3.8.0_react@16.12.0
   react-scripts: 3.3.0
@@ -4567,10 +4569,6 @@ packages:
     hasBin: true
     resolution:
       integrity: sha512-5tQykt+LqfJFBEYaDITx7S7cR7mJ/zQmLXZ2qt5w04ainYZw6tBf9dBunMjVeVOdYVRUzUOE4HkY5J7+uttb5Q==
-  /dev-null/0.1.1:
-    dev: false
-    resolution:
-      integrity: sha1-WiBc48Ky73e2I41roXnrdMag6Bg=
   /diff-sequences/24.9.0:
     dev: false
     engines:
@@ -6245,13 +6243,6 @@ packages:
       node: '>= 6'
     resolution:
       integrity: sha512-4aFq7wvWyMHKgxsH8QQtGpvbASCf+eM3wPRLI6R+MgAnTCZ6STYsRvttLvRWK0Nfif5piF394St3HeJDaljGPA==
-  /icy-socket/1.0.5:
-    dependencies:
-      dev-null: 0.1.1
-      icy: github.com/jorgev259/node-icy/84a28a52408a3dbe78921904f206b8be7de88882
-    dev: false
-    resolution:
-      integrity: sha512-Ex7RG7fruzKSRLKbX+2cHonfnsrBN/DXnnQ6p+HizOtGVGIhwVHG6ylW+RUIP1tBFruEUg5Hqx9iYz5MX3al4A==
   /identity-obj-proxy/3.0.0:
     dependencies:
       harmony-reflect: 1.6.1
@@ -9838,6 +9829,12 @@ packages:
       node: '>=0.6'
     resolution:
       integrity: sha512-VCdBRNFTX1fyE7Nb6FYoURo/SPe62QCaAyzJvUjwRaIsc+NePBEniHlvxFmmX56+HZphIGtV0XeCirBtpDrTyQ==
+  /qs/6.9.1:
+    dev: false
+    engines:
+      node: '>=0.6'
+    resolution:
+      integrity: sha512-Cxm7/SS/y/Z3MHWSxXb8lIFqgqBowP5JMlTUFyJN88y0SGQhVmZnqFK/PeuMX9LzUyWsqqhNxIyg0jlzq946yA==
   /query-string/4.3.4:
     dependencies:
       object-assign: 4.1.1
@@ -9947,6 +9944,18 @@ packages:
       react-dom: '>=16.8.0'
     resolution:
       integrity: sha512-wjb+3CwviDWAaz4O3gQpd2XMDNqbOiqOOzpLm5aLPcp1wTsQsVRhyM+rTPmO3hYU8auA2eNpTYLz08/fAcMqDA==
+  /react-countdown-circle-timer/1.0.6_react-dom@16.12.0+react@16.12.0:
+    dependencies:
+      react: 16.12.0
+      react-dom: 16.12.0_react@16.12.0
+      use-elapsed-time: 1.1.5_react-dom@16.12.0+react@16.12.0
+    dev: false
+    peerDependencies:
+      prop-types: ^15.7.0
+      react: ^16.8.0
+      react-dom: ^16.8.0
+    resolution:
+      integrity: sha512-3pRiwBq+3EGcsaasQmDl82MO9FJQQlnRqNjdbNNyJMqcTo5vRzXIJnAOsm+eGvFlzDGHpCY4VlBkMUwJahem4g==
   /react-dev-utils/10.0.0:
     dependencies:
       '@babel/code-frame': 7.5.5
@@ -10136,16 +10145,6 @@ packages:
       react-dom: '>=0.14.7 <=16.x'
     resolution:
       integrity: sha512-NxFoBvEg2WD3V25jgiWgIltpDfs2XBCbDyi63jEM6Gch8g8r2cqJxSWy2GfG666EfOpRR5Zsrhu0Qn5yze1PrA==
-  /react-snowfall/1.0.2_react-dom@16.12.0+react@16.12.0:
-    dependencies:
-      react: 16.12.0
-      react-dom: 16.12.0_react@16.12.0
-    dev: false
-    peerDependencies:
-      react: ^16.8
-      react-dom: ^16.8
-    resolution:
-      integrity: sha512-wmKa7Vhl26Ixo5hBp3lgM9z7o43itLv7LF7IuuD0vZPh3TclfM2wokujQb/gg5Ml2c6r6hyU7WXmvMg63TkhtA==
   /react-transition-group/2.9.0_react-dom@16.12.0+react@16.12.0:
     dependencies:
       dom-helpers: 3.4.0
@@ -10234,18 +10233,6 @@ packages:
     dev: false
     resolution:
       integrity: sha512-tQtKA9WIAhBF3+VLAseyMqZeBjW0AHJoxOtYqSUZNJxauErmLbVm2FW1y+J/YA9dUrAC39ITejlZWhVIwawkKw==
-  /readable-stream/2.3.7:
-    dependencies:
-      core-util-is: 1.0.2
-      inherits: 2.0.4
-      isarray: 1.0.0
-      process-nextick-args: 2.0.1
-      safe-buffer: 5.1.2
-      string_decoder: 1.1.1
-      util-deprecate: 1.0.2
-    dev: false
-    resolution:
-      integrity: sha512-Ebho8K4jIbHAxnuxi7o42OrZgF/ZTNcsZj6nRKyUmkhLFq8CHItp/fy6hQZuZmP/n3yZ9VBUbp4zz/mX8hmYPw==
   /readable-stream/3.4.0:
     dependencies:
       inherits: 2.0.4
@@ -11268,12 +11255,6 @@ packages:
     dev: false
     resolution:
       integrity: sha512-+TSkfINHDo4J+ZobQLWiMouQYB+UVYFttRA94FpEzzJ7ZdqcL4uUUQ7WkdkI4DSozGmgBUE/a47L+38PenXhUw==
-  /stream-parser/0.3.1:
-    dependencies:
-      debug: 2.6.9
-    dev: false
-    resolution:
-      integrity: sha1-FhhUhpRCACGhGC/wrxkRwSl2F3M=
   /stream-shift/1.0.1:
     dev: false
     resolution:
@@ -12080,6 +12061,16 @@ packages:
     dev: false
     resolution:
       integrity: sha1-ODjpfPxgUh63PFJajlW/3Z4uKPE=
+  /use-elapsed-time/1.1.5_react-dom@16.12.0+react@16.12.0:
+    dependencies:
+      react: 16.12.0
+      react-dom: 16.12.0_react@16.12.0
+    dev: false
+    peerDependencies:
+      react: ^16.8.0
+      react-dom: ^16.8.0
+    resolution:
+      integrity: sha512-GBi12dcko+IzRnxd9/3xd4SyZVK4z35Bs2heo1g6vOz/l7fo2cOdDUf8cjZP0blekrVAq7hnZxco5jnFcb6EFg==
   /use/3.1.1:
     dev: false
     engines:
@@ -12734,17 +12725,6 @@ packages:
     dev: false
     resolution:
       integrity: sha1-AI4G2AlDIMNy28L47XagymyKxBk=
-  github.com/jorgev259/node-icy/84a28a52408a3dbe78921904f206b8be7de88882:
-    dependencies:
-      debug: 2.6.9
-      he: 1.2.0
-      readable-stream: 2.3.7
-      stream-parser: 0.3.1
-    dev: false
-    name: icy
-    resolution:
-      tarball: 'https://codeload.github.com/jorgev259/node-icy/tar.gz/84a28a52408a3dbe78921904f206b8be7de88882'
-    version: 2.1.0
 specifiers:
   '@babel/plugin-proposal-class-properties': ^7.7.4
   '@babel/preset-env': ^7.7.7
@@ -12763,16 +12743,16 @@ specifiers:
   dat.gui: ^0.7.6
   glob: ^7.1.6
   hookrouter: ^1.2.3
-  icy-socket: ^1.0.5
   jquery: ^3.4.1
   moment: ^2.24.0
+  qs: ^6.9.1
   react: ^16.12.0
   react-app-rewired: ^2.1.5
   react-bootstrap: ^1.0.0-beta.16
+  react-countdown-circle-timer: ^1.0.6
   react-dom: ^16.12.0
   react-icons: ^3.8.0
   react-scripts: 3.3.0
-  react-snowfall: ^1.0.2
   rimraf: ^3.0.0
   socket.io-client: ^2.3.0
   write-json-file: ^4.2.1
