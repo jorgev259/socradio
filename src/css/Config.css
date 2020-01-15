@@ -5,42 +5,31 @@
     right: 20px  
 }
 
-.config-item{
-  width: 55px;
-  margin-left:auto; 
-  margin-right:0;
-}
-
-.config-row,.config-item{
-  align-items: center;
+.config-row{
   height: 55px;
-  display: flex;
-  margin-bottom:10px
+  display:flex;
+  justify-content: right;
+  margin-bottom:10px;
 }
 
-.config-row img, .config-row div{
-  height:55px;
-}
 
-.config-row img{
+.config-img, .config-icon{
   width:55px;
+  cursor:pointer;
+  justify-content: center;
 }
 
-.config-row div, .config-item{
+.config-label, .config-icon{
+  align-items: center;
   box-shadow: rgba(115, 136, 217, 0.3) 0px 3px 5px -1px, rgba(115, 136, 217, 0.14) 0px 6px 10px 0px, rgba(115, 136, 217, 0.12) 0px 1px 18px 0px;
   border-radius: 30px; 
   color:white;
   background-color: #f44336;
-  align-items: center;
   display:flex;
-  justify-content: center;
-}
-
-.config-row div{
   padding: 0px 10px 0px 10px;
-  margin-left: auto;
 }
 
-.config-item,.config-row img{
-  cursor:pointer;
+.inverse{
+  color: #f44336;
+  background-color: white;
 }

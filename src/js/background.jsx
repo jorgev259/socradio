@@ -74,7 +74,7 @@ export default class Background extends React.Component {
   render () {
     return (
       <>
-        <Config station={this.props.station} handleBG={this.updateBG.bind(this)} handleStation={this.props.updateStation} />
+        <Config socket={this.props.socket} station={this.props.station} handleBG={this.updateBG.bind(this)} handleStation={this.props.updateStation} />
         <ItemBG id='currentBG' station={this.props.station} index={this.state.bgIndex} />
         <ItemBG id='newBG' station={this.props.station} index={this.state.bgIndex + 1} />
       </>
