@@ -19,13 +19,18 @@ export default class Station extends React.Component {
     }) */
     axios.get('https://api.squid-radio.net/stations')
       .then(res => {
-        res.data.forEach(station => {
-          this.socket.on(station, (data) => {
-            if (data !== null) {
-              const dataIn = this.state.stations
-              dataIn[station] = data
-              this.setState({ stations: dataIn })
-            }
+        console.log(res.data)
+        const defaultStations = {}
+        res.data.forEach(station => { defaultStations[station] = { title: '', artist: '', album: '' } })
+        this.setState({ stations: defaultStations }, () => {
+          res.data.forEach(station => {
+            this.socket.on(station, (data) => {
+              if (data !== null) {
+                const dataIn = this.state.stations
+                dataIn[station] = data
+                this.setState({ stations: dataIn })
+              }
+            })
           })
         })
       })
