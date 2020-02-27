@@ -7,7 +7,7 @@ const routes = {
   '/clouds': () => <Radio />,
   '/persona': () => <Radio />,
   '/anime': () => <Radio />,
-  '/weekly': () => <Radio />,
+  '/woomy': () => <Radio />,
   '/sonic': () => <Radio />
 }
 
