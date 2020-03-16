@@ -52,7 +52,7 @@ export default class Radio extends React.Component {
     started: false,
     playing: false,
     muted: false,
-    volume: 0
+    percentage: 0.2
   }
 
   updateStation = (station, cb) => {
@@ -127,7 +127,7 @@ export default class Radio extends React.Component {
     }
     this.audio.loop = false
     this.audio.play()
-    this.audio.volume = this.state.percentage / 100
+    this.audio.volume = this.state.percentage
   }
 
   handlePlay = () => {
@@ -135,7 +135,7 @@ export default class Radio extends React.Component {
     else {
       this.audio.load()
       this.audio.play()
-      this.audio.volume = this.state.percentage / 100
+      this.audio.volume = this.state.percentage
     }
   }
 
@@ -222,7 +222,7 @@ export default class Radio extends React.Component {
       // update volume bar and video volume
       $('.volumeBar').css('width', percentage + '%')
       this.audio.volume = percentage / 100
-      this.setState({ percentage: percentage, muted: percentage === 0 })
+      this.setState({ percentage: percentage / 100, muted: percentage === 0 })
     }
   }
 
