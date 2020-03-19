@@ -71,7 +71,7 @@ export default class Station extends React.Component {
           Object.keys(this.state.stations).filter(station => station !== this.props.station).map(station =>
             <div className='config-row' key={station}>
               <div className='config-label'>Now Playing: {`${this.state.stations[station].artist} - ${this.state.stations[station].title}`}</div>
-              <img className='config-img' src={`/images/station/station_${station}.png`} onClick={() => this.props.onStation(station, () => navigate(`/${station}`))} />
+              <img className='config-img' alt='station logo' src={`/images/station/station_${station}.png`} onClick={() => this.props.onStation(station, () => navigate(`/${station}`))} />
             </div>
           )
         ) : null}
