@@ -52,7 +52,7 @@ export default class Radio extends React.Component {
     started: false,
     playing: false,
     muted: false,
-    percentage: 0.2
+    percentage: 0.5
   }
 
   updateStation = (station, cb) => {
