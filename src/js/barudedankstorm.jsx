@@ -4,7 +4,7 @@ export default class Flute extends React.Component {
   componentDidMount () {
     this.timeout = setInterval(() => {
       const gifs = this.state.gifs
-      const random = randomIntFromInterval(1, 4)
+      const random = randomIntFromInterval(1, 9)
       const randomSize = randomIntFromInterval(100, 250)
       const randomWidth = Math.random() * window.screen.width
       const randomHeight = Math.random() * window.screen.height
