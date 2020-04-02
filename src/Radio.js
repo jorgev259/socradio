@@ -2,7 +2,6 @@
 import React from 'react'
 import $ from 'jquery'
 import io from 'socket.io-client'
-import Flute from './js/barudedankstorm'
 import { MdPlayArrow, MdPause, MdVolumeOff } from 'react-icons/md'
 
 import './css/glitch.css'
@@ -230,7 +229,6 @@ export default class Radio extends React.Component {
   render () {
     return (
       <>
-        <Flute />
         <Background socket={this.socket} station={this.state.station} updateStation={this.updateStation} />
         <div id='titlepara' className='slidepara headerpara' style={{ height: '100%' }}>
           <div className='row'>
