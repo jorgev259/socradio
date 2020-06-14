@@ -1,4 +1,4 @@
-import React from 'React'
+import React from 'react'
 import axios from 'axios'
 import { FiSkipForward, FiCheck, FiX } from 'react-icons/fi'
 import { CountdownCircleTimer } from 'react-countdown-circle-timer'

@@ -1,4 +1,4 @@
-import React from 'React'
+import React from 'react'
 import axios from 'axios'
 import io from 'socket.io-client'
 import { FiRadio, FiArrowDown } from 'react-icons/fi'
