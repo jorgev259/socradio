@@ -13,8 +13,8 @@ import './css/font.css'
 import anime from 'animejs/lib/anime.es.js'
 
 import 'dat.gui'
-import Background from './js/Background.jsx'
-import Record from './js/Record.jsx'
+import Background from './js/Background'
+import Record from './js/Record'
 
 function androidMetadata (data) {
   if ('mediaSession' in navigator) {
