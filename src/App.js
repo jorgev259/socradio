@@ -1,6 +1,9 @@
 import React from 'react'
 import { useRoutes } from 'hookrouter'
 import Radio from './Radio'
+import Small from './Small'
+
+// import 'bootstrap/dist/css/bootstrap.min.css'
 
 const routes = {
   '/': () => <Radio />,
@@ -8,7 +11,8 @@ const routes = {
   '/persona': () => <Radio />,
   '/anime': () => <Radio />,
   '/woomy': () => <Radio />,
-  '/sonic': () => <Radio />
+  '/sonic': () => <Radio />,
+  '/small': () => <Small />
 }
 
 const App = () => {

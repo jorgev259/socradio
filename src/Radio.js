@@ -2,6 +2,7 @@
 import React from 'react'
 import $ from 'jquery'
 import io from 'socket.io-client'
+import { Container } from 'reactstrap'
 import { MdPlayArrow, MdPause, MdVolumeOff } from 'react-icons/md'
 
 import './css/glitch.css'
@@ -9,6 +10,12 @@ import './css/player.css'
 import './css/main.css'
 import './css/material.css'
 import './css/font.css'
+
+import './css/animate.min.css'
+import './css/material-font.css'
+import './css/materialize.min.css'
+
+import './css/roboto.css'
 
 import anime from 'animejs/lib/anime.es.js'
 
@@ -228,7 +235,7 @@ export default class Radio extends React.Component {
 
   render () {
     return (
-      <>
+      <Container>
         <Background socket={this.socket} station={this.state.station} updateStation={this.updateStation} />
         <div id='titlepara' className='slidepara headerpara' style={{ height: '100%' }}>
           <div className='row'>
@@ -301,7 +308,7 @@ export default class Radio extends React.Component {
         <script src='wp-content\themes\materialize-child\js\nginxws.js' />
         <script src='https://cdn.rawgit.com/jschr/textillate/master/assets/jquery.lettering.js' />
         <script src='https://cdn.rawgit.com/jschr/textillate/master/jquery.textillate.js' />
-      </>
+      </Container>
     )
   }
 }
