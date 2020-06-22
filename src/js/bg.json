@@ -3,14 +3,26 @@
 		"images/bg/anime/1.jpg"
 	],
 	"clouds": [
-		"images/bg/clouds/fire_logo.mp4"
+		"images/bg/clouds/1.jpg",
+		"images/bg/clouds/2.jpg",
+		"images/bg/clouds/Inkling.png",
+		"images/bg/clouds/Splatoon_Splatoon_2_Nintendo_Switch_Nintendo_Inkling-1178303.png",
+		"images/bg/clouds/Splatoon.png",
+		"images/bg/clouds/thumb-1920-1025915.png",
+		"images/bg/clouds/tumblr_oyzfhrS09j1stbkjno8_1280.png"
 	],
 	"persona": [
 		"images/bg/persona/1.jpg",
 		"images/bg/persona/2.jpg"
 	],
 	"sonic": [
-		"images/bg/sonic/fire_logo.mp4"
+		"images/bg/sonic/1.jpg",
+		"images/bg/sonic/2.jpg",
+		"images/bg/sonic/Inkling.png",
+		"images/bg/sonic/Splatoon_Splatoon_2_Nintendo_Switch_Nintendo_Inkling-1178303.png",
+		"images/bg/sonic/Splatoon.png",
+		"images/bg/sonic/thumb-1920-1025915.png",
+		"images/bg/sonic/tumblr_oyzfhrS09j1stbkjno8_1280.png"
 	],
 	"woomy": [
 		"images/bg/woomy/Inkling.png",

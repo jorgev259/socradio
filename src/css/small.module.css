@@ -11,8 +11,14 @@ body {
 .music-player-container {
   display: inline-block;
   height: 370px;
-  min-width: 460px;
 }
+
+.min > .music-player {
+  height:315px;
+  width:315px;
+  opacity: 0;
+}
+
 
 .music-player {
   background-color: #fff;
@@ -21,6 +27,7 @@ body {
   position: absolute;
   text-align: right;
   width: 460px;
+  transition: height 2.5s, width 2.5s, opacity 1.5s;
   top: 0;
   z-index: 3;
 }
@@ -57,10 +64,16 @@ body {
   box-shadow: 3px 3px 15px rgba(0, 0, 0, 0.65);
   height: 315px;
   left: 250px;
-  margin-top: 27px;
+  top: 27px;
   position: absolute;
   width: 315px;
   z-index: 10;
+  transition: left 4s, top 4s;
+}
+
+.min > .album {
+  left: 0px;
+  top: 0px;
 }
 
 .album-art {
@@ -85,9 +98,15 @@ body {
   height: 300px;
   position: absolute;
   top: 5px;
+  left:50%;
+  transition: left 1s;
   width: 300px;
   z-index: 5;
   will-change: transform, left;
+}
+
+.min > .vinyl {
+  left: 30%
 }
 
 .music-player-controls {

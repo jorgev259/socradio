@@ -12,29 +12,6 @@ const placeholders = [
   "Ritsu's tightly locked treasure"
 ]
 
-const duration = 3500
-var albumShrink = anime({
-  targets: `.${styles.album}:not(.out)`,
-  duration: duration,
-  left: 30,
-  easing: 'linear'
-})
-
-var playerShrink = anime({
-  targets: `.${styles['music-player']}`,
-  width: 315,
-  height: 315,
-  duration: duration,
-  top: '27px',
-  easing: 'linear'
-})
-
-const hideText = anime({
-  targets: `.${styles['player-content-container']}`,
-  duration: duration / 0.5,
-  opacity: [1, 0]
-})
-
 function androidMetadata (data) {
   if ('mediaSession' in navigator) {
     const albumURL = `https://squid-radio.net/covers/${data.album}.jpg`
@@ -61,7 +38,8 @@ export default class Small extends React.Component {
       title: placeholders[Math.floor(Math.random() * placeholders.length)]
     },
     station: 'clouds',
-    currentArt: 'images/logo/soc_clouds.png'
+    currentArt: 'images/logo/soc_clouds.png',
+    min: false
   }
 
   startSocket = (cb = null) => {
@@ -144,29 +122,18 @@ export default class Small extends React.Component {
       loop: true,
       duration: 1500,
       easing: 'linear',
-      autoplay: false
+      autoplay: true
     })
-
-    // this.togglePlayer()
     this.startSocket()
-  }
-
-  togglePlayer () {
-    playerShrink.play()
-    albumShrink.play()
-    hideText.play()
-
-    playerShrink.reverse()
-    albumShrink.reverse()
-    hideText.reverse()
-
-    setTimeout(() => this.togglePlayer(), 6000)
+    setInterval(() => {
+      this.setState({ min: !this.state.min })
+    }, 5000)
   }
 
   render () {
     return (
       <Container fluid>
-        <div className={joinClasses('music-player-container', 'is-playing')}>
+        <div className={joinClasses('music-player-container', this.state.min ? 'min' : '')}>
           <div className={styles['music-player']}>
             <div className={styles['player-content-container']}>
               <h1 className={styles['artist-name']}>{this.state.songData.artist}</h1>
