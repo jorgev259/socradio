@@ -12,6 +12,7 @@ const routes = {
   '/anime': () => <Radio />,
   '/woomy': () => <Radio />,
   '/sonic': () => <Radio />,
+  '/arms': () => <Radio />,
   '/small': () => <Small />
 }
 
