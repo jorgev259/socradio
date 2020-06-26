@@ -4,6 +4,7 @@ import styles from './css/small.module.css'
 import io from 'socket.io-client'
 import anime from 'animejs/lib/anime.es.js'
 import { Container } from 'reactstrap'
+import $ from 'jquery'
 
 const placeholders = [
   "Riku's radio extravaganza",
@@ -37,22 +38,24 @@ export default class Small extends React.Component {
       album: 'Press the Play button to start the radio',
       title: placeholders[Math.floor(Math.random() * placeholders.length)]
     },
-    station: 'clouds',
-    currentArt: 'images/logo/soc_clouds.png',
-    min: false
+    currentArt: `/images/logo/soc_${this.props.station}.png`,
+    min: false,
+    maxWidth: 800
   }
+
+  minTimeout = null
 
   startSocket = (cb = null) => {
     this.socket = io('https://api.squid-radio.net')
-    this.socket.on(this.state.station, this.handleSong)
-    this.socket.emit('station', { station: this.state.station })
+    this.socket.on(this.props.station, this.handleSong)
+    this.socket.emit('station', { station: this.props.station })
     this.startAudio()
 
     if (cb) cb()
   }
 
   startAudio = () => {
-    this.audio = new Audio(`https://play.squid-radio.net/${this.state.station}?cache_ts=${new Date().getTime()}`)
+    this.audio = new Audio(`https://play.squid-radio.net/${this.props.station}?cache_ts=${new Date().getTime()}`)
     this.audio.onpause = () => {
       this.setState({ playing: false })
       this.spin.pause()
@@ -102,18 +105,25 @@ export default class Small extends React.Component {
     console.log(data)
     if (data !== null) {
       if (this.state.started) {
-        this.setState({ songData: data })
+        this.setState({ songData: data, min: false })
         androidMetadata(data)
 
         const newArt = `https://squid-radio.net/covers/${data.album}.jpg`
         setTimeout(() => {
           this.setState({ currentArt: newArt })
         }, 1.5 * 1000)
+
+        clearTimeout(this.minTimeout)
+
+        this.cycleHide()
       }
     }
   }
 
-  streamDelay = 0
+  cycleHide () {
+    clearTimeout(this.minTimeout)
+    this.minTimeout = setTimeout(() => this.setState({ min: !this.state.min }, this.cycleHide), !this.state.min ? 50 * 1000 : 20 * 1000)
+  }
 
   componentDidMount () {
     this.spin = anime({
@@ -125,38 +135,29 @@ export default class Small extends React.Component {
       autoplay: true
     })
     this.startSocket()
-    setInterval(() => {
-      this.setState({ min: !this.state.min })
-    }, 5000)
+    setInterval(() => this.setState({ maxWidth: $(`.${styles['music-player']}`).outerWidth() }), 1000)
   }
 
   render () {
     return (
       <Container fluid>
         <div className={joinClasses('music-player-container', this.state.min ? 'min' : '')}>
-          <div className={styles['music-player']}>
-            <div className={styles['player-content-container']}>
+          <div className={joinClasses('music-player')}>
+            <div className={styles['song-data']}>
               <h1 className={styles['artist-name']}>{this.state.songData.artist}</h1>
-              <h2 className={styles['album-title']}>{this.state.songData.title}</h2>
-              <h3 className={styles['song-title']}>{this.state.songData.album}</h3>
-              {/*
-              <div className={styles['music-player-controls'>
-                <div className={styles['control-back' />
-                <div className={styles['control-play' />
-                <div className={styles['control-forwards' />
-              </div>
-              */}
+              <h2 className={styles['song-title']}>{this.state.songData.title}</h2>
+              <h3 className={styles['album-title']}>{this.state.songData.album}</h3>
             </div>
           </div>
-
-          <div className={joinClasses('album')}>
-            <div
-              style={{ backgroundImage: `url("https://squid-radio.net/covers/${this.state.songData.album}.jpg"), url("images/logo/soc_${this.state.station}.png")` }}
-              className={joinClasses('album-art')}
-            />
-            <div className={styles.vinyl} />
+          <div className={styles['album-container']}>
+            <div className={styles['album-box']} style={{ left: this.state.min ? `-${this.state.maxWidth - 5}px` : null }}>
+              <div
+                style={{ backgroundImage: `url("https://squid-radio.net/covers/${this.state.songData.album}.jpg"), url("/images/logo/soc_${this.props.station}.png")` }}
+                className={joinClasses('album-art')}
+              />
+              <div className={styles.vinyl} style={{ backgroundImage: `url("https://s3-us-west-2.amazonaws.com/s.cdpn.io/83141/vinyl.png"), url("/images/station/station_${this.props.station}.png")` }} />
+            </div>
           </div>
-
         </div>
       </Container>
     )

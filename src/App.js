@@ -3,8 +3,6 @@ import { useRoutes } from 'hookrouter'
 import Radio from './Radio'
 import Small from './Small'
 
-// import 'bootstrap/dist/css/bootstrap.min.css'
-
 const routes = {
   '/': () => <Radio />,
   '/clouds': () => <Radio />,
@@ -13,7 +11,8 @@ const routes = {
   '/woomy': () => <Radio />,
   '/sonic': () => <Radio />,
   '/arms': () => <Radio />,
-  '/small': () => <Small />
+  '/small': () => <Small station='clouds' />,
+  '/small/:station': ({ station }) => <Small station={station} />
 }
 
 const App = () => {
