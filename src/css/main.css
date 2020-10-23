@@ -881,3 +881,8 @@ html,
     .side-nav li>a>i.material-icons {
       color: #F44336 !important;
     }
+
+    #albutwt img {
+      width: auto;
+      height: 100%;
+    }

@@ -80,8 +80,6 @@ export default class Small extends React.Component {
 
       this.setState({ started: true })
       this.setState({ playing: true })
-
-      // this.spin.play()
     }
     this.audio.onended = () => {
       console.log('Stream Ended. Restarting')

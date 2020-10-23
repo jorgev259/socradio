@@ -30,7 +30,6 @@ class ItemBG extends React.Component {
 }
 
 export default class Background extends React.Component {
-  spin = {}
   state = {
     anim: 'stale',
     bgIndex: Math.floor(Math.random() * info[this.props.station].length)
@@ -39,21 +38,12 @@ export default class Background extends React.Component {
   updateBG = () => {
     if (this.state.anim === 'running') return
 
-    this.spin.play()
     this.setState({ anim: 'running' }, () => {
       this.bgdrag.play()
     })
   }
 
   componentDidMount () {
-    this.spin = anime({
-      targets: '#swapBG',
-      rotate: '1turn',
-      duration: 1100,
-      easing: 'spring(1, 50, 10, 0)',
-      autoplay: false
-    })
-
     this.bgdrag = anime({
       targets: '#newBG',
       duration: 1100,
@@ -74,7 +64,7 @@ export default class Background extends React.Component {
   render () {
     return (
       <>
-        <Config socket={this.props.socket} station={this.props.station} handleBG={this.updateBG.bind(this)} handleStation={this.props.updateStation} />
+        <Config station={this.props.station} handleBG={this.updateBG.bind(this)} />
         <ItemBG id='currentBG' station={this.props.station} index={this.state.bgIndex} />
         <ItemBG id='newBG' station={this.props.station} index={this.state.bgIndex + 1} />
       </>

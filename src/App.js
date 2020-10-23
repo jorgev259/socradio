@@ -4,15 +4,10 @@ import Radio from './Radio'
 import Small from './Small'
 
 const routes = {
-  '/': () => <Radio />,
-  '/clouds': () => <Radio />,
-  '/persona': () => <Radio />,
-  '/anime': () => <Radio />,
-  '/woomy': () => <Radio />,
-  '/sonic': () => <Radio />,
-  '/arms': () => <Radio />,
+  '/': () => <Radio station='clouds' />,
   '/small': () => <Small station='clouds' />,
-  '/small/:station': ({ station }) => <Small station={station} />
+  '/small/:station': ({ station }) => <Small station={station} />,
+  '/:station': ({ station }) => <Radio station={station} />
 }
 
 const App = () => {

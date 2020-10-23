@@ -1,8 +1,8 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import $ from 'jquery'
 
-export default class Record extends React.Component {
-  componentDidMount () {
+export default function Record ({ playing, station }) {
+  useEffect(() => {
     var recordWidth = $('#split1').width()
     $(window).resize(function () {
       if (recordWidth === $('#split1').width()) {
@@ -21,13 +21,11 @@ export default class Record extends React.Component {
     }
 
     $(document).ready(resizePlayerEffect)
-  }
+  }, [])
 
-  render () {
-    return (
-      <div className='split' id='recordDiv' style={{ right: '-183px', left: '183px' }}>
-        <img alt='record' id='record' className='record' src={`/images/record/record_${this.props.station}.png`} />
-      </div>
-    )
-  }
+  return (
+    <div className='split' id='recordDiv' style={{ right: '-183px', left: '183px' }}>
+      <img alt='record' id='record' className='record' src={`/images/record/record_${station}.png`} />
+    </div>
+  )
 }
