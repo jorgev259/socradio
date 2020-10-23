@@ -17,7 +17,6 @@ import './css/roboto.css'
 
 import 'dat.gui'
 import Background from './js/Background'
-import Record from './js/Record'
 
 const placeholders = [
   "Riku's radio extravaganza",
@@ -68,6 +67,7 @@ export default function Radio ({ station }) {
     initiateSocket()
     subscribeToStation(station, msg => setSong(msg))
     return disconnectSocket
+    // eslint-disable-next-line
   }, [station])
 
   function setPlay () {
@@ -95,18 +95,12 @@ export default function Radio ({ station }) {
         <div className='row'>
           <div className='col s12 m10 offset-m1' id='TooHotCard'>
             <div className='card z-depth-5' style={{ borderRadius: '20px' }} id='TooHotPlayer'>
-              <div className='card-image' id='playerCardImage'>
-                <div className='col s10 m8 l6' id='artDiv' style={{ paddingLeft: 0 }}>
-                  <Record station={station} playing={playing} />
-                  <div
-                    className='active splitimg' id='split1'
-                    style={{ backgroundColor: 'rgb(51, 51, 51)', height: '100%', borderRadius: '20px 0 0' }}
-                  >
-                    <div id='albutwt' style={{ height: '100%', width: '100%' }}>
-                      <img alt='' onError={handleDefaultSrc} src={`images/logo/soc_${station}.png`} />
-                    </div>
-
-                  </div>
+              <div className='card-image' id='playerCardImage' style={{ height: '350px' }}>
+                <div style={{ height: '100%', position: 'absolute', zIndex: 1 }}>
+                  <img style={{ width: 'auto', maxHeight: '100%' }} onError={handleDefaultSrc} src={`covers/${song.album}.jpg`} alt='' />
+                </div>
+                <div style={{ height: '100%' }}>
+                  <img style={{ width: 'auto', maxHeight: '100%', marginLeft: 'auto' }} src={`/images/record/record_${station}.png`} alt='' />
                 </div>
                 <div
                   id='cardFABPlay'
@@ -138,22 +132,6 @@ export default function Radio ({ station }) {
           </div>
         </div>
       </div>
-      <script src='wp-content\themes\materialize-child\js\materializemod.js' />
-      <script
-        src='https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.20.1/moment.min.js'
-        integrity='sha256-ABVkpwb9K9PxubvRrHMkk6wmWcIHUE9eBxNZLXYQ84k=' crossOrigin='anonymous'
-      />
-
-      <script src='%PUBLIC_URL%/js\sweetalert2.min.js' />
-      <script src='wp-content\themes\materialize-child\js\elmposiz.js' />
-      <script src='%PUBLIC_URL%/js\localforage.min.js' />
-      <script
-        src='https://code.jquery.com/ui/1.12.1/jquery-ui.min.js'
-        integrity='sha256-VazP97ZCwtekAsvgPBSUwPFKdrwD3unUfSGVYrahUqU=' crossOrigin='anonymous'
-      />
-      <script src='wp-content\themes\materialize-child\js\nginxws.js' />
-      <script src='https://cdn.rawgit.com/jschr/textillate/master/assets/jquery.lettering.js' />
-      <script src='https://cdn.rawgit.com/jschr/textillate/master/jquery.textillate.js' />
     </Container>
   )
 }
@@ -188,6 +166,7 @@ function VolumeBar ({ volume, setVolume }) {
       window.removeEventListener('mouseup', mouseUp)
       window.removeEventListener('mousemove', mouseMove)
     }
+    // eslint-disable-next-line
   }, [volumeDrag])
 
   return (

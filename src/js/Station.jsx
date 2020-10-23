@@ -26,6 +26,7 @@ export default function Station ({ station }) {
         })
       )
     }
+    // eslint-disable-next-line
   }, [stations])
 
   if (error) console.log(error)

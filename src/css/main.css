@@ -565,8 +565,8 @@ html,
     
     .record {
       background-color: transparent !important;
-      width: 100% !important;
-      height: auto !important;
+      width: auto !important;
+      height: 100% !important;
     }
 
     .slide-right {
@@ -627,30 +627,18 @@ html,
     }
 
     @media only screen and (max-width : 659px) {
-      #playerCardImage {
-        padding-top: 80%;
-      }
-
       #artDiv {
         width: 80%;
       }
     }
 
     @media only screen and (min-width : 660px) {
-      #playerCardImage {
-        padding-top: 66.67%;
-      }
-
       #artDiv {
         width: 66.67%;
       }
     }
 
     @media only screen and (min-width : 993px) {
-      #playerCardImage {
-        padding-top: 50%;
-      }
-
       #artDiv {
         width: 50%;
       }
