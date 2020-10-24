@@ -1,0 +1,135 @@
+/**
+ * Skin: Bar;
+ * ==============================================================
+ */
+.erplayer.erplayer--buttononly {
+	$size: 60px;
+
+	.erplayer{
+		&-content {
+			display: inline-flex;
+		}
+		&__container {
+			max-width: 400px;
+			width: auto;
+			display: inline-block;
+			overflow: visible;
+		}
+		&__wrapper {
+			opacity: 1;
+			transform: scale(1);
+			transition: opacity 0.4s, transform 0.4s;
+			transition-delay: 0.3s;
+			display: inline-flex;
+			padding: 0;
+			overflow: visible;
+		}
+		&__background {
+			max-height: 100%;
+		}
+		&__wrapper__container {
+			position: relative;
+			display: inline-block;
+		}
+		&__prev, &__next,
+		&__slidercontrol--progressbar {
+			display: none;
+		}
+		&__controls {
+			display: inline-flex;
+		}
+		&__info {
+		   display: none;
+		}
+		&__play, &__pause {
+			position: relative;
+			top: 0;
+			left: 0;
+			z-index: 10;
+			text-shadow: 0 0 15px rgba(0,0,0,0.8);
+			padding: 0;
+    		margin: 3px;
+    		i {
+    			display: inline-flex;
+    		}
+			&.loading::before {
+				box-sizing: border-box;
+
+			}
+		}
+		&__openplaylist {
+			display: none;
+		}
+		&__slidercontrol--volume {
+			// display: none;
+		}
+		
+
+		// Playlist
+		&__playlist {
+			display: none;
+
+		}
+	}
+}
+
+/**
+ * Desktop
+ * ==============================================================
+ */
+@media only screen and (min-width: 1170px){
+	.erplayer.erplayer--buttononly {
+
+		$size: 100px;
+		.erplayer {
+			&__mute {
+				display: none;
+				margin-right: 0;
+				// margin-left: 0;
+				// float: right;
+				// width: 20px;
+				// height: 20px;
+				// line-height: 20px;
+			}
+			&__slidercontrol--volume {
+				// position: relative;
+				display: inline-block;
+				opacity: 1;
+				line-height: 55px;
+				// top: 50%;
+    // 			right: 30px;
+    // 			width: 20px;
+				// height: 20px;
+    // 			transform: translateY(-50%);
+    // 			 z-index: 1000;
+    // 			i {
+				// 	opacity: 1;
+				// }
+				.erplayer__slidercontrol{
+					$trackbarWidth: 40px;
+					
+					&__slider {
+						width: $trackbarWidth;
+						// opacity: 0;
+		    // 			transition: opacity 0.3s;
+		    // 			top: 12px;
+		    // 			position: absolute;
+					 //    right: auto;
+					 //    transform: translateX(-100%);
+					 //    margin-left: -10px;
+					 //    z-index: 1000;
+					}
+					&__bar, &__trackbar {
+						width: $trackbarWidth;
+					}
+	    		}
+	    		&:hover .erplayer__slidercontrol__slider {
+					opacity: 1;
+				}
+			}
+			
+		}
+		
+	}
+}
+

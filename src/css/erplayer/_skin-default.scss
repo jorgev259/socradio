@@ -1,0 +1,8 @@
+.erplayer {
+	&--default &__slidercontrol--progressbar {
+		display: none;
+	}
+	&--default &__controls {
+		text-align: left;
+	}
+}
