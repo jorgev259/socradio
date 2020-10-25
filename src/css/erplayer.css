@@ -902,7 +902,6 @@
   display: none;
 }
 .erplayer.erplayer--fullscreenbar .erplayer__controls {
-  float: left;
   display: inline-block;
   position: absolute;
   top: 0;
