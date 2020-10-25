@@ -1,7 +1,6 @@
 import React, { useState, useCallback, useEffect } from 'react'
 import 'bootstrap/dist/css/bootstrap.min.css'
-import './css/erplayer.scss'
-import './css/erplayer/erplayer.scss'
+import './css/erplayer.css'
 import classname from 'classnames'
 import useAxios from 'axios-hooks'
 import { initiateSocket, disconnectSocket, subscribeToStation } from './Socket'

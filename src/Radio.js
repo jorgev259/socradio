@@ -114,17 +114,14 @@ export default function Radio ({ station }) {
                 </div>
               </div>
               <div className='card-content black-text z-depth-5 left-align' id='playerControls'>
-                <canvas id='canvas' className='equaliser' />
                 <div className='row'>
-                  <div className='col s12'>
+                  <div className='col'>
                     <span className='card-title playerText truncate' id='cardTitle'>{song.title}</span>
-                  </div>
-                  <div className='col s7'>
                     <p className='playerText truncate' id='cardArtist'>{song.artist}</p>
-                  </div>
-                  <VolumeBar volume={volume} setVolume={setVolume} />
-                  <div className='col s7'>
                     <p className='playerText truncate' id='cardAlbum'>{song.album}</p>
+                  </div>
+                  <div className='col-md-auto d-flex'>
+                    <VolumeBar volume={volume} setVolume={setVolume} />
                   </div>
                 </div>
               </div>
@@ -170,7 +167,7 @@ function VolumeBar ({ volume, setVolume }) {
   }, [volumeDrag])
 
   return (
-    <div className='right'>
+    <div className='right align-self-center mt-2 mt-md-0'>
       <div className='switch'>
         <div
           className='volume' title='Set volume' ref={volumeElement}
