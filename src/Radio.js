@@ -1,21 +1,14 @@
 import React, { useState, useEffect, useRef, useCallback } from 'react'
 
-import { Container } from 'reactstrap'
+import { Container, Col, Row } from 'reactstrap'
 import { MdPlayArrow, MdPause, MdVolumeOff } from 'react-icons/md'
 import { initiateSocket, disconnectSocket, subscribeToStation } from './Socket'
+import anime from 'animejs/lib/anime.es.js'
 
-import './css/player.css'
-import './css/main.css'
-import './css/material.css'
-import './css/font.css'
-
-import './css/animate.min.css'
-import './css/material-font.css'
-import './css/materialize.min.css'
-
+import classname from 'classnames'
+import styles from './css/main.module.scss'
 import './css/roboto.css'
 
-import 'dat.gui'
 import Background from './js/Background'
 
 const placeholders = [
@@ -50,6 +43,7 @@ function useAudioRef () {
 }
 
 export default function Radio ({ station }) {
+  const recordRef = useRef(null)
   const { audio, ref: audioRef, playing } = useAudioRef()
   const [volume, setVolumeState] = useState(0.5)
   const [song, setSong] = useState({
@@ -70,6 +64,42 @@ export default function Radio ({ station }) {
     // eslint-disable-next-line
   }, [station])
 
+  useEffect(() => {
+    const spin = anime({
+      targets: `.${styles.record} img`,
+      rotate: '1turn',
+      loop: true,
+      duration: 1500,
+      easing: 'linear',
+      autoplay: false
+    })
+
+    recordRef.current = {
+      begin: anime({
+        targets: `.${styles.record} img`,
+        rotate: '180deg',
+        duration: 2000,
+        easing: 'easeInCubic',
+        autoplay: false,
+        complete: spin.play
+      }),
+      end: anime({
+        begin: spin.pause,
+        targets: `.${styles.record} img`,
+        rotate: '360deg',
+        duration: 2000,
+        easing: 'easeOutBack',
+        autoplay: false
+      })
+    }
+    // eslint-disable-next-line
+  }, [])
+
+  useEffect(() => {
+    if (playing) recordRef.current.begin.play()
+    else recordRef.current.end.play()
+  }, [playing])
+
   function setPlay () {
     if (playing) audio.pause()
     else {
@@ -88,48 +118,45 @@ export default function Radio ({ station }) {
   }
 
   return (
-    <Container>
-      <Background station={station} />
+    <>
       <audio ref={audioRef} preload='none' src={`https://play.squid-radio.net/${station}`} volume={volume} />
-      <div id='titlepara' className='slidepara headerpara' style={{ height: '100%' }}>
-        <div className='row'>
-          <div className='col s12 m10 offset-m1' id='TooHotCard'>
-            <div className='card z-depth-5' style={{ borderRadius: '20px' }} id='TooHotPlayer'>
-              <div className='card-image' id='playerCardImage' style={{ height: '350px' }}>
-                <div style={{ height: '100%', position: 'absolute', zIndex: 1 }}>
-                  <img style={{ width: 'auto', maxHeight: '100%' }} onError={handleDefaultSrc} src={`covers/${song.album}.jpg`} alt='' />
-                </div>
-                <div style={{ height: '100%' }}>
-                  <img style={{ width: 'auto', maxHeight: '100%', marginLeft: 'auto' }} src={`/images/record/record_${station}.png`} alt='' />
-                </div>
-                <div
-                  id='cardFABPlay'
-                  className='btn-floating z-depth-5 btn-large halfway-fab waves-effect waves-light red card-button'
-                  style={{ zIndex: 2 }}
-                >
+      <Background station={station} />
+
+      <Container className='d-flex'>
+        <div className={classname(styles.radio, 'my-auto mx-md-auto')}>
+          <Row>
+            <Col xs={12} className={classname(styles.images, 'd-flex p-0')}>
+              <div className={styles.cover}>
+                <img onError={handleDefaultSrc} src={`covers/${song.album}.jpg`} alt='' />
+              </div>
+              <div className={classname('flex-grow-1', styles.record)}>
+                <img src={`/images/record/record_${station}.png`} alt='' />
+              </div>
+            </Col>
+          </Row>
+          <Row>
+            <Col xs={12} className={styles.songData}>
+              <Row>
+                <Col>
+                  <span className='text-truncate'>{song.title}</span>
+                  <p className='text-truncate'>{song.artist}</p>
+                  <p className='text-truncate'>{song.album}</p>
+                </Col>
+                <div className={styles.cardPlay}>
                   <i className='card-icon' id='playPauseIcon'>
                     {volume === 0 ? <MdVolumeOff onClick={setPlay} />
                       : playing ? <MdPause onClick={setPlay} /> : <MdPlayArrow onClick={setPlay} />}
                   </i>
                 </div>
-              </div>
-              <div className='card-content black-text z-depth-5 left-align' id='playerControls'>
-                <div className='row'>
-                  <div className='col'>
-                    <span className='card-title playerText truncate' id='cardTitle'>{song.title}</span>
-                    <p className='playerText truncate' id='cardArtist'>{song.artist}</p>
-                    <p className='playerText truncate' id='cardAlbum'>{song.album}</p>
-                  </div>
-                  <div className='col-md-auto d-flex'>
-                    <VolumeBar volume={volume} setVolume={setVolume} />
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
+                <Col xs='auto' className='d-flex'>
+                  <VolumeBar volume={volume} setVolume={setVolume} />
+                </Col>
+              </Row>
+            </Col>
+          </Row>
         </div>
-      </div>
-    </Container>
+      </Container>
+    </>
   )
 }
 
@@ -167,13 +194,13 @@ function VolumeBar ({ volume, setVolume }) {
   }, [volumeDrag])
 
   return (
-    <div className='right align-self-center mt-2 mt-md-0'>
+    <div className='align-self-center'>
       <div className='switch'>
         <div
-          className='volume' title='Set volume' ref={volumeElement}
+          className={styles.volume} title='Set volume' ref={volumeElement}
           onMouseDown={e => { setDrag(true); updateVolume(e.pageX) }}
         >
-          <span style={{ width: `${volume * 100}%` }} className='volumeBar' />
+          <span style={{ width: `${volume * 100}%` }} className={styles.bar} />
         </div>
       </div>
     </div>

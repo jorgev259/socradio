@@ -1,6 +1,7 @@
 import React from 'react'
 import info from './bg.json'
 import Config from './Config'
+import styles from '../css/main.module.scss'
 import anime from 'animejs/lib/anime.es.js'
 
 class ItemBG extends React.Component {
@@ -10,7 +11,7 @@ class ItemBG extends React.Component {
     switch (type) {
       case 'video':
         return (
-          <video className='myBG' autoPlay muted loop id={this.props.id}>
+          <video className={styles.BG} autoPlay muted loop id={this.props.id}>
             <source src={bg} type='video/mp4' />
           </video>
         )
@@ -18,7 +19,7 @@ class ItemBG extends React.Component {
       default:
         return (
           <div
-            className='myBG'
+            className={styles.BG}
             id={this.props.id}
             style={{
               backgroundImage: `url("${bg}")`
@@ -45,7 +46,7 @@ export default class Background extends React.Component {
 
   componentDidMount () {
     this.bgdrag = anime({
-      targets: '#newBG',
+      targets: `#${styles.newBG}`,
       duration: 1100,
       translateX: '100%',
       easing: 'spring(1, 80, 10, 0)',
@@ -65,8 +66,8 @@ export default class Background extends React.Component {
     return (
       <>
         <Config station={this.props.station} handleBG={this.updateBG.bind(this)} />
-        <ItemBG id='currentBG' station={this.props.station} index={this.state.bgIndex} />
-        <ItemBG id='newBG' station={this.props.station} index={this.state.bgIndex + 1} />
+        <ItemBG id={styles.currentBG} station={this.props.station} index={this.state.bgIndex} />
+        <ItemBG id={styles.newBG} station={this.props.station} index={this.state.bgIndex + 1} />
       </>
     )
   }

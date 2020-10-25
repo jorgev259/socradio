@@ -4,6 +4,8 @@ import Radio from './Radio'
 import Small from './Small'
 import Widget from './Widget'
 
+import './css/global.css'
+
 const routes = {
   '/': () => <Radio station='clouds' />,
   '/small': () => <Small station='clouds' />,
