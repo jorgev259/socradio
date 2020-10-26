@@ -138,9 +138,9 @@ export default function Radio ({ station }) {
             <Col xs={12} className={styles.songData}>
               <Row>
                 <Col>
-                  <span className='text-truncate'>{song.title}</span>
-                  <p className='text-truncate'>{song.artist}</p>
-                  <p className='text-truncate'>{song.album}</p>
+                  <span className='text-truncate' id='premidTitle'>{song.title}</span>
+                  <p className='text-truncate'  id='premidArtist'>{song.artist}</p>
+                  <p className='text-truncate'  id='premidAlbum'>{song.album}</p>
                 </Col>
                 <div className={styles.cardPlay}>
                   <i className='card-icon' id='playPauseIcon'>
