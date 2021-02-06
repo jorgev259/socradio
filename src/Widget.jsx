@@ -116,7 +116,7 @@ export default function Radio () {
                 <span onClick={setPlay} className='erplayer__btn erplayer__play'><i className='erplayer-icon-play' /></span>
                 <span onClick={setPlay} className={classname('erplayer__btn erplayer__pause', { loading })} style={{ pointerEvents: 'initial' }}><i className='erplayer-icon-pause' style={{ opacity: 1 }} /></span>
 
-                <div className='mt-2 erplayer__slidercontrol erplayer__slidercontrol--volume'>
+                <div style={{ position: 'absolute', bottom: '3px', right: '3px', zIndex: 100 }} className='mt-2 erplayer__slidercontrol erplayer__slidercontrol--volume'>
                   <span className='erplayer__btn erplayer__mute'><i className='erplayer-icon-volume' /></span>
                   <div className='erplayer__slidercontrol__slider'>
                     <div className='erplayer__volume-bar erplayer__slidercontrol__bar' style={{ width: `${volume * 100}%` }} />
