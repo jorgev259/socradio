@@ -3,7 +3,7 @@ import { useRoutes } from 'hookrouter'
 import Radio from './Radio'
 import Small from './Small'
 import Widget from './Widget'
-import Board from './board'
+import Board from './Board'
 
 import './css/global.css'
 
