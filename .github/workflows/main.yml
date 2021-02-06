@@ -18,16 +18,18 @@ jobs:
     runs-on: ubuntu-latest
 
     # Steps represent a sequence of tasks that will be executed as part of the job
-    steps:
+     steps:
     - uses: actions/checkout@v2
-    - uses: fregante/setup-git-user@v1    
+    - uses: fregante/setup-git-user@v1
+   
 
     # Runs a set of commands using the runners shell
     - run: yarn install
     - run: node bgs.js
     - run: yarn build
     - run: |
-        mv build dist
+        rm -r ./dist
+        mv build ./dist
         git add -A
         git diff-index --quiet HEAD || git commit -m 'Deploy!'
         git push
