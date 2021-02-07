@@ -1,7 +1,7 @@
-import React from 'react'
+import { Component } from 'react';
 import { FiImage } from 'react-icons/fi'
 
-export default class SwapBG extends React.Component {
+export default class SwapBG extends Component {
   render () {
     return (
       <div className='config-list'>

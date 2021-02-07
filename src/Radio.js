@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef, useCallback } from 'react'
+import { useState, useEffect, useRef, useCallback } from 'react';
 
 import { Container, Col, Row } from 'reactstrap'
 import { MdPlayArrow, MdPause, MdVolumeOff } from 'react-icons/md'

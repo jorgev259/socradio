@@ -1,10 +1,10 @@
-import React from 'react'
+import { Component } from 'react';
 import info from './bg.json'
 import Config from './Config'
 import styles from '../css/main.module.scss'
 import anime from 'animejs/lib/anime.es.js'
 
-class ItemBG extends React.Component {
+class ItemBG extends Component {
   render () {
     const bg = info[this.props.station][this.props.index] || (this.props.index < 0 ? info[this.props.station][info[this.props.station].length - 1] : info[this.props.station][0])
     const type = bg.endsWith('.mp4') ? 'video' : 'image'
@@ -30,7 +30,7 @@ class ItemBG extends React.Component {
   }
 }
 
-export default class Background extends React.Component {
+export default class Background extends Component {
   state = {
     anim: 'stale',
     bgIndex: Math.floor(Math.random() * info[this.props.station].length)

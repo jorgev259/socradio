@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import { useState, useEffect } from 'react';
 import { FiRadio, FiArrowDown } from 'react-icons/fi'
 import { navigate } from 'hookrouter'
 import useAxios from 'axios-hooks'

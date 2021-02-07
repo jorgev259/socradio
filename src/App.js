@@ -1,4 +1,3 @@
-import React from 'react'
 import { useRoutes } from 'hookrouter'
 import Radio from './Radio'
 import Small from './Small'

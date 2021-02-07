@@ -1,5 +1,5 @@
-import React from 'react'
-export default class Flute extends React.Component {
+import { Component } from 'react';
+export default class Flute extends Component {
   state={ gifs: [] }
   componentDidMount () {
     this.timeout = setInterval(() => {

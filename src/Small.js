@@ -1,5 +1,5 @@
 /* global Audio, MediaMetadata */
-import React from 'react'
+import { Component } from 'react';
 import styles from './css/small.module.css'
 import io from 'socket.io-client'
 import anime from 'animejs/lib/anime.es.js'
@@ -32,7 +32,7 @@ function androidMetadata (data) {
   }
 }
 
-export default class Small extends React.Component {
+export default class Small extends Component {
   state = {
     songData: {
       album: 'Press the Play button to start the radio',
