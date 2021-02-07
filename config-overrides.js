@@ -1,5 +1,5 @@
 const { useBabelRc, override, addWebpackPlugin } = require('customize-cra')
-var webpack = require('webpack')
+const webpack = require('webpack')
 
 module.exports = override(
   useBabelRc(),
