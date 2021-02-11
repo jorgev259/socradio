@@ -2,7 +2,7 @@ import io from 'socket.io-client'
 let socket
 
 export const initiateSocket = () => {
-  socket = io('https://api.squid-radio.net')
+  socket = io('/api')
   console.log('Connecting socket...')
 }
 

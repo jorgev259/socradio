@@ -1,5 +1,5 @@
 /* global Audio, MediaMetadata */
-import { Component } from 'react';
+import { Component } from 'react'
 import styles from './css/small.module.css'
 import io from 'socket.io-client'
 import anime from 'animejs/lib/anime.es.js'
@@ -46,7 +46,7 @@ export default class Small extends Component {
   minTimeout = null
 
   startSocket = (cb = null) => {
-    this.socket = io('https://api.squid-radio.net')
+    this.socket = io('/api')
     this.socket.on(this.props.station, this.handleSong)
     this.socket.emit('station', { station: this.props.station })
     this.startAudio()

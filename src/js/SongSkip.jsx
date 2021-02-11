@@ -1,7 +1,7 @@
 import { Component } from 'react'
 import axios from 'axios'
-import { FiSkipForward, FiCheck, FiX } from 'react-icons/fi'
-import { CountdownCircleTimer } from 'react-countdown-circle-timer'
+// import { FiSkipForward, FiCheck, FiX } from 'react-icons/fi'
+// import { CountdownCircleTimer } from 'react-countdown-circle-timer'
 
 export default class SongSkip extends Component {
   state = { voting: false, voted: false, votes: 0, needed: 0 }
@@ -23,7 +23,7 @@ export default class SongSkip extends Component {
   }
 
   handleStartVote = () => {
-    axios.post('https://api.squid-radio.net/skip', { station: this.props.station })
+    axios.post('/api/skip', { station: this.props.station })
   }
 
   handleVote = (vote) => {

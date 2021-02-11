@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react'
 import { FiRadio, FiArrowDown } from 'react-icons/fi'
 import { navigate } from 'hookrouter'
 import useAxios from 'axios-hooks'
@@ -8,7 +8,7 @@ export default function Station ({ station }) {
   const [open, setOpen] = useState(false)
   const [stations, setStations] = useState([])
   const [{ data, error }] = useAxios(
-    'https://api.squid-radio.net/meta'
+    '/api/meta'
   )
   const [songs, setSongs] = useState({})
 
@@ -35,31 +35,35 @@ export default function Station ({ station }) {
     <div className='config-list'>
       <div className='config-row'>
         <div className='config-icon' onClick={() => setOpen(!open)}>
-          {open ? (
-            <FiArrowDown
-              style={{
-                height: '30px',
-                width: '30px'
-              }}
-            />
-          ) : (
-            <FiRadio
-              style={{
-                height: '30px',
-                width: '30px'
-              }}
-            />
-          )}
+          {open
+            ? (
+              <FiArrowDown
+                style={{
+                  height: '30px',
+                  width: '30px'
+                }}
+              />
+              )
+            : (
+              <FiRadio
+                style={{
+                  height: '30px',
+                  width: '30px'
+                }}
+              />
+              )}
         </div>
       </div>
-      {open ? (
-        stations.filter(stationName => stationName !== station).map(stationName =>
-          <div className='config-row' key={stationName}>
-            {songs[stationName] && <div className='config-label'>Now Playing: {`${songs[stationName].artist} - ${songs[stationName].title}`}</div>}
-            <img className='config-img' alt='station logo' src={`/images/station/station_${stationName}.png`} onClick={() => navigate(`/${stationName}`)} />
-          </div>
-        )
-      ) : null}
+      {open
+        ? (
+            stations.filter(stationName => stationName !== station).map(stationName =>
+              <div className='config-row' key={stationName}>
+                {songs[stationName] && <div className='config-label'>Now Playing: {`${songs[stationName].artist} - ${songs[stationName].title}`}</div>}
+                <img className='config-img' alt='station logo' src={`/images/station/station_${stationName}.png`} onClick={() => navigate(`/${stationName}`)} />
+              </div>
+            )
+          )
+        : null}
 
     </div>
   )
