@@ -1,4 +1,4 @@
-import { useState, useCallback, useEffect } from 'react';
+import { useState, useCallback, useEffect } from 'react'
 import 'bootstrap/dist/css/bootstrap.min.css'
 import './css/erplayer.css'
 import classname from 'classnames'
@@ -45,9 +45,7 @@ export default function Radio () {
     artist: ''
   })
 
-  const [{ data: stations, error }] = useAxios(
-    'https://api.squid-radio.net/meta'
-  )
+  const [{ data: stations, error }] = useAxios('/api/meta')
 
   useEffect(() => {
     if (audio) {

@@ -1,4 +1,4 @@
-import { Component } from 'react';
+import { Component } from 'react'
 import { FiImage } from 'react-icons/fi'
 
 export default class SwapBG extends Component {

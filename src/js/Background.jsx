@@ -1,4 +1,4 @@
-import { Component } from 'react';
+import { Component } from 'react'
 import info from './bg.json'
 import Config from './Config'
 import styles from '../css/main.module.scss'
