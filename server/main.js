@@ -26,9 +26,9 @@ async function start () {
     })
   })
 
-  app.get('/ping', (req, res) => res.send(200))
+  app.get('/api/ping', (req, res) => res.send(200))
 
-  app.post('/meta', async (req, res) => {
+  app.post('/api/meta', async (req, res) => {
     const { filename, source } = req.body
 
     const row = await song.findByPk(filename)
@@ -38,21 +38,21 @@ async function start () {
     lastData[source] = data
   })
 
-  app.get('/meta/:station', (req, res) => {
+  app.get('/api/meta/:station', (req, res) => {
     res.send(lastData[req.params.station])
   })
 
-  app.get('/meta', (req, res) => {
+  app.get('/api/meta', (req, res) => {
     res.send(lastData)
   })
 
-  app.get('/song', async (req, res) => {
+  app.get('/api/song', async (req, res) => {
     const { title, artist } = req.query
     const result = await song.findOne({ where: { title, artist } })
     res.send(result)
   })
 
-  app.get('/songlist', (req, res) => {
+  app.get('/api/songlist', (req, res) => {
     /* const socket = new net.Socket()
     socket.on('error', (err) => console.log(err))
     socket.on('data', async (data) => {
@@ -73,7 +73,7 @@ async function start () {
     }) */
   })
 
-  app.get('/search', async (req, res) => {
+  app.get('/api/search', async (req, res) => {
     const result = await song.findAll({
       where: {
         title: {
@@ -84,7 +84,7 @@ async function start () {
     res.send(result)
   })
 
-  app.post('/skip', async (req, res) => {
+  app.post('/api/skip', async (req, res) => {
     /* const { station } = req.body
     if (!station) return res.send({})
     if (votes[station] !== undefined) return res.status(401).send({ error: 'Busy' })
