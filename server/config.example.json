@@ -1,0 +1,14 @@
+{
+    "musicPath": "music/",
+    "mysql":{
+        "connectionLimit": 10,
+        "host": "localhost",
+        "user": "root",
+        "password": "asd",
+        "database": "asd"
+      },
+      "webhooks":[],
+      "stations":{
+        "clouds": "https://play.sittingonclouds.net/clouds"
+      }
+}

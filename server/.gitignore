@@ -1,0 +1,13 @@
+node_modules/**
+poison/**
+
+playlist/**
+web/resource/covers/**
+!**/.dummy
+
+**.json
+!**.example.json
+!package.json
+*.db
+
+config.xml

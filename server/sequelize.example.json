@@ -1,0 +1,8 @@
+{
+    "username": "hackme",
+    "password": "hackme",
+    "database": "socradio",
+    "host": "localhost",
+    "port":"3306",
+    "dialect": "mysql"
+}

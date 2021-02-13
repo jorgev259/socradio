@@ -1,61 +1,19 @@
 {
-  "name": "socradio_web_react",
-  "version": "1.0.1",
-  "private": true,
   "dependencies": {
-    "@babel/core": "^7.12.13",
-    "@babel/eslint-parser": "^7.12.13",
-    "@babel/plugin-proposal-class-properties": "^7.12.1",
-    "@babel/preset-env": "^7.12.11",
-    "@babel/preset-react": "^7.12.10",
-    "animejs": "^3.2.1",
-    "axios": "^0.19.0",
-    "axios-hooks": "^2.1.0",
-    "bootstrap": "^4.5.0",
-    "classnames": "^2.2.6",
-    "customize-cra": "^0.9.1",
-    "eslint": "^7.19.0",
-    "eslint-config-standard": "^16.0.2",
-    "eslint-plugin-import": "^2.22.1",
-    "eslint-plugin-node": "^11.1.0",
-    "eslint-plugin-promise": "^4.2.1",
-    "glob": "^7.1.6",
-    "hookrouter": "^1.2.3",
-    "jquery": "^3.4.1",
-    "moment": "^2.24.0",
-    "node-sass": "^4.14.1",
-    "react": "^17.0.1",
-    "react-app-rewired": "^2.1.8",
-    "react-countdown-circle-timer": "^1.0.6",
-    "react-dom": "^17.0.1",
-    "react-fittext": "^1.0.0",
-    "react-icons": "^3.8.0",
-    "react-scripts": "^4.0.1",
-    "react-use-audio-player": "^1.2.4",
-    "reactstrap": "^8.4.1",
-    "rimraf": "^3.0.0",
-    "socket.io-client": "^2.3.0",
-    "use-fit-text": "^2.4.0",
-    "write-json-file": "^4.2.1"
+    "concurrently": "^5.3.0",
+    "cross-env": "^7.0.3",
+    "genversion": "^2.2.1",
+    "nodemon": "^2.0.7",
+    "standard": "^16.0.3"
   },
   "scripts": {
-    "start": "react-app-rewired start",
-    "build": "react-app-rewired build",
-    "build-dist": "yarn build && mv build dist",
-    "test": "react-app-rewired test --env=jsdom",
-    "eslint": "eslint src",
-    "eject": "react-scripts eject"
+    "push": "git pull && git push",
+    "dev": "cross-env REACT_APP_ENV=development concurrently -c \"blue,magenta\" \"yarn:client\" \"yarn:server\"",
+    "prod": "cross-env REACT_APP_ENV=production concurrently -c \"blue,magenta\" \"yarn:client\" \"yarn:server\"",
+    "client": "cd client && yarn start",
+    "server": "cd server && yarn start"
   },
-  "browserslist": {
-    "production": [
-      ">0.2%",
-      "not dead",
-      "not op_mini all"
-    ],
-    "development": [
-      "last 1 chrome version",
-      "last 1 firefox version",
-      "last 1 safari version"
-    ]
+  "standard": {
+    "parser": "./client/node_modules/babel-eslint"
   }
 }

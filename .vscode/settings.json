@@ -1,0 +1,14 @@
+{
+  "javascript.validate.enable": false,
+  "standard.enable": true,
+  "standard.autoFixOnSave": true,
+
+  "files.exclude": {
+    "/dist/**": true
+  },
+    
+  "[graphql]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode",
+    "editor.formatOnSave": true,
+  }
+}

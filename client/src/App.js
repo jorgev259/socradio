@@ -20,7 +20,6 @@ const routes = {
   '/board': () => <Board station='clouds' />,
   '/widget': () => <Widget />,
   '/:station': ({ station }) => <Radio station={station} />
-
 }
 
 const App = () => {

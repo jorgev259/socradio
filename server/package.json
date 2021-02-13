@@ -1,0 +1,27 @@
+{
+  "name": "socradio",
+  "version": "1.0.0",
+  "description": "",
+  "main": "main.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "deploy": "npm start main.js --name player && npm start logger.js --name logger"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "axios": "^0.20.0",
+    "body-parser": "^1.19.0",
+    "cls-hooked": "^4.2.2",
+    "cors": "^2.8.5",
+    "express": "^4.17.1",
+    "icy-socket": "^1.0.4",
+    "music-metadata": "^4.8.2",
+    "mysql2": "^2.2.5",
+    "readdir-enhanced": "^4.0.3",
+    "sequelize": "^6.3.5",
+    "shelljs": "^0.8.3",
+    "socket.io": "^2.3.0"
+  }
+}
