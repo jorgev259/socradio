@@ -6,7 +6,7 @@ const app = express()
 app.use(express.json())
 app.use(cors())
 const server = require('http').Server(app)
-const io = require('socket.io')(server)
+const io = require('socket.io')(server, { path: '/api/socket.io' })
 
 const { Op } = require('sequelize')
 const port = 19711

@@ -46,7 +46,7 @@ export default class Small extends Component {
   minTimeout = null
 
   startSocket = (cb = null) => {
-    this.socket = io('/api')
+    this.socket = io({ path: '/api/socket.io' })
     this.socket.on(this.props.station, this.handleSong)
     this.socket.emit('station', { station: this.props.station })
     this.startAudio()

@@ -2,7 +2,7 @@ import io from 'socket.io-client'
 let socket
 
 export const initiateSocket = () => {
-  socket = io('/api')
+  socket = io({ path: '/api/socket.io' })
   console.log('Connecting socket...')
 }
 
