@@ -12,6 +12,7 @@
 /build
 /dist/*.zip
 /covers
+/music
 
 # misc
 .DS_Store
