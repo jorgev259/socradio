@@ -24,11 +24,11 @@ jobs:
    
     # Runs a set of commands using the runners shell
     - run: |
-      cd client
-      yarn install
-      yarn build      
-      rm -r ../dist
-      mv build ../dist
-      git add -A
-      git diff-index --quiet HEAD || git commit -m 'Deploy!'
-      git push
+        cd client
+        yarn install
+        yarn build      
+        rm -r ../dist
+        mv build ../dist
+        git add -A
+        git diff-index --quiet HEAD || git commit -m 'Deploy!'
+        git push
