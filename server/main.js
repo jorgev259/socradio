@@ -29,6 +29,7 @@ async function start () {
   app.get('/api/ping', (req, res) => res.send(200))
 
   app.post('/api/meta', async (req, res) => {
+    console.log(req.body)
     const { filename, source } = req.body
 
     const row = await song.findByPk(filename)

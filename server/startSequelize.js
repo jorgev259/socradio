@@ -8,7 +8,6 @@ const namespace = cls.createNamespace('trans-namespace')
 Sequelize.useCLS(namespace)
 
 const sequelizeConfig = require('./sequelize.json')
-console.log(sequelizeConfig)
 const sequelize = new Sequelize(sequelizeConfig)
 
 sequelize.define('album', {
