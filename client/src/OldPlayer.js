@@ -42,7 +42,7 @@ function useAudioRef () {
   return { audio, ref, playing, loading }
 }
 
-export default function Radio ({ station }) {
+export default function OldPlayer ({ station }) {
   const recordRef = useRef(null)
   const { audio, ref: audioRef, playing } = useAudioRef()
   const [volume, setVolumeState] = useState(0.5)
