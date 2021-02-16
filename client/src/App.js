@@ -1,5 +1,4 @@
 import { useRoutes } from 'hookrouter'
-import OldPlayer from './OldPlayer'
 import Small from './Small'
 import Widget from './Widget'
 import Board from './Board'
@@ -11,9 +10,6 @@ import './css/global.css'
 const routes = {
   '/small': () => <Small station='clouds' />,
   '/small/:station': ({ station }) => <Small station={station} />,
-
-  '/old': () => <OldPlayer station='clouds' />,
-  '/old/:station': ({ station }) => <OldPlayer station={station} />,
 
   '/board': () => <Board station='clouds' />,
   '/widget': () => <Widget />,

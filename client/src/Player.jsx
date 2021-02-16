@@ -110,7 +110,8 @@ export default function Player (props) {
 
       <Row className='my-4'>
         <Col>
-          <span className={styles.stations}>Available stations: {data &&
+          <span className={styles.stations}>Available stations: <br className='d-block d-md-none' />
+            {data &&
           Object.keys(data).filter(s => s !== 'undefined').map((stationName, i, arr) => (
             <Fragment key={stationName}>
               {stationName === props.station
