@@ -12,7 +12,7 @@ const routes = {
   '/small/:station': ({ station }) => <Small station={station} />,
 
   '/board': () => <Board station='clouds' />,
-  '/widget': () => <Widget />,
+  '/widget': () => <Widget station='clouds' />,
 
   '/': () => <Player station='clouds' />,
   '/:station': ({ station }) => <Player station={station} />
