@@ -5,6 +5,7 @@ import useAxios from 'axios-hooks'
 import { initiateSocket, disconnectSocket, subscribeToStation } from './Socket'
 import Slider from './js/Slider'
 import { A } from 'hookrouter'
+import DetectableOverflow from 'react-detectable-overflow'
 
 import styles from './css/player.module.scss'
 
@@ -74,8 +75,6 @@ export default function Player (props) {
     setVolumeState(value)
   }
 
-  console.log(props.station)
-
   return (
     <Container className={classnames(styles.player, 'text-center px-2 px-md-0 h-100 d-flex align-items-center justify-content-center flex-column')}>
       <audio ref={audioRef} preload='none' id='erplayer-audio' src={`https://play.squid-radio.net/${props.station}`} volume={volume} />
@@ -84,26 +83,26 @@ export default function Player (props) {
         <img src={`https://squid-radio.net/covers/${song.album}.jpg`} onError={defaultBackground} alt='' />
       </div>
 
-      <Row className={classnames(styles.content, 'justify-content-center justify-content-md-start my-4')}>
+      <Row className={classnames(styles.content, 'justify-content-center my-4 w-100')}>
         <Col xs='auto'>
           <div className={styles.station}>
             <img src={`/images/station/station_${props.station}.png`} alt='' />
           </div>
         </Col>
         <Col xs='auto'>
-          <Row style={{ maxHeight: `${2 / 5 * 100}%` }} className='my-2'>
+          <Row style={{ height: `${2 / 5 * 100}%`, fontSize: '45px' }} className='overflow-hidden'>
             <Col>
-              <span className='mt-auto' style={{ fontSize: '45px', lineHeight: '40px' }}>{song.artist}</span>
+              <Marquee text={song.artist} />
             </Col>
           </Row>
-          <Row style={{ maxHeight: `${2 / 5 * 100}%` }} className='my-2'>
+          <Row style={{ height: `${2 / 5 * 100}%`, fontSize: '45px' }} className='overflow-hidden'>
             <Col>
-              <span style={{ fontSize: '45px', lineHeight: '40px' }}>{song.title}</span>
+              <Marquee text={song.title} />
             </Col>
           </Row>
-          <Row style={{ maxHeight: `${1 / 5 * 100}%` }} className='my-2'>
+          <Row style={{ height: `${1 / 5 * 100}%`, fontSize: '25px' }} className='overflow-hidden'>
             <Col>
-              <span style={{ fontSize: '25px', lineHeight: '25px' }}>{song.album}</span>
+              <Marquee text={song.album} />
             </Col>
           </Row>
         </Col>
@@ -126,7 +125,7 @@ export default function Player (props) {
 
       <Row className='mt-4 w-100 justify-content-center'>
         <Col xs={12} md={4}>
-          <Row className='justify-content-center '>
+          <Row className='justify-content-center'>
             <Col md={12}>
               <Slider handleChange={setVolume} value={volume} />
             </Col>
@@ -139,5 +138,19 @@ export default function Player (props) {
         </Col>
       </Row>
     </Container>
+  )
+}
+
+function Marquee (props) {
+  const [overflowed, setOverflow] = useState()
+  const style = { whiteSpace: 'nowrap' }
+
+  return (
+    <>
+      <DetectableOverflow style={{ width: '100%', visibility: 'hidden', position: 'absolute', ...style }} onChange={isOverflowed => setOverflow(isOverflowed)}>
+        {props.text}
+      </DetectableOverflow>
+      <div className={classnames({ marquee: overflowed })} style={style}>{props.text}</div>
+    </>
   )
 }
