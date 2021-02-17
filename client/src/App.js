@@ -1,18 +1,16 @@
 import { useRoutes } from 'hookrouter'
-import Small from './Small'
 import Widget from './Widget'
-import Board from './Board'
 import Player from './Player'
 import { AudioPlayerProvider } from 'react-use-audio-player'
 
 import './css/global.css'
+import 'bootstrap/dist/css/bootstrap.min.css'
 
 const routes = {
-  '/small': () => <Small station='clouds' />,
-  '/small/:station': ({ station }) => <Small station={station} />,
-
-  '/board': () => <Board station='clouds' />,
-  '/widget': () => <Widget station='clouds' />,
+  '/board': () => <Widget station='clouds' icon={false} />,
+  '/board/:station': ({ station }) => <Widget station={station} icon={false} />,
+  '/widget': () => <Widget station='clouds' icon />,
+  '/widget/:station': ({ station }) => <Widget station={station} icon />,
 
   '/': () => <Player station='clouds' />,
   '/:station': ({ station }) => <Player station={station} />

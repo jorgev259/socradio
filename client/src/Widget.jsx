@@ -84,11 +84,13 @@ export default function Player (props) {
       </div>
 
       <Row className={classnames(styles.content, 'justify-content-center my-1 w-100')}>
-        <Col xs='auto'>
-          <div className={styles.station}>
-            <img src={`/images/station/station_${props.station}.png`} alt='' />
-          </div>
-        </Col>
+        {props.icon && (
+          <Col xs='auto'>
+            <div className={styles.station}>
+              <img src={`/images/station/station_${props.station}.png`} alt='' />
+            </div>
+          </Col>
+        )}
         <Col xs='auto'>
           <Row style={{ height: `${3 / 5 * 100}%`, fontSize: '24px' }} className='overflow-hidden'>
             <Col>
