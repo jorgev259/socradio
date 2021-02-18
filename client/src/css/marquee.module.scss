@@ -1,0 +1,13 @@
+.marquee, .calc {
+    white-space: nowrap;
+}
+
+.marquee.active {
+    transition: transform 100s linear;
+}
+
+.calc {
+    width: 100%;
+    position: absolute;
+    visibility: hidden;
+}

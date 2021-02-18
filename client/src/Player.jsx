@@ -4,8 +4,8 @@ import classnames from 'classnames'
 import useAxios from 'axios-hooks'
 import { initiateSocket, disconnectSocket, subscribeToStation } from './Socket'
 import Slider from './js/Slider'
+import Marquee from './js/Marquee'
 import { A } from 'hookrouter'
-import DetectableOverflow from 'react-detectable-overflow'
 
 import styles from './css/player.module.scss'
 
@@ -83,25 +83,27 @@ export default function Player (props) {
         <img src={`https://squid-radio.net/covers/${song.album}.jpg`} onError={defaultBackground} alt='' />
       </div>
 
-      <Row className={classnames(styles.content, 'justify-content-center my-4 w-100')}>
+      <Row className={classnames(styles.content, 'justify-content-center my-2 w-100')}>
         <Col xs='auto'>
           <div className={styles.station}>
             <img src={`/images/station/station_${props.station}.png`} alt='' />
           </div>
         </Col>
+      </Row>
+      <Row className={classnames(styles.content, 'justify-content-center w-100')}>
         <Col xs='auto'>
-          <Row style={{ height: `${2 / 5 * 100}%`, fontSize: '45px' }} className='overflow-hidden'>
-            <Col>
+          <Row style={{ height: `${2 / 5 * 100}%`, fontSize: '45px' }}>
+            <Col className={styles.data}>
               <Marquee text={song.artist} />
             </Col>
           </Row>
-          <Row style={{ height: `${2 / 5 * 100}%`, fontSize: '45px' }} className='overflow-hidden'>
-            <Col>
+          <Row style={{ height: `${2 / 5 * 100}%`, fontSize: '45px' }}>
+            <Col className={styles.data}>
               <Marquee text={song.title} />
             </Col>
           </Row>
-          <Row style={{ height: `${1 / 5 * 100}%`, fontSize: '25px' }} className='overflow-hidden'>
-            <Col>
+          <Row style={{ height: `${1 / 5 * 100}%`, fontSize: '25px' }}>
+            <Col className={styles.data}>
               <Marquee text={song.album} />
             </Col>
           </Row>
@@ -139,19 +141,5 @@ export default function Player (props) {
         </Col>
       </Row>
     </Container>
-  )
-}
-
-function Marquee (props) {
-  const [overflowed, setOverflow] = useState()
-  const style = { whiteSpace: 'nowrap' }
-
-  return (
-    <>
-      <DetectableOverflow style={{ width: '100%', visibility: 'hidden', position: 'absolute', ...style }} onChange={isOverflowed => setOverflow(isOverflowed)}>
-        {props.text}
-      </DetectableOverflow>
-      <div className={classnames({ marquee: overflowed })} style={style}>{props.text}</div>
-    </>
   )
 }

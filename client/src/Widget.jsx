@@ -4,8 +4,8 @@ import classnames from 'classnames'
 import useAxios from 'axios-hooks'
 import { initiateSocket, disconnectSocket, subscribeToStation } from './Socket'
 import Slider from './js/Slider'
+import Marquee from './js/Marquee'
 import { A } from 'hookrouter'
-import DetectableOverflow from 'react-detectable-overflow'
 
 import styles from './css/widget.module.scss'
 
@@ -91,14 +91,16 @@ export default function Player (props) {
             </div>
           </Col>
         )}
+      </Row>
+      <Row className={classnames(styles.content, 'justify-content-center w-100')}>
         <Col xs='auto'>
-          <Row style={{ height: `${3 / 5 * 100}%`, fontSize: '24px' }} className='overflow-hidden'>
-            <Col>
+          <Row style={{ height: `${3 / 5 * 100}%`, fontSize: '24px' }}>
+            <Col className={styles.data}>
               <Marquee text={`${song.artist} - ${song.title}`} />
             </Col>
           </Row>
-          <Row style={{ height: `${2 / 5 * 100}%`, fontSize: '16px' }} className='overflow-hidden'>
-            <Col>
+          <Row style={{ height: `${2 / 5 * 100}%`, fontSize: '16px' }}>
+            <Col className={styles.data}>
               <Marquee text={song.album} />
             </Col>
           </Row>
@@ -136,19 +138,5 @@ export default function Player (props) {
         </Col>
       </Row>
     </Container>
-  )
-}
-
-function Marquee (props) {
-  const [overflowed, setOverflow] = useState()
-  const style = { whiteSpace: 'nowrap' }
-
-  return (
-    <>
-      <DetectableOverflow style={{ width: '100%', visibility: 'hidden', position: 'absolute', ...style }} onChange={isOverflowed => setOverflow(isOverflowed)}>
-        {props.text}
-      </DetectableOverflow>
-      <div className={classnames({ marquee: overflowed })} style={style}>{props.text}</div>
-    </>
   )
 }
