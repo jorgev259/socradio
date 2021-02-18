@@ -113,7 +113,7 @@ export default function Player (props) {
             <Fragment key={stationName}>
               {stationName === props.station
                 ? <span className={styles.current}>{stationName}</span>
-                : <A disabled href={`/${stationName}`}>{stationName}</A>}
+                : <A disabled href={`${props.base}/${stationName}`}>{stationName}</A>}
               {arr.length - 1 !== i && ' - '}
             </Fragment>
           ))}

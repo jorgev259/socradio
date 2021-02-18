@@ -7,10 +7,10 @@ import './css/global.css'
 import 'bootstrap/dist/css/bootstrap.min.css'
 
 const routes = {
-  '/board': () => <Widget station='clouds' icon={false} />,
-  '/board/:station': ({ station }) => <Widget station={station} icon={false} />,
-  '/widget': () => <Widget station='clouds' icon />,
-  '/widget/:station': ({ station }) => <Widget station={station} icon />,
+  '/board': () => <Widget station='clouds' icon={false} base='/board' />,
+  '/board/:station': ({ station }) => <Widget station={station} icon={false} base='/board' />,
+  '/widget': () => <Widget station='clouds' icon base='/widget' />,
+  '/widget/:station': ({ station }) => <Widget station={station} icon base='/widget' />,
 
   '/': () => <Player station='clouds' />,
   '/:station': ({ station }) => <Player station={station} />
