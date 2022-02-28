@@ -2,7 +2,7 @@ import io from 'socket.io-client'
 let socket
 
 export const initiateSocket = () => {
-  socket = io('https://squid-radio.net', { path: '/api/socket.io' })
+  socket = io('https://radio.sittingonclouds.net', { path: '/api/socket.io' })
   console.log('Connecting socket...')
 }
 
