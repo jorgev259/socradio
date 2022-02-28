@@ -45,7 +45,7 @@ export default function Player (props) {
 
   useEffect(() => {
     if (audio) {
-      audio.src = `https://play.squid-radio.net/${props.station}`
+      audio.src = `https://play.sittingonclouds.net/${props.station}`
       audio.load()
       audio.play()
     }
@@ -77,7 +77,7 @@ export default function Player (props) {
 
   return (
     <Container className={classnames(styles.player, 'text-center px-2 px-md-0 h-100 d-flex align-items-center justify-content-center flex-column')}>
-      <audio ref={audioRef} preload='none' id='erplayer-audio' src={`https://play.squid-radio.net/${props.station}`} volume={volume} />
+      <audio ref={audioRef} preload='none' id='erplayer-audio' src={`https://play.sittingonclouds.net/${props.station}`} volume={volume} />
       <div className={styles.background}>
         <div className={styles.effect} />
         <img src={`https://squid-radio.net/covers/${song.album}.jpg`} onError={defaultBackground} alt='' />
