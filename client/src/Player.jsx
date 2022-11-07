@@ -45,7 +45,7 @@ export default function Player (props) {
 
   useEffect(() => {
     if (audio) {
-      audio.src = `https://play.sittingonclouds.net/${props.station}`
+      audio.src = `https://play.squid-radio.net/${props.station}`
       audio.load()
       audio.play()
     }
