@@ -35,7 +35,7 @@ function useAudioRef () {
 
 export default function Player (props) {
   const { audio, ref: audioRef, playing } = useAudioRef()
-  const [{ data }] = useAxios(`https://${window.location.hostname}/api/meta`)
+  const [{ data }] = useAxios(`https://www.squid-radio.net/api/meta`)
   const [volume, setVolumeState] = useState(0.5)
   const [song, setSong] = useState({
     album: 'The Best Videogame Music 24/7',
@@ -80,7 +80,7 @@ export default function Player (props) {
       <audio ref={audioRef} preload='none' id='erplayer-audio' src={`https://play.squid-radio.net/${props.station}`} volume={volume} />
       <div className={styles.background}>
         <div className={styles.effect} />
-        <img src={`https://${window.location.hostname}/covers/${song.album}.jpg`} onError={defaultBackground} alt='' />
+        <img src={`https://www.squid-radio.net/covers/${song.album}.jpg`} onError={defaultBackground} alt='' />
       </div>
 
       <Row className={classnames(styles.content, 'justify-content-center my-2 w-100')}>
