@@ -4,6 +4,8 @@
         [
             "@babel/preset-react",
             {
+                "loose": true,
+                "shippedProposals": true
                 "runtime": "automatic"
             }
         ]
