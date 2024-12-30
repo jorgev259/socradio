@@ -9,6 +9,6 @@
       },
       "webhooks":[],
       "stations":{
-        "clouds": "https://play.squid-radio.net/clouds"
+        "clouds": "https://radio.sittingonclouds.net/play/clouds"
       }
 }
