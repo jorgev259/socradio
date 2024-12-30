@@ -4,13 +4,8 @@
         [
             "@babel/preset-react",
             {
-                "loose": true,
-                "shippedProposals": true,
                 "runtime": "automatic"
             }
         ]
-    ],
-    "plugins": [
-        "@babel/plugin-proposal-class-properties"
     ]
 }
